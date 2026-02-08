@@ -75,7 +75,7 @@ export function ContactCLI() {
             LinkedIn
           </a>
           <a
-            href="https://github.com"
+            href="https://github.com/ilian21012005-bit"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 px-4 py-2 border border-success-green/50 text-success-green hover:bg-success-green/10 transition-colors rounded"
