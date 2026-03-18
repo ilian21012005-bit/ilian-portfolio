@@ -1,9 +1,10 @@
-# Fichier CV
+# Fichier CV — obligatoire pour le lien « Télécharger CV »
 
-Pour que le lien « Télécharger CV » fonctionne sur le site :
+Sans ce fichier, le bouton **Télécharger CV** mène vers une page 404.
 
-1. Place ici ton fichier PDF de CV.
-2. Nom du fichier attendu : **`CV-ILIAN-EL-BOUAZZAOUI-PRIEUR.pdf`**  
-   (ou mets à jour `NEXT_PUBLIC_CONTACT_CV_URL` dans `.env.local` et sur Vercel pour pointer vers le nom que tu utilises.)
+1. Place **ton fichier PDF** de CV dans ce dossier (`public/`).
+2. Nom du fichier **exact** : **`CV-ILIAN-EL-BOUAZZAOUI-PRIEUR.pdf`**  
+   (même nom que dans `NEXT_PUBLIC_CONTACT_CV_URL`).
+3. Commit + push pour que le site (Vercel) serve le PDF.
 
-Le fichier sera servi à l’URL `/CV-ILIAN-EL-BOUAZZAOUI-PRIEUR.pdf`.
+Si tu utilises un autre nom (ex. `mon-cv.pdf`), mets à jour `NEXT_PUBLIC_CONTACT_CV_URL` dans `.env.local` et sur Vercel (ex. `/mon-cv.pdf`).

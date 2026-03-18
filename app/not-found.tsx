@@ -1,17 +1,17 @@
 "use client";
 
-import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 
+/** Liens en <a> pour rechargement complet : évite fond noir après nav depuis 404 */
 export default function NotFound() {
   const router = useRouter();
 
   useEffect(() => {
-    const handleKeyDown = () => router.push("/");
+    const handleKeyDown = () => window.location.href = "/";
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [router]);
+  }, []);
 
   return (
     <main className="min-h-screen bg-[#0000aa] flex flex-col items-center justify-center text-center px-6 text-white font-mono select-none">
@@ -28,13 +28,17 @@ export default function NotFound() {
         <br />
         * Press CTRL+ALT+DEL to restart your browser.
       </p>
-      <Link
+      <a
         href="/"
         className="inline-flex items-center gap-2 border-2 border-white px-6 py-3 font-bold hover:bg-white hover:text-[#0000aa] transition-colors shadow-[2px_2px_0_#fff] active:shadow-none active:translate-x-[2px] active:translate-y-[2px] cursor-pointer"
       >
         _REBOOT_SYSTEM (HOME)
-      </Link>
-      <span className="mt-6 inline-block w-4 h-6 bg-white animate-pulse" title="Press any key" />
+      </a>
+      <div className="mt-6 flex flex-wrap justify-center gap-3 text-sm">
+        <a href="/contact" className="text-white/80 hover:text-white underline">Contact</a>
+        <a href="/a-propos" className="text-white/80 hover:text-white underline">À propos</a>
+      </div>
+      <span className="mt-4 inline-block w-4 h-6 bg-white animate-pulse" title="Press any key" />
     </main>
   );
 }
