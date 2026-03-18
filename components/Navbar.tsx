@@ -51,7 +51,7 @@ export function Navbar() {
           >
             {!isHovered ? (
               <span className="text-sm font-bold text-foreground whitespace-nowrap">
-                <span className="text-tech-blue">I</span>EBP
+                <span className="text-tech-blue">I</span>Menu
               </span>
             ) : (
               <motion.div
