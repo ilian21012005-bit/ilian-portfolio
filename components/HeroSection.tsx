@@ -1,13 +1,23 @@
 "use client";
 
+import dynamic from "next/dynamic";
 import { motion } from "framer-motion";
 import { MagneticButton } from "./MagneticButton";
 import { KineticText } from "./effects/KineticText";
 import { GlitchText } from "./effects/GlitchText";
 import { DecryptText } from "./effects/DecryptText";
-import { NetworkMesh } from "./backgrounds/NetworkMesh";
-import { TechGrid } from "./backgrounds/TechGrid";
 import { InfiniteMarquee } from "./InfiniteMarquee";
+import { CONTACT } from "@/lib/contact";
+
+const NetworkMesh = dynamic(
+  () => import("./backgrounds/NetworkMesh").then((m) => m.NetworkMesh),
+  { ssr: false }
+);
+
+const TechGrid = dynamic(
+  () => import("./backgrounds/TechGrid").then((m) => m.TechGrid),
+  { ssr: false }
+);
 
 export function HeroSection() {
   return (
@@ -90,7 +100,7 @@ export function HeroSection() {
           className="flex flex-col sm:flex-row gap-4 justify-center items-center"
         >
           <MagneticButton
-            href="/CV-ILIAN-EL-BOUAZZAOUI-PRIEUR.pdf"
+            href={CONTACT.cvUrl}
             variant="primary"
             className="w-full sm:w-auto"
           >

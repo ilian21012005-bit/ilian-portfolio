@@ -2,13 +2,13 @@
 
 import { motion } from "framer-motion";
 import { PageHeader } from "@/components/PageHeader";
-import { Footer, FOOTER_HEIGHT } from "@/components/Footer";
+import { PageLayout } from "@/components/PageLayout";
+import { ContactForm } from "@/components/ContactForm";
 import { ContactCLI } from "@/components/ContactCLI";
 
 export default function ContactPage() {
   return (
-    <main className="relative">
-      <div className="relative min-h-screen" style={{ paddingBottom: FOOTER_HEIGHT }}>
+    <PageLayout>
         <PageHeader title="Contact" subtitle="Disponible pour un stage Avril — Juillet 2026." />
         <footer className="relative py-24 px-6 border-t border-white/10 overflow-hidden bg-gradient-to-b from-transparent to-tech-blue/[0.02]">
           <div
@@ -35,6 +35,7 @@ export default function ContactPage() {
                 <span className="text-sm text-success-green font-medium">Disponible pour stage Avril 2026</span>
               </div>
             </motion.div>
+            <ContactForm />
             <ContactCLI />
             <motion.p
               initial={{ opacity: 0 }}
@@ -46,8 +47,6 @@ export default function ContactPage() {
             </motion.p>
           </div>
         </footer>
-      </div>
-      <Footer />
-    </main>
+    </PageLayout>
   );
 }

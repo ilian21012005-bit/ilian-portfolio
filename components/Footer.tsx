@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { CONTACT } from "@/lib/contact";
 
 /** Hauteur de réserve pour que le contenu ne soit pas caché sous la capsule */
 const FOOTER_HEIGHT = 80;
@@ -64,23 +65,27 @@ export function Footer() {
           </div>
 
           <div className="flex items-center gap-5">
-            <a
-              href="https://github.com/ilian21012005-bit"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-sm text-foreground/70 hover:text-tech-blue transition-colors font-medium relative after:content-[''] after:absolute after:bottom-[-2px] after:left-0 after:w-0 after:h-px after:bg-tech-blue after:transition-all after:duration-300 hover:after:w-full"
-            >
-              GitHub
-            </a>
+            {CONTACT.githubUrl && (
+              <a
+                href={CONTACT.githubUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-sm text-foreground/70 hover:text-tech-blue transition-colors font-medium relative after:content-[''] after:absolute after:bottom-[-2px] after:left-0 after:w-0 after:h-px after:bg-tech-blue after:transition-all after:duration-300 hover:after:w-full"
+              >
+                GitHub
+              </a>
+            )}
             <span className="w-px h-4 bg-white/20" />
-            <a
-              href="https://www.linkedin.com/in/ilian-ebp"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-sm text-foreground/70 hover:text-tech-blue transition-colors font-medium relative after:content-[''] after:absolute after:bottom-[-2px] after:left-0 after:w-0 after:h-px after:bg-tech-blue after:transition-all after:duration-300 hover:after:w-full"
-            >
-              LinkedIn
-            </a>
+            {CONTACT.linkedinUrl && (
+              <a
+                href={CONTACT.linkedinUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-sm text-foreground/70 hover:text-tech-blue transition-colors font-medium relative after:content-[''] after:absolute after:bottom-[-2px] after:left-0 after:w-0 after:h-px after:bg-tech-blue after:transition-all after:duration-300 hover:after:w-full"
+              >
+                LinkedIn
+              </a>
+            )}
             <span className="w-px h-4 bg-white/20" />
             <a
               href="/contact"

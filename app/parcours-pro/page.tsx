@@ -1,15 +1,14 @@
 "use client";
 
 import { PageHeader } from "@/components/PageHeader";
-import { Footer, FOOTER_HEIGHT } from "@/components/Footer";
+import { PageLayout } from "@/components/PageLayout";
 import { SectionWrapper } from "@/components/SectionWrapper";
 import { GitTimeline } from "@/components/GitTimeline";
 import Link from "next/link";
 
 export default function ParcoursProPage() {
   return (
-    <main className="relative">
-      <div className="relative min-h-screen" style={{ paddingBottom: FOOTER_HEIGHT }}>
+    <PageLayout>
         <PageHeader
           title="Parcours professionnel"
           subtitle="Boulanger, Toyota France Financement, stage de découverte — git log work/"
@@ -27,8 +26,6 @@ export default function ParcoursProPage() {
             Contact
           </Link>
         </div>
-      </div>
-      <Footer />
-    </main>
+    </PageLayout>
   );
 }

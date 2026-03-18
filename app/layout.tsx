@@ -25,9 +25,57 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Ilian El Bouazzaoui Prieur | Fullstack Dev & Systems Student",
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000"),
+  applicationName: "Ilian — Portfolio",
+  title: {
+    default: "Ilian El Bouazzaoui Prieur | Portfolio",
+    template: "%s | Ilian EBP",
+  },
   description:
-    "Portfolio d'Ilian El Bouazzaoui Prieur - Étudiant BUT 2 Informatique à Paris-Saclay. Stage recherché Avril - Juillet 2026. Motové, polyvalent et désireux d'acquérir de nouvelles expériences.",
+    "Portfolio d'Ilian El Bouazzaoui Prieur — étudiant BUT 2 Informatique (Paris-Saclay). Recherche de stage Avril–Juillet 2026. Systèmes, réseaux et développement.",
+  keywords: [
+    "BUT Informatique",
+    "Paris-Saclay",
+    "Stage",
+    "Systèmes",
+    "Réseaux",
+    "Cybersécurité",
+    "Développement",
+    "Next.js",
+    "React",
+    "TypeScript",
+  ],
+  authors: [{ name: "Ilian El Bouazzaoui Prieur" }],
+  creator: "Ilian El Bouazzaoui Prieur",
+  alternates: {
+    canonical: "/",
+  },
+  openGraph: {
+    type: "website",
+    locale: "fr_FR",
+    url: "/",
+    siteName: "Ilian — Portfolio",
+    title: "Ilian El Bouazzaoui Prieur | Portfolio",
+    description:
+      "Étudiant BUT 2 Informatique (Paris-Saclay). Recherche de stage Avril–Juillet 2026. Systèmes, réseaux et développement.",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Ilian El Bouazzaoui Prieur | Portfolio",
+    description:
+      "Étudiant BUT 2 Informatique (Paris-Saclay). Recherche de stage Avril–Juillet 2026. Systèmes, réseaux et développement.",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
+    },
+  },
 };
 
 export default function RootLayout({
@@ -37,8 +85,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="fr" className="dark">
-      <body className={`${inter.variable} ${spaceGrotesk.variable} ${jetbrainsMono.variable} ${inter.className} antialiased font-sans`}>
+      <body
+        className={`${inter.variable} ${spaceGrotesk.variable} ${jetbrainsMono.variable} ${inter.className} antialiased font-sans`}
+      >
         <BootIntro>
+          <a href="#main-content" className="skip-link">
+            Aller au contenu principal
+          </a>
           <AuroraBg />
           <ScrollProgress />
           <Navbar />

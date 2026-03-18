@@ -1,16 +1,15 @@
 "use client";
 
 import { PageHeader } from "@/components/PageHeader";
-import { Footer, FOOTER_HEIGHT } from "@/components/Footer";
+import { PageLayout } from "@/components/PageLayout";
 import { SectionWrapper } from "@/components/SectionWrapper";
 import { StackingCards } from "@/components/StackingCards";
-import { PROJECTS } from "@/lib/data";
+import { PROJECTS } from "@/lib/projects";
 import Link from "next/link";
 
 export default function ProjetsPage() {
   return (
-    <main className="relative">
-      <div className="relative min-h-screen" style={{ paddingBottom: FOOTER_HEIGHT }}>
+    <PageLayout>
         <PageHeader title="Projets" subtitle="Projets techniques réalisés durant le BUT." />
         <SectionWrapper id="projects" allowSticky className="pb-8">
           <div className="max-w-6xl mx-auto">
@@ -22,8 +21,6 @@ export default function ProjetsPage() {
             </div>
           </div>
         </SectionWrapper>
-      </div>
-      <Footer />
-    </main>
+    </PageLayout>
   );
 }

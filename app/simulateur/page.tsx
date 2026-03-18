@@ -1,16 +1,33 @@
 "use client";
 
+import dynamic from "next/dynamic";
 import { motion } from "framer-motion";
 import { PageHeader } from "@/components/PageHeader";
-import { Footer, FOOTER_HEIGHT } from "@/components/Footer";
-import { NetworkSimulator } from "@/components/network-sim";
+import { PageLayout } from "@/components/PageLayout";
 import Link from "next/link";
 import { Cpu, Terminal } from "lucide-react";
 
+const NetworkSimulator = dynamic(
+  () => import("@/components/network-sim").then((m) => m.NetworkSimulator),
+  {
+    ssr: false,
+    loading: () => (
+      <div className="max-w-5xl mx-auto px-6 py-12">
+        <div className="rounded-2xl border border-white/10 bg-white/[0.02] p-6 animate-pulse">
+          <div className="h-10 w-3/4 rounded bg-white/10 mb-6" />
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            <div className="lg:col-span-2 aspect-[16/10] min-h-[260px] rounded-xl bg-white/5" />
+            <div className="h-[360px] rounded-xl bg-white/5" />
+          </div>
+        </div>
+      </div>
+    ),
+  }
+);
+
 export default function SimulateurPage() {
   return (
-    <main className="relative">
-      <div className="relative min-h-screen" style={{ paddingBottom: FOOTER_HEIGHT }}>
+    <PageLayout>
         <PageHeader
           title="Simulateur réseau"
           subtitle="Démo interactive — explore la topologie et les commandes."
@@ -56,8 +73,6 @@ export default function SimulateurPage() {
             Voir mes compétences systèmes & réseaux →
           </Link>
         </div>
-      </div>
-      <Footer />
-    </main>
+    </PageLayout>
   );
 }

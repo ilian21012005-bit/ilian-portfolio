@@ -3,8 +3,9 @@
 import { motion } from "framer-motion";
 import { Dumbbell, Film, Music, Gamepad2, BookOpen } from "lucide-react";
 import { PageHeader } from "@/components/PageHeader";
-import { Footer, FOOTER_HEIGHT } from "@/components/Footer";
+import { PageLayout } from "@/components/PageLayout";
 import { SectionWrapper } from "@/components/SectionWrapper";
+import { LazyIframe } from "@/components/LazyIframe";
 import Link from "next/link";
 
 const INTERESTS = [
@@ -17,8 +18,7 @@ const INTERESTS = [
 
 export default function InteretsPage() {
   return (
-    <main className="relative">
-      <div className="relative min-h-screen" style={{ paddingBottom: FOOTER_HEIGHT }}>
+    <PageLayout>
         <PageHeader title="Centres d'intérêt" subtitle="Ce qui me passionne au quotidien." />
         <SectionWrapper id="interests" className="bg-white/[0.01]">
           <div className="max-w-4xl mx-auto">
@@ -33,12 +33,10 @@ export default function InteretsPage() {
                   <span className="w-1 h-5 rounded-full bg-tech-blue" />
                   My Top 2025
                 </h3>
-                <iframe
+                <LazyIframe
                   title="deezer-widget"
                   src="https://widget.deezer.com/widget/dark/playlist/14803330743"
-                  width="100%"
                   height="300"
-                  frameBorder={0}
                   allow="encrypted-media; clipboard-write"
                   className="w-full rounded-xl"
                 />
@@ -75,8 +73,6 @@ export default function InteretsPage() {
             </div>
           </div>
         </SectionWrapper>
-      </div>
-      <Footer />
-    </main>
+    </PageLayout>
   );
 }

@@ -3,15 +3,14 @@
 import { motion } from "framer-motion";
 import { PageHeader } from "@/components/PageHeader";
 import { Badge } from "@/components/Badge";
-import { Footer, FOOTER_HEIGHT } from "@/components/Footer";
+import { PageLayout } from "@/components/PageLayout";
 import { SpotlightCard } from "@/components/SpotlightCard";
 import { SectionWrapper } from "@/components/SectionWrapper";
 import Link from "next/link";
 
 export default function AProposPage() {
   return (
-    <main className="relative">
-      <div className="relative min-h-screen" style={{ paddingBottom: FOOTER_HEIGHT }}>
+    <PageLayout>
         <PageHeader title="À propos" subtitle="Passionné par l'architecture logicielle et la cybersécurité." />
         <SectionWrapper id="about" size="compact">
           <div className="max-w-4xl mx-auto">
@@ -53,8 +52,6 @@ export default function AProposPage() {
             </motion.div>
           </div>
         </SectionWrapper>
-      </div>
-      <Footer />
-    </main>
+    </PageLayout>
   );
 }

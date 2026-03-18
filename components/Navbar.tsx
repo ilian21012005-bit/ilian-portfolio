@@ -1,9 +1,11 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { CONTACT } from "@/lib/contact";
 
 const navLinks = [
   { href: "/", label: "Accueil" },
@@ -19,12 +21,9 @@ const navLinks = [
 export function Navbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
+  const pathname = usePathname();
 
-  useEffect(() => {
-    const handleScroll = () => {};
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  const isActive = (href: string) => (href === "/" ? pathname === "/" : pathname?.startsWith(href));
 
   return (
     <>
@@ -63,13 +62,18 @@ export function Navbar() {
                   <Link
                     key={link.href}
                     href={link.href}
-                    className="text-xs font-medium text-foreground/80 hover:text-tech-blue transition-colors shrink-0"
+                    aria-current={isActive(link.href) ? "page" : undefined}
+                    className={`text-xs font-medium transition-colors shrink-0 ${
+                      isActive(link.href)
+                        ? "text-tech-blue"
+                        : "text-foreground/80 hover:text-tech-blue"
+                    }`}
                   >
                     {link.label}
                   </Link>
                 ))}
                 <a
-                  href="/CV-ILIAN-EL-BOUAZZAOUI-PRIEUR.pdf"
+                  href={CONTACT.cvUrl || "/cv.pdf"}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-xs font-semibold text-tech-blue hover:text-tech-blue/80"
@@ -87,6 +91,8 @@ export function Navbar() {
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             className="p-3 rounded-full bg-white/10 backdrop-blur-xl border border-white/10 text-foreground"
             aria-label="Menu"
+            aria-expanded={isMobileMenuOpen}
+            aria-controls="mobile-menu"
           >
             {isMobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
           </button>
@@ -107,6 +113,7 @@ export function Navbar() {
               onClick={() => setIsMobileMenuOpen(false)}
             />
             <motion.ul
+              id="mobile-menu"
               initial={{ y: -20, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               exit={{ y: -20, opacity: 0 }}
@@ -117,14 +124,17 @@ export function Navbar() {
                   <Link
                     href={link.href}
                     onClick={() => setIsMobileMenuOpen(false)}
-                    className="block py-3 text-foreground hover:text-tech-blue transition-colors"
+                    aria-current={isActive(link.href) ? "page" : undefined}
+                    className={`block py-3 transition-colors ${
+                      isActive(link.href) ? "text-tech-blue" : "text-foreground hover:text-tech-blue"
+                    }`}
                   >
                     {link.label}
                   </Link>
                 </motion.li>
               ))}
               <a
-                href="/CV-ILIAN-EL-BOUAZZAOUI-PRIEUR.pdf"
+                href={CONTACT.cvUrl || "/cv.pdf"}
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => setIsMobileMenuOpen(false)}

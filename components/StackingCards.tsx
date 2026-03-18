@@ -2,11 +2,16 @@
 
 import { useRef } from "react";
 import { motion } from "framer-motion";
+import Link from "next/link";
 
 interface Card {
   title: string;
   description: string;
   techStack: string[];
+  links?: {
+    repo?: string;
+    demo?: string;
+  };
 }
 
 interface StackingCardsProps {
@@ -56,6 +61,48 @@ export function StackingCards({ cards }: StackingCardsProps) {
                 <p className="text-foreground/70 text-sm leading-relaxed mb-4">
                   {card.description}
                 </p>
+                {(card.links?.repo || card.links?.demo) && (
+                  <div className="flex flex-wrap gap-2 mb-4">
+                    {card.links?.repo && (
+                      card.links.repo.startsWith("/") ? (
+                        <Link
+                          href={card.links.repo}
+                          className="inline-flex items-center justify-center px-3 py-1.5 rounded-full text-xs font-semibold border border-white/15 bg-white/[0.02] text-foreground/80 hover:text-tech-blue hover:border-tech-blue/40 hover:bg-white/[0.04] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-tech-blue/60"
+                        >
+                          Repo
+                        </Link>
+                      ) : (
+                        <a
+                          href={card.links.repo}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center justify-center px-3 py-1.5 rounded-full text-xs font-semibold border border-white/15 bg-white/[0.02] text-foreground/80 hover:text-tech-blue hover:border-tech-blue/40 hover:bg-white/[0.04] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-tech-blue/60"
+                        >
+                          Repo
+                        </a>
+                      )
+                    )}
+                    {card.links?.demo && (
+                      card.links.demo.startsWith("/") ? (
+                        <Link
+                          href={card.links.demo}
+                          className="inline-flex items-center justify-center px-3 py-1.5 rounded-full text-xs font-semibold border border-tech-blue/30 bg-tech-blue/10 text-tech-blue hover:bg-tech-blue/15 hover:border-tech-blue/50 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-tech-blue/60"
+                        >
+                          Demo
+                        </Link>
+                      ) : (
+                        <a
+                          href={card.links.demo}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center justify-center px-3 py-1.5 rounded-full text-xs font-semibold border border-tech-blue/30 bg-tech-blue/10 text-tech-blue hover:bg-tech-blue/15 hover:border-tech-blue/50 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-tech-blue/60"
+                        >
+                          Demo
+                        </a>
+                      )
+                    )}
+                  </div>
+                )}
                 <div className="flex flex-wrap gap-2">
                   {card.techStack.map((tech) => (
                     <span

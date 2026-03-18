@@ -2,15 +2,14 @@
 
 import { motion } from "framer-motion";
 import { PageHeader } from "@/components/PageHeader";
-import { Footer, FOOTER_HEIGHT } from "@/components/Footer";
+import { PageLayout } from "@/components/PageLayout";
 import { SectionWrapper } from "@/components/SectionWrapper";
-import Link from "next/link";
 import { Briefcase, GraduationCap } from "lucide-react";
+import { QuickLinkCard } from "@/components/QuickLinkCard";
 
 export default function ParcoursPage() {
   return (
-    <main className="relative">
-      <div className="relative min-h-screen" style={{ paddingBottom: FOOTER_HEIGHT }}>
+    <PageLayout>
         <PageHeader title="Parcours" subtitle="Pro & formation." />
         <SectionWrapper id="parcours">
           <div className="max-w-2xl mx-auto">
@@ -20,35 +19,27 @@ export default function ParcoursPage() {
               transition={{ duration: 0.5 }}
               className="grid grid-cols-1 sm:grid-cols-2 gap-4"
             >
-              <Link
+              <QuickLinkCard
                 href="/parcours-pro"
-                className="group rounded-2xl p-8 border border-white/10 bg-white/[0.02] hover:border-tech-blue/30 hover:bg-white/[0.04] transition-all flex flex-col items-center gap-4 text-center"
-              >
-                <div className="p-4 rounded-2xl bg-tech-blue/20 group-hover:bg-tech-blue/30 transition-colors">
-                  <Briefcase className="w-10 h-10 text-tech-blue" />
-                </div>
-                <div>
-                  <h2 className="text-xl font-semibold text-foreground mb-1">Parcours professionnel</h2>
-                  <p className="text-sm text-foreground/60">Expériences travail, stages</p>
-                </div>
-              </Link>
-              <Link
+                icon={Briefcase}
+                title={<span className="text-foreground font-semibold">Parcours professionnel</span>}
+                subtitle="Expériences travail, stages"
+                iconClassName="w-10 h-10 text-tech-blue"
+                variant="default"
+                className="p-8"
+              />
+              <QuickLinkCard
                 href="/parcours-scolaire"
-                className="group rounded-2xl p-8 border border-white/10 bg-white/[0.02] hover:border-success-green/30 hover:bg-white/[0.04] transition-all flex flex-col items-center gap-4 text-center"
-              >
-                <div className="p-4 rounded-2xl bg-success-green/20 group-hover:bg-success-green/30 transition-colors">
-                  <GraduationCap className="w-10 h-10 text-success-green" />
-                </div>
-                <div>
-                  <h2 className="text-xl font-semibold text-foreground mb-1">Parcours scolaire</h2>
-                  <p className="text-sm text-foreground/60">Formation académique</p>
-                </div>
-              </Link>
+                icon={GraduationCap}
+                title={<span className="text-foreground font-semibold">Parcours scolaire</span>}
+                subtitle="Formation académique"
+                iconClassName="w-10 h-10 text-success-green"
+                variant="success"
+                className="p-8"
+              />
             </motion.div>
           </div>
         </SectionWrapper>
-      </div>
-      <Footer />
-    </main>
+    </PageLayout>
   );
 }
