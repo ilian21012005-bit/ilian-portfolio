@@ -13,6 +13,12 @@ type Project = {
   architectureBullets?: string[];
   securityBullets?: string[];
   roleBullets?: string[];
+  decisionsBullets?: string[];
+  tradeOffsBullets?: string[];
+  interviewChecklistBullets?: string[];
+  summary30sBullets?: string[];
+  learnedBullets?: string[];
+  futureImprovementsBullets?: string[];
 };
 
 export const PROJECTS: Project[] = [
@@ -47,6 +53,38 @@ export const PROJECTS: Project[] = [
       "Conception architecture client-serveur temps réel.",
       "Intégration persistance et flux de jeu (lobby, rounds, scoring).",
       "Mise en place du pipeline Playwright (robustesse session).",
+    ],
+    decisionsBullets: [
+      "Découplage logique jeu (serveur) et interface (front) via WebSocket.",
+      "Récupération des likes déclenchée uniquement au moment du lancement (“Prêt”) pour limiter l’exposition des données.",
+      "Automatisation via Playwright basée sur une session utilisateur légitime (éviter la “double session” fragile).",
+      "Whitelisting/validation côté serveur des paramètres de jeu pour éviter des états incohérents.",
+    ],
+    tradeOffsBullets: [
+      "Précision et stabilité de l’extraction (Playwright) vs contraintes de temps d’attente (robustesse session).",
+      "Persistance PostgreSQL vs mode mémoire : plus fiable pour historique, mais plus d’opérations serveur.",
+      "Simplicité des messages WebSocket vs granularité fine des “diffs” (payload vs complexité).",
+    ],
+    interviewChecklistBullets: [
+      "Expliquer pourquoi WebSocket plutôt que HTTP polling (temps réel, latence).",
+      "Décrire le flux “lobby → Prêt → récupération likes → rounds → scoring”.",
+      "Comment gérer les erreurs d’automatisation (timeouts, session expirée) proprement côté back/front.",
+      "Sécurité by design : validation entrées, réduction exposition données, gestion des secrets via .env.",
+    ],
+    summary30sBullets: [
+      "Jeu temps réel : synchronisation état via WebSocket et serveur Node.js.",
+      "Persistance (PostgreSQL) pour historique/parties, et récupération déclenchée sur action explicite (“Prêt”).",
+      "Automatisation Playwright basée sur une session utilisateur légitime (usage responsable).",
+    ],
+    learnedBullets: [
+      "Pourquoi “authoritative server” réduit les états incohérents en temps réel.",
+      "Comment fiabiliser un pipeline Playwright (timeouts, robustesse session, retries).",
+      "L’importance de la validation/whitelisting côté serveur pour éviter des bugs de synchro.",
+    ],
+    futureImprovementsBullets: [
+      "Passer à des mises à jour incrémentales (diffs) plutôt qu’un broadcast complet si besoin perf.",
+      "Renforcer la gestion des erreurs UI (messages actionnables quand la session navigateur expire).",
+      "Ajouter une couche d’observabilité plus riche (logs structurés + métriques jeu).",
     ],
   },
   {
@@ -91,6 +129,38 @@ export const PROJECTS: Project[] = [
       "Mise en place des flux lobby/jeu, classement et persistance.",
       "Documentation technique (installation, maintenance, audit sécurité).",
     ],
+    decisionsBullets: [
+      "Serveur authoritative pour éliminer la triche : l’état (physique, scores, rounds) n’est jamais “décidé” par le client.",
+      "Boucle temps réel côté serveur (~60 TPS) + rendu séparé (Phaser display, client mobile).",
+      "Persistance de classement en SQLite (sql.js) pour être autonome sans dépendance MongoDB.",
+      "Hardening réseau : CORS + origines Socket.io, rate limiting, validation/whitelisting des entrées API.",
+    ],
+    tradeOffsBullets: [
+      "Équilibre fluidité vs bande passante : broadcast d’état complet plus simple, mais payload plus gros (optimisations possibles en delta).",
+      "Déploiement “LAN-first” vs ouverture internet : protocole/URLs plus stricts côté production.",
+      "SQLite embarqué (sql.js) vs DB externe : plus simple à déployer, mais limites en charge très forte.",
+    ],
+    interviewChecklistBullets: [
+      "Expliquer la séparation Display/Mobile/Serveur et le rôle du GameService (MVC).",
+      "Comment tu gères la machine à états des rounds et la synchronisation (authoritative).",
+      "Pourquoi CORS + ALLOWED_ORIGINS + express-rate-limit ?",
+      "Comment tu traites les entrées (whitelisting, parsing) pour éviter des états invalides.",
+    ],
+    summary30sBullets: [
+      "LAN multijoueur (jusqu’à 40) avec serveur Node.js autoritaire.",
+      "Affichage grand écran via Phaser 3 et manettes smartphones (HTML5 + nipple.js).",
+      "Classement persistant SQLite via sql.js + déploiement (Docker/CI).",
+    ],
+    learnedBullets: [
+      "Construire une machine à états de rounds propre (Buy/Action/RoundEnd) et testable.",
+      "Gérer efficacement l’update temps réel sans exploser la bande passante.",
+      "Appliquer sécurité by design : CORS/Socket.io, validation entrées, rate limiting.",
+    ],
+    futureImprovementsBullets: [
+      "Optimiser le broadcast d’état (delta vs payload complet) si le nombre de joueurs augmente.",
+      "Améliorer le modèle de sauvegarde classement (éviter writeFileSync trop fréquent).",
+      "Renforcer davantage l’observabilité (traces par round, latence WS).",
+    ],
   },
   {
     slug: "portfolio",
@@ -115,6 +185,38 @@ export const PROJECTS: Project[] = [
     roleBullets: [
       "Conception UX + code front (animation, layout, composants).",
       "Structuration des données pour rendre les fiches “Projets” maintenables.",
+    ],
+    decisionsBullets: [
+      "Centralisation des données de projets et compétences dans `lib/` pour éviter la duplication.",
+      "SEO : metadata, `robots`, `sitemap`, Open Graph, URLs cohérentes via `NEXT_PUBLIC_SITE_URL`.",
+      "Accessibilité : focus visible et skip link, navigation clavier-friendly.",
+      "Animations contrôlées et respect des préférences utilisateur (réduction des animations).",
+    ],
+    tradeOffsBullets: [
+      "Animations Framer Motion : effet “premium” vs coût perf (mitigation via reduced motion).",
+      "Static prerender vs pages dynamiques (certaines SSR/edge) pour conserver SEO et UX.",
+      "Tailwind pour vitesse d’itération vs risque de classes longues (mitigation via composants).",
+    ],
+    interviewChecklistBullets: [
+      "Comment tu gères le SEO Next.js (metadata/opengraph/sitemap/robots) ?",
+      "Pourquoi App Router et comment tu organises tes pages/composants ?",
+      "Comment tu t’assures de l’accessibilité (focus/skip link) ?",
+      "Performance : comment tu as pensé aux animations et au rendu ?",
+    ],
+    summary30sBullets: [
+      "Portfolio recruteur en Next.js 16 : contenu structuré et navigation claire.",
+      "Fiches projets : architecture, sécurité/réseaux, rôle et décisions techniques.",
+      "SEO + accessibilité + animations contrôlées (respect reduced motion).",
+    ],
+    learnedBullets: [
+      "Comment centraliser les données dans `lib/` pour éviter la duplication.",
+      "Pourquoi les pages dynamiques doivent rester propres côté metadata/links.",
+      "L’impact UX : micro-interactions, lisibilité et hiérarchie visuelle.",
+    ],
+    futureImprovementsBullets: [
+      "Ajouter des exports “resume” par projet (PDF/texte) pour entretien.",
+      "Optimiser les composants interactifs pour perf (bundle/SSR constraints).",
+      "Ajouter une page “Simulateur réseau” plus pédagogique avec un guide d’exercices.",
     ],
   },
   {

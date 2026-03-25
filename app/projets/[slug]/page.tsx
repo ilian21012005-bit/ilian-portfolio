@@ -141,6 +141,74 @@ export default function ProjetDetailPage({ params }: { params: { slug: string } 
               </ul>
             </div>
           ) : null}
+
+          {project.summary30sBullets?.length ? (
+            <div className="mb-10">
+              <h2 className="text-lg md:text-xl font-semibold text-foreground mb-4">Résumé 30 secondes</h2>
+              <ul className="list-disc pl-5 text-foreground/80 space-y-2">
+                {project.summary30sBullets.map((line) => (
+                  <li key={line}>{line}</li>
+                ))}
+              </ul>
+            </div>
+          ) : null}
+
+          {project.decisionsBullets?.length ? (
+            <div className="mb-10">
+              <h2 className="text-lg md:text-xl font-semibold text-foreground mb-4">Décisions techniques</h2>
+              <ul className="list-disc pl-5 text-foreground/80 space-y-2">
+                {project.decisionsBullets.map((line) => (
+                  <li key={line}>{line}</li>
+                ))}
+              </ul>
+            </div>
+          ) : null}
+
+          {project.tradeOffsBullets?.length ? (
+            <div className="mb-10">
+              <h2 className="text-lg md:text-xl font-semibold text-foreground mb-4">Trade-offs</h2>
+              <ul className="list-disc pl-5 text-foreground/80 space-y-2">
+                {project.tradeOffsBullets.map((line) => (
+                  <li key={line}>{line}</li>
+                ))}
+              </ul>
+            </div>
+          ) : null}
+
+          {project.interviewChecklistBullets?.length ? (
+            <div className="mb-10">
+              <h2 className="text-lg md:text-xl font-semibold text-foreground mb-4">Checklist entretien</h2>
+              <ul className="list-disc pl-5 text-foreground/80 space-y-2">
+                {project.interviewChecklistBullets.map((line) => (
+                  <li key={line}>{line}</li>
+                ))}
+              </ul>
+            </div>
+          ) : null}
+
+          {project.learnedBullets?.length ? (
+            <div className="mb-10">
+              <h2 className="text-lg md:text-xl font-semibold text-foreground mb-4">Ce que j’ai appris</h2>
+              <ul className="list-disc pl-5 text-foreground/80 space-y-2">
+                {project.learnedBullets.map((line) => (
+                  <li key={line}>{line}</li>
+                ))}
+              </ul>
+            </div>
+          ) : null}
+
+          {project.futureImprovementsBullets?.length ? (
+            <div className="mb-10">
+              <h2 className="text-lg md:text-xl font-semibold text-foreground mb-4">
+                Améliorations futures
+              </h2>
+              <ul className="list-disc pl-5 text-foreground/80 space-y-2">
+                {project.futureImprovementsBullets.map((line) => (
+                  <li key={line}>{line}</li>
+                ))}
+              </ul>
+            </div>
+          ) : null}
         </div>
       </SectionWrapper>
     </PageLayout>
