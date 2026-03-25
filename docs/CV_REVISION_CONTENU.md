@@ -36,7 +36,7 @@ MySQL, PostgreSQL, SQLite, modélisation, requêtes
 Linux (administration de base : utilisateurs, droits, fichiers), Windows, **Docker**, routage, VLAN, **Wireshark**, **Marionnet**, SSH, notions de pare-feu (iptables)
 
 **Qualité & outils**  
-Git, tests unitaires (JUnit), UML, **GitHub Actions** (CI), **Playwright** (automatisation navigateur — projet personnel)
+Git (branches, conventions de commits, pull requests), tests unitaires (JUnit), UML, **GitHub Actions** (CI), **Playwright** (automatisation navigateur — projet personnel)
 
 **Bureautique**  
 Microsoft Office, Google Workspace
@@ -90,17 +90,17 @@ Lycée Condorcet — Limay, France
 
 ### ZeroStrike — jeu multijoueur tactique (LAN)
 
-Jeu de tir **multijoueur en réseau local** (jusqu’à **40 joueurs**) : affichage sur **grand écran** (Phaser 3) et **smartphones** comme manettes. **Serveur Node.js autoritaire** (boucle ~60 TPS), **Socket.io**, modes *Search & Destroy* et *Deathmatch*, vote de carte, classement persistant (**SQLite / sql.js**). **Docker**, **CI GitHub Actions**, déploiement **Render**.  
+Jeu de tir **multijoueur en réseau local** (jusqu’à **40 joueurs**) : affichage sur **grand écran** (Phaser 3) et **smartphones** comme manettes. **Serveur Node.js autoritaire** (boucle ~60 TPS), **Socket.io**, modes *Search & Destroy* et *Deathmatch*, vote de carte, classement persistant (**SQLite / sql.js**). **Docker**, **CI GitHub Actions**, versioning Git (branches), déploiement **Render**.  
 **Liens** : GitHub `ilian21012005-bit/ZeroStrike` · Démo `https://zerostrike.onrender.com/`
 
 ### Guess The Like — jeu temps réel (projet personnel)
 
-Jeu **multijoueurs en temps réel** : deviner qui a aimé une vidéo parmi un groupe. **Node.js**, **PostgreSQL**, **WebSocket** ; récupération de données via **Playwright** sur une **session navigateur utilisateur** (projet technique, usage responsable et respect des conditions d’utilisation des plateformes).  
+Jeu **multijoueurs en temps réel** : deviner qui a aimé une vidéo parmi un groupe. **Node.js**, **PostgreSQL**, **WebSocket** ; récupération de données via **Playwright** sur une **session navigateur utilisateur** (projet technique, usage responsable et respect des conditions d’utilisation des plateformes). Versionné via Git/GitHub pour un suivi propre des itérations.  
 **Liens** : GitHub `ilian21012005-bit/guess-the-like` · Démo `https://guess-the-like-eu.onrender.com/`
 
 ### Portfolio professionnel
 
-Site **Next.js 16** (App Router), **TypeScript**, **Tailwind**, animations, **SEO** (sitemap, Open Graph) et **accessibilité**. Vitrine des projets et du parcours BUT.  
+Site **Next.js 16** (App Router), **TypeScript**, **Tailwind**, animations, **SEO** (sitemap, Open Graph) et **accessibilité**. Vitrine des projets et du parcours BUT, versionnée via Git/GitHub.  
 **Lien** : GitHub `ilian21012005-bit/ilian-portfolio` · *(ajoute l’URL publique une fois fixée dans `NEXT_PUBLIC_SITE_URL`)*
 
 ### Plateforme universitaire (SAE S3 — équipe)

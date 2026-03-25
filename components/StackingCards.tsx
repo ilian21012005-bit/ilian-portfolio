@@ -6,6 +6,7 @@ import Link from "next/link";
 
 interface Card {
   title: string;
+  slug?: string;
   description: string;
   techStack: string[];
   links?: {
@@ -61,7 +62,7 @@ export function StackingCards({ cards }: StackingCardsProps) {
                 <p className="text-foreground/70 text-sm leading-relaxed mb-4">
                   {card.description}
                 </p>
-                {(card.links?.repo || card.links?.demo) && (
+                {(card.links?.repo || card.links?.demo || card.slug) && (
                   <div className="flex flex-wrap gap-2 mb-4">
                     {card.links?.repo && (
                       card.links.repo.startsWith("/") ? (
@@ -100,6 +101,14 @@ export function StackingCards({ cards }: StackingCardsProps) {
                           Demo
                         </a>
                       )
+                    )}
+                    {card.slug && (
+                      <Link
+                        href={`/projets/${card.slug}`}
+                        className="inline-flex items-center justify-center px-3 py-1.5 rounded-full text-xs font-semibold border border-white/15 bg-white/[0.02] text-foreground/80 hover:text-tech-blue hover:border-tech-blue/40 hover:bg-white/[0.04] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-tech-blue/60"
+                      >
+                        Détails
+                      </Link>
                     )}
                   </div>
                 )}

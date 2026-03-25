@@ -1,5 +1,23 @@
-export const PROJECTS = [
+type ProjectLinks = {
+  repo?: string;
+  demo?: string;
+};
+
+type Project = {
+  slug: string;
+  title: string;
+  description: string;
+  techStack: string[];
+  links?: ProjectLinks;
+  highlights?: string[];
+  architectureBullets?: string[];
+  securityBullets?: string[];
+  roleBullets?: string[];
+};
+
+export const PROJECTS: Project[] = [
   {
+    slug: "guess-the-like",
     title: "Guess The Like",
     description:
       "Jeu multi-joueurs en temps réel : devine qui a liké le TikTok. Node.js, PostgreSQL, WebSocket ; récupération des likes via Playwright sur une session navigateur utilisateur (projet personnel, usage responsable des données). Déployé sur Render.",
@@ -8,8 +26,31 @@ export const PROJECTS = [
       repo: "https://github.com/ilian21012005-bit/guess-the-like",
       demo: "https://guess-the-like-eu.onrender.com/",
     },
+    highlights: [
+      "Multijoueur en temps réel (sessions, synchronisation état partie).",
+      "Persistences et historique via PostgreSQL.",
+      "Scraping automatisé via Playwright sur une session utilisateur (explication conformité/usage responsable).",
+      "Récupération des likes uniquement au moment du lancement (« Prêt ») pour limiter l’exposition des données.",
+    ],
+    architectureBullets: [
+      "Serveur : logique partie + stockage (PostgreSQL).",
+      "Temps réel : WebSocket pour l’échange état/événements.",
+      "Récupération likes : automatisation navigateur (Playwright) via session légitime.",
+      "Front : UI jeu (PC/mobile) et gestion des rounds.",
+    ],
+    securityBullets: [
+      "Usage responsable : pas de présentation “commerciale”, cadrage du projet comme technique/perso.",
+      "Vie privée : réduire le temps d’accès aux données (clic “Prêt”), limiter l’exposition côté UI.",
+      "Hygiène dev : variables d’environnement, pas de secrets commités.",
+    ],
+    roleBullets: [
+      "Conception architecture client-serveur temps réel.",
+      "Intégration persistance et flux de jeu (lobby, rounds, scoring).",
+      "Mise en place du pipeline Playwright (robustesse session).",
+    ],
   },
   {
+    slug: "zero-strike",
     title: "ZeroStrike",
     description:
       "Jeu de tir tactique multijoueur LAN (jusqu'à 40 joueurs) : grand écran Phaser 3 + smartphones en manettes. Serveur Node.js autoritaire (~60 TPS), Socket.io, modes Search & Destroy et Deathmatch, vote de map, SQLite (sql.js) pour le classement. Docker, CI GitHub Actions, déploiement Render.",
@@ -27,86 +68,143 @@ export const PROJECTS = [
       repo: "https://github.com/ilian21012005-bit/ZeroStrike",
       demo: "https://zerostrike.onrender.com/mobile/",
     },
+    highlights: [
+      "Serveur authoritative : état de partie (physique, scores) centralisé côté serveur.",
+      "Expérience salle/LAN party : hub web + grands écrans + mobiles en manettes.",
+      "Vote de map + profils de partie (Fun / Compétitif / Démo).",
+      "Classement persistant : SQLite via sql.js.",
+    ],
+    architectureBullets: [
+      "Client-serveur : logique métier + boucle ~60 TPS côté serveur Node.js.",
+      "Display : Phaser 3 (scènes Lobby/Game, HUD, effets).",
+      "Mobile : manette tactile (HTML/CSS/JS + nipple.js).",
+      "Design serveur MVC (controllers/services/models) + séparation Display/Mobile.",
+    ],
+    securityBullets: [
+      "CORS HTTP + origines Socket.io pilotées par `ALLOWED_ORIGINS` (durcissement).",
+      "Rate limiting sur endpoints (via express-rate-limit) et endpoints protégés (ex. métriques).",
+      "Validation/whitelisting des entrées API (ex. limite/ordre classement, parsing paramètres).",
+      "Observabilité/config via `.env.example` et bonnes pratiques de déploiement (DB_PATH).",
+    ],
+    roleBullets: [
+      "Conception architecture réseau et synchronisation état temps réel.",
+      "Mise en place des flux lobby/jeu, classement et persistance.",
+      "Documentation technique (installation, maintenance, audit sécurité).",
+    ],
   },
   {
+    slug: "portfolio",
     title: "Portfolio",
     description:
       "Ce site : portfolio développeur fullstack & étudiant Systèmes/Réseaux. Next.js 16 (App Router), design Dark Engineering, Framer Motion, SEO (sitemap, Open Graph) et accessibilité. URL de production définie par NEXT_PUBLIC_SITE_URL.",
     techStack: ["Next.js", "TypeScript", "Tailwind", "Framer Motion", "Lucide"],
     links: {
       repo: "https://github.com/ilian21012005-bit/ilian-portfolio",
-      demo: "",
     },
+    highlights: [
+      "Navigation et structure pensés pour recruteur/stage (sections claires, contenu actionnable).",
+      "SEO : `robots`, `sitemap`, metadata par page.",
+      "Accessibilité : focus/skip-link, rendu sémantique et contraste.",
+      "Composants réutilisables (Hero, cards, badges, timeline Git).",
+    ],
+    architectureBullets: [
+      "App Router Next.js + composants UI (composants client côté interactions).",
+      "Données centralisées : projets/compétences dans `lib/`.",
+      "Déploiement : variables `NEXT_PUBLIC_*` pour liens/contact/SEO.",
+    ],
+    roleBullets: [
+      "Conception UX + code front (animation, layout, composants).",
+      "Structuration des données pour rendre les fiches “Projets” maintenables.",
+    ],
   },
   {
+    slug: "plateforme-universitaire-sae-s3",
     title: "Plateforme universitaire (SAE S3)",
     description:
       "Application web PHP (MVC) et desktop Java avec algorithmes de constitution automatique de groupes TD/TP, gestion multi-rôles (responsables, enseignants, étudiants), import CSV notes, sondages, contraintes (niveau, genre, covoiturage). Architecture via API REST.",
     techStack: ["PHP", "Java", "MySQL", "API REST", "JavaScript", "Bootstrap", "Algorithmes"],
     links: {
       repo: "https://git.iut-orsay.fr/hdasil3/s3projet",
-      demo: "",
     },
+    highlights: [
+      "Rôles multiples et contrôle d’accès fonctionnel via API REST.",
+      "Import/traitement de données (CSV) et contraintes de groupe.",
+      "Conception UML et intégration avec IHM.",
+    ],
+    architectureBullets: [
+      "Briques web (PHP MVC) + IHM desktop (Java).",
+      "Couplage par API REST (séparation responsabilités).",
+      "Moteur d’algorithmes pour groupes TD/TP.",
+    ],
+    roleBullets: [
+      "Participation à la conception et au raccordement web/desktop.",
+      "Cadrage des contraintes et validation des résultats de constitution.",
+    ],
   },
   {
+    slug: "application-medias-sae-s2",
     title: "Application médias (SAE S2)",
     description:
       "Application type Letterboxd : gestion de sa collection de films et séries, listes personnalisées, notation et avis, suivi d'utilisateurs. Conception UML, Java (modèles + IHM Swing), tests unitaires, maquettes IHM.",
     techStack: ["Java", "Swing", "UML", "JUnit", "Git", "Factory pattern"],
     links: {
       repo: "https://git.iut-orsay.fr/lsukarn/s2-sae-dev-app-ef4",
-      demo: "",
     },
+    highlights: [
+      "Conception orientée objet (UML + patterns).",
+      "IHM Swing et maquettes intégrées au projet.",
+      "Tests unitaires (JUnit) pour la logique applicative.",
+    ],
+    roleBullets: ["Participation à la conception UML et à l’implémentation orientée objet."],
   },
   {
+    slug: "reseau-securise-entreprise",
     title: "Réseau sécurisé entreprise",
     description:
       "Mise en place d'un réseau sécurisé pour une entreprise fictive en équipe. Administration du réseau avec Wireshark et Marionnet, programmation en langage C.",
     techStack: ["C", "Wireshark", "Marionnet", "Réseau"],
     links: {
-      repo: "",
       demo: "/simulateur",
     },
+    highlights: ["Analyse trafic (Wireshark), observation et réglages réseau.", "Mise en pratique notions sécurité réseau."],
+    architectureBullets: ["Simulation réseau et observation des flux (capture/diagnostic)."],
+    roleBullets: ["Déploiement & tests en environnement simulé (Marionnet)."],
   },
   {
+    slug: "postes-linux",
     title: "Postes Linux",
     description:
       "Installation et configuration de postes de travail sous Linux en équipe. Manipulation du système de fichiers, comptes et groupes, droits, commandes de base. Contexte : TP BUT 1 ; livrables réalisés en direct (pas de dépôt en ligne).",
     techStack: ["Linux", "Administration système"],
-    links: {
-      repo: "",
-      demo: "",
-    },
+    roleBullets: ["Administration de base : utilisateurs, permissions, fichiers et commandes."],
+    highlights: ["Pratique des commandes et bonnes pratiques de droits.", "Apprentissage du diagnostic bas niveau."],
   },
   {
+    slug: "applications-gestion",
     title: "Applications de gestion",
     description:
       "Création d'applications de gestion en équipe : Cité universitaire Paris, Jeux Olympiques 2024. Utilisation UML, IHM, JavaScript via modèle MVC. Résultat : maquettes, diagrammes et code livrés en séance (pas de dépôt public).",
     techStack: ["JavaScript", "UML", "MVC", "IHM"],
-    links: {
-      repo: "",
-      demo: "",
-    },
+    highlights: ["Conception UML et séparation responsabilité front/back.", "Modèle MVC côté IHM web."],
+    roleBullets: ["Contribution à l’architecture et au raccordement des écrans."],
   },
   {
+    slug: "sites-web-fictifs",
     title: "Sites web fictifs",
     description:
       "Création de plusieurs sites web fictifs en autonomie. Conception complète front et back avec technologies web modernes. Contexte : projets réalisés en direct, sans dépôt en ligne.",
     techStack: ["HTML", "CSS", "PHP", "JavaScript"],
-    links: {
-      repo: "",
-      demo: "",
-    },
+    highlights: ["Conception fullstack (front/back) en autonomie.", "Projet “TP” : livraison en séance."],
+    roleBullets: ["Développement front & back selon maquettes."],
   },
   {
+    slug: "jeu-video-cpp",
     title: "Jeu vidéo C++",
     description:
       "Développement d'un jeu vidéo en C++ avec bibliothèques open source. Architecture modulaire, gestion du rendu et des entités. Projet réalisé en formation (pas de démo en ligne).",
     techStack: ["C++", "OpenGL", "Game Design"],
-    links: {
-      repo: "",
-      demo: "",
-    },
+    highlights: ["Architecture modulaire et gestion entités.", "Intégration bibliothèques graphiques open source."],
+    roleBullets: ["Conception et implémentation de modules de jeu (rendu/entités)."],
   },
 ];
 

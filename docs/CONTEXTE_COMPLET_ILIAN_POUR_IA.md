@@ -151,6 +151,7 @@ Les noms ci-dessous sont ceux des **dossiers** dans `Moodle_IUT_Orsay/Parcours` 
 
 - **Idée** : jeu multijoueur en temps réel : deviner qui a « liké » une vidéo TikTok parmi un groupe d’amis ; alternative loisir à des apps payantes du même principe.
 - **Stack** : Node.js, PostgreSQL (optionnelle ; mode mémoire possible), WebSocket, front HTML/JS, **Playwright** pour l’automatisation navigateur liée à une session utilisateur.
+- **Versioning** : Git/GitHub avec workflow de branches pour suivre les itérations.
 - **Démo** : https://guess-the-like-eu.onrender.com/
 - **Repo** : https://github.com/ilian21012005-bit/guess-the-like
 - **Points pédagogiques** : temps réel, persistance, architecture client-serveur, gestion de session.
@@ -160,6 +161,7 @@ Les noms ci-dessous sont ceux des **dossiers** dans `Moodle_IUT_Orsay/Parcours` 
 
 - **Idée** : jeu de tir tactique **multijoueur en LAN** (jusqu’à ~40 joueurs) : grand écran (Phaser 3) + smartphones comme manettes.
 - **Stack** : Node.js (ESM), **Express**, **Socket.io v4**, serveur **autoritaire** (boucle ~60 TPS), **Phaser 3** + Vite côté display, client mobile HTML5 + **Nipple.js**, persistance classement **SQLite** via **sql.js**, **Docker** / GitHub Actions CI.
+- **Versioning** : Git/GitHub avec branches + relectures de code pour fiabiliser les changements réseau/temps réel.
 - **Architecture** : MVC côté serveur (models, services, controllers) ; état synchronisé réseau.
 - **Déploiement** : exemple Render ; variables `ALLOWED_ORIGINS`, `DB_PATH`, etc.
 - **URLs** : hub `/`, `/display`, `/mobile`, API `/api/leaderboard`, health `/health`.
@@ -170,6 +172,7 @@ Les noms ci-dessous sont ceux des **dossiers** dans `Moodle_IUT_Orsay/Parcours` 
 ### 6.3 Portfolio (`ilian-portfolio`)
 
 - **Stack** : **Next.js 16** (App Router), **TypeScript**, **Tailwind CSS**, **Framer Motion**, **Lucide** ; SEO (`sitemap`, `robots`, Open Graph), accessibilité (lien d’évitement, structure sémantique).
+- **Versioning** : Git/GitHub pour gérer l’évolution du site et garder un historique clair (commits/PR).
 - **Repo** : https://github.com/ilian21012005-bit/ilian-portfolio
 - **Contenu** : pages Projets, Arsenal, Parcours pro/scolaire, simulateur réseau (démo), contact.
 - **CV** : fichier PDF attendu dans `public/CV-ILIAN-EL-BOUAZZAOUI-PRIEUR.pdf` pour le téléchargement.
@@ -220,7 +223,7 @@ Cryptographie, sécurité réseau et système, pare-feu, bonnes pratiques ; sens
 
 ### Transversal
 
-Gestion de projet, communication, travail en équipe, PPP, droit du numérique, Pack Office / Google Drive.
+Gestion de projet, communication, travail en équipe, PPP, droit du numérique, Pack Office / Google Drive, **Git** (versionning, branches, relectures).
 
 ---
 
