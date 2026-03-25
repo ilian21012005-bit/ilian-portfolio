@@ -2,7 +2,7 @@ export const PROJECTS = [
   {
     title: "Guess The Like",
     description:
-      "Jeu multi-joueurs en temps réel : devine qui a liké le TikTok. Alternative gratuite et multiplateforme à WhoLiked. Node.js, PostgreSQL, WebSocket, récupération des likes (Playwright).",
+      "Jeu multi-joueurs en temps réel : devine qui a liké le TikTok. Node.js, PostgreSQL, WebSocket ; récupération des likes via Playwright sur une session navigateur utilisateur (projet personnel, usage responsable des données). Déployé sur Render.",
     techStack: ["Node.js", "PostgreSQL", "WebSocket", "Playwright", "JavaScript", "HTML/CSS"],
     links: {
       repo: "https://github.com/ilian21012005-bit/guess-the-like",
@@ -12,8 +12,17 @@ export const PROJECTS = [
   {
     title: "ZeroStrike",
     description:
-      "Jeu vidéo multijoueur en ligne (en cours). Écran de jeu : affichage grand écran ou manette mobile. Phase d'achat, vote de map, équipes Défense / Attaque.",
-    techStack: ["Multijoueur", "En développement", "Render"],
+      "Jeu de tir tactique multijoueur LAN (jusqu'à 40 joueurs) : grand écran Phaser 3 + smartphones en manettes. Serveur Node.js autoritaire (~60 TPS), Socket.io, modes Search & Destroy et Deathmatch, vote de map, SQLite (sql.js) pour le classement. Docker, CI GitHub Actions, déploiement Render.",
+    techStack: [
+      "Node.js",
+      "Socket.io",
+      "Express",
+      "Phaser 3",
+      "SQLite",
+      "sql.js",
+      "Docker",
+      "GitHub Actions",
+    ],
     links: {
       repo: "https://github.com/ilian21012005-bit/ZeroStrike",
       demo: "https://zerostrike.onrender.com/mobile/",
@@ -22,7 +31,7 @@ export const PROJECTS = [
   {
     title: "Portfolio",
     description:
-      "Ce site : portfolio développeur fullstack & étudiant Systèmes/Réseaux. Design Dark Engineering, Next.js, Framer Motion, SEO et accessibilité.",
+      "Ce site : portfolio développeur fullstack & étudiant Systèmes/Réseaux. Next.js 16 (App Router), design Dark Engineering, Framer Motion, SEO (sitemap, Open Graph) et accessibilité. URL de production définie par NEXT_PUBLIC_SITE_URL.",
     techStack: ["Next.js", "TypeScript", "Tailwind", "Framer Motion", "Lucide"],
     links: {
       repo: "https://github.com/ilian21012005-bit/ilian-portfolio",

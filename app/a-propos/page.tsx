@@ -16,9 +16,19 @@ export default function AProposPage() {
           <div className="max-w-4xl mx-auto">
             <SpotlightCard>
               <p className="text-foreground/80 text-lg leading-relaxed mb-6">
-                Étudiant en informatique, je suis actuellement à la recherche d&apos;un{" "}
+                Étudiant en <strong className="text-foreground">BUT 2 Informatique</strong> (IUT
+                Paris-Saclay), parcours{" "}
+                <span className="text-tech-blue font-medium">
+                  Déploiement d&apos;applications communicantes et sécurisées
+                </span>
+                , je combine systèmes/réseaux et développement — notamment via des projets comme{" "}
+                <strong className="text-foreground">ZeroStrike</strong> (multijoueur LAN) et{" "}
+                <strong className="text-foreground">Guess The Like</strong> (temps réel).
+              </p>
+              <p className="text-foreground/80 text-lg leading-relaxed mb-6">
+                Je recherche un{" "}
                 <span className="text-tech-blue font-medium">stage d&apos;avril à juillet 2026</span>{" "}
-                qui me permettra de développer mes compétences professionnelles.
+                pour renforcer mes compétences en entreprise.
               </p>
               <p className="text-foreground/80 text-lg leading-relaxed">
                 Je suis <strong className="text-foreground">motivé</strong>,{" "}
