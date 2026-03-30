@@ -18,7 +18,7 @@ export default function Home() {
         <section className="py-20 px-6">
           <div className="max-w-4xl mx-auto">
             <div className="flex items-center justify-center gap-3 mb-8">
-              <span className="w-12 h-0.5 rounded-full bg-tech-blue/60 shadow-[0_0_8px_rgba(59,130,246,0.4)]" />
+              <span className="w-12 h-0.5 rounded-full bg-crimson/60 shadow-[0_0_8px_rgba(220,20,60,0.4)]" />
               <motion.h2
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -27,7 +27,7 @@ export default function Home() {
               >
                 Explorer
               </motion.h2>
-              <span className="w-12 h-0.5 rounded-full bg-tech-blue/60 shadow-[0_0_8px_rgba(59,130,246,0.4)]" />
+              <span className="w-12 h-0.5 rounded-full bg-crimson/60 shadow-[0_0_8px_rgba(220,20,60,0.4)]" />
             </div>
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -50,9 +50,9 @@ export default function Home() {
               <QuickLinkCard
                 href="/contact"
                 icon={Mail}
-                title={<span className="text-accent-violet font-semibold group-hover:underline block">Contact</span>}
+                title={<span className="text-blood-red font-semibold group-hover:underline block">Contact</span>}
                 subtitle={<span className="text-sm text-foreground/80">Stage Avril 2026</span>}
-                iconClassName="w-9 h-9 text-accent-violet"
+                iconClassName="w-9 h-9 text-blood-red"
                 variant="violet"
                 className="p-7"
               />
@@ -64,7 +64,7 @@ export default function Home() {
         <section className="pb-24 px-6">
           <div className="max-w-4xl mx-auto">
             <div className="flex items-center justify-center gap-3 mb-8">
-              <span className="w-12 h-0.5 rounded-full bg-success-green/60 shadow-[0_0_8px_rgba(16,185,129,0.35)]" />
+              <span className="w-12 h-0.5 rounded-full bg-dark-red/60 shadow-[0_0_8px_rgba(139,0,0,0.35)]" />
               <motion.h2
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -73,7 +73,7 @@ export default function Home() {
               >
                 Pourquoi moi
               </motion.h2>
-              <span className="w-12 h-0.5 rounded-full bg-success-green/60 shadow-[0_0_8px_rgba(16,185,129,0.35)]" />
+              <span className="w-12 h-0.5 rounded-full bg-dark-red/60 shadow-[0_0_8px_rgba(139,0,0,0.35)]" />
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -84,7 +84,7 @@ export default function Home() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: idx * 0.08 }}
-                  className="rounded-2xl p-6 border border-white/10 bg-white/[0.02] hover:border-success-green/30 hover:bg-white/[0.04] transition-colors"
+                  className="rounded-2xl p-6 border border-white/10 bg-white/[0.02] hover:border-dark-red/30 hover:bg-white/[0.04] transition-colors"
                 >
                   <h3 className="text-lg font-semibold text-foreground mb-2">
                     {item.title}
@@ -97,7 +97,7 @@ export default function Home() {
             </div>
 
             <div className="mt-8 flex justify-center">
-              <Link href="/contact" className="text-tech-blue hover:underline font-medium">
+              <Link href="/contact" className="text-crimson hover:underline font-medium">
                 Discutons de ton besoin de stage →
               </Link>
             </div>

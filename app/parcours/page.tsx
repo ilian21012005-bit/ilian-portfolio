@@ -24,7 +24,7 @@ export default function ParcoursPage() {
                 icon={Briefcase}
                 title={<span className="text-foreground font-semibold">Parcours professionnel</span>}
                 subtitle="Expériences travail, stages"
-                iconClassName="w-10 h-10 text-tech-blue"
+                iconClassName="w-10 h-10 text-crimson"
                 variant="default"
                 className="p-8"
               />
@@ -33,7 +33,7 @@ export default function ParcoursPage() {
                 icon={GraduationCap}
                 title={<span className="text-foreground font-semibold">Parcours scolaire</span>}
                 subtitle="Formation académique"
-                iconClassName="w-10 h-10 text-success-green"
+                iconClassName="w-10 h-10 text-dark-red"
                 variant="success"
                 className="p-8"
               />

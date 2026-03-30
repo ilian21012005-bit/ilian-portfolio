@@ -14,7 +14,7 @@ export function PageLayout({ children, className = "" }: PageLayoutProps) {
       <div
         id="main-content"
         tabIndex={-1}
-        className="relative min-h-screen focus:outline-none focus:ring-2 focus:ring-tech-blue/50 focus:ring-offset-0"
+        className="relative min-h-screen focus:outline-none focus:ring-2 focus:ring-crimson/50 focus:ring-offset-0"
         style={{ paddingBottom: FOOTER_HEIGHT }}
       >
         {children}

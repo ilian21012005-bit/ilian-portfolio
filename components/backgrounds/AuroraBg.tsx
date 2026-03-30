@@ -4,16 +4,16 @@ import { useEffect, useState } from "react";
 
 // Couleurs en haut de page (scroll = 0)
 const COLORS_TOP = {
-  blob1: "#4f46e5", // indigo
-  blob2: "#0ea5e9", // cyan
-  blob3: "#10b981", // emerald
+  blob1: "#8B0000", // dark-red
+  blob2: "#DC143C", // crimson
+  blob3: "#8B0000", // dark-red
 };
 
 // Couleurs en bas de page (scroll = 1)
 const COLORS_BOTTOM = {
-  blob1: "#8b5cf6", // violet
-  blob2: "#3b82f6", // tech blue
-  blob3: "#14b8a6", // teal
+  blob1: "#FF0000", // blood-red
+  blob2: "#DC143C", // crimson
+  blob3: "#8B0000", // dark-red
 };
 
 function lerpColor(hex1: string, hex2: string, t: number): string {

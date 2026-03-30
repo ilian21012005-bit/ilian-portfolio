@@ -41,9 +41,9 @@ export function MagneticButton({
 
   const variants = {
     primary:
-      "bg-tech-blue text-white hover:bg-tech-blue/90 border-tech-blue shadow-lg shadow-tech-blue/20",
+      "bg-crimson text-white hover:bg-crimson/90 border-crimson shadow-lg shadow-crimson/20",
     secondary:
-      "bg-transparent text-foreground border-white/30 hover:border-tech-blue hover:text-tech-blue",
+      "bg-transparent text-foreground border-white/30 hover:border-crimson hover:text-crimson",
   };
 
   const baseStyles =

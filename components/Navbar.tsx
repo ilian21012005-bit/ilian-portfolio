@@ -43,14 +43,14 @@ export function Navbar() {
             animate={{
               width: isHovered ? 680 : 140,
               backgroundColor: isHovered ? "rgba(5, 5, 5, 0.9)" : "rgba(255, 255, 255, 0.06)",
-              borderColor: isHovered ? "rgba(59, 130, 246, 0.3)" : "rgba(255, 255, 255, 0.1)",
+              borderColor: isHovered ? "rgba(220, 20, 60, 0.3)" : "rgba(255, 255, 255, 0.1)",
             }}
             transition={{ type: "spring", damping: 25, stiffness: 200 }}
             className="h-12 rounded-full flex items-center justify-center overflow-hidden border backdrop-blur-xl shadow-xl shadow-black/30 max-w-[95vw]"
           >
             {!isHovered ? (
               <span className="text-sm font-bold text-foreground whitespace-nowrap">
-                <span className="text-tech-blue">I</span>Menu
+                <span className="text-crimson">I</span>Menu
               </span>
             ) : (
               <motion.div
@@ -65,8 +65,8 @@ export function Navbar() {
                     aria-current={isActive(link.href) ? "page" : undefined}
                     className={`text-xs font-medium transition-colors shrink-0 ${
                       isActive(link.href)
-                        ? "text-tech-blue"
-                        : "text-foreground/80 hover:text-tech-blue"
+                        ? "text-crimson"
+                        : "text-foreground/80 hover:text-crimson"
                     }`}
                   >
                     {link.label}
@@ -76,7 +76,7 @@ export function Navbar() {
                   href={CONTACT.cvUrl || "/cv.pdf"}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-xs font-semibold text-tech-blue hover:text-tech-blue/80"
+                  className="text-xs font-semibold text-crimson hover:text-crimson/80"
                 >
                   CV
                 </a>
@@ -126,7 +126,7 @@ export function Navbar() {
                     onClick={() => setIsMobileMenuOpen(false)}
                     aria-current={isActive(link.href) ? "page" : undefined}
                     className={`block py-3 transition-colors ${
-                      isActive(link.href) ? "text-tech-blue" : "text-foreground hover:text-tech-blue"
+                      isActive(link.href) ? "text-crimson" : "text-foreground hover:text-crimson"
                     }`}
                   >
                     {link.label}
@@ -138,7 +138,7 @@ export function Navbar() {
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => setIsMobileMenuOpen(false)}
-                className="mt-2 py-3 rounded-xl bg-tech-blue text-white text-center font-medium"
+                className="mt-2 py-3 rounded-xl bg-crimson text-white text-center font-medium"
               >
                 Télécharger CV
               </a>

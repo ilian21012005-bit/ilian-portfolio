@@ -55,7 +55,7 @@ export function Terminal({
   return (
     <div className="bg-[#0a0a0a] rounded-xl border border-white/10 overflow-hidden flex flex-col h-[360px]">
       <div className="flex items-center justify-between px-4 py-2 bg-white/5 border-b border-white/10">
-        <span className="text-sm font-mono text-tech-blue">
+        <span className="text-sm font-mono text-crimson">
           {hostname}@{nodeLabel} ({nodeType})
         </span>
         <button
@@ -71,7 +71,7 @@ export function Terminal({
           </div>
         {history.map((h, i) => (
           <div key={i} className="space-y-1">
-            <div className="text-success-green">
+            <div className="text-dark-red">
               {hostname}@{nodeLabel}:~$ {h.cmd}
             </div>
             <pre className="text-foreground/80 whitespace-pre-wrap break-all">
@@ -81,7 +81,7 @@ export function Terminal({
         ))}
       </div>
       <form onSubmit={handleSubmit} className="flex border-t border-white/10">
-        <span className="px-3 py-2 text-success-green text-xs">
+        <span className="px-3 py-2 text-dark-red text-xs">
           {hostname}@{nodeLabel}:~$
         </span>
         <input

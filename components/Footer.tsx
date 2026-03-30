@@ -48,17 +48,17 @@ export function Footer() {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: 20 }}
               transition={{ duration: 0.25 }}
-          className="pointer-events-auto flex items-center gap-6 sm:gap-10 py-3 px-5 sm:px-8 rounded-full bg-white/[0.04] backdrop-blur-xl border border-white/10 shadow-xl shadow-black/30 hover:bg-white/[0.06] hover:border-tech-blue/30 hover:shadow-[0_0_30px_-5px_rgba(59,130,246,0.15)] hover:-translate-y-0.5 transition-all duration-300"
+          className="pointer-events-auto flex items-center gap-6 sm:gap-10 py-3 px-5 sm:px-8 rounded-full bg-white/[0.04] backdrop-blur-xl border border-white/10 shadow-xl shadow-black/30 hover:bg-white/[0.06] hover:border-crimson/30 hover:shadow-[0_0_30px_-5px_rgba(220,20,60,0.15)] hover:-translate-y-0.5 transition-all duration-300"
         >
           <div className="flex items-center gap-2.5">
-            <div className="w-7 h-7 rounded-full bg-gradient-to-br from-tech-blue to-tech-blue/70 border border-tech-blue/40 flex items-center justify-center text-[10px] font-bold text-white shadow-[0_0_12px_rgba(59,130,246,0.3)]">
+            <div className="w-7 h-7 rounded-full bg-gradient-to-br from-crimson to-crimson/70 border border-crimson/40 flex items-center justify-center text-[10px] font-bold text-white shadow-[0_0_12px_rgba(220,20,60,0.3)]">
               IE
             </div>
             <span className="text-xs text-foreground/60 font-medium">© 2026</span>
           </div>
 
           <div className="hidden sm:flex items-center gap-2.5 border-x border-white/10 px-6 py-1 font-mono text-xs text-foreground/50">
-            <span className="w-1.5 h-1.5 rounded-full bg-success-green animate-pulse shadow-[0_0_6px_#10B981]" />
+            <span className="w-1.5 h-1.5 rounded-full bg-dark-red animate-pulse shadow-[0_0_6px_#8B0000]" />
             <span>ONLINE</span>
             <span className="text-foreground/30 mx-1">|</span>
             <span>{ping}ms</span>
@@ -70,7 +70,7 @@ export function Footer() {
                 href={CONTACT.githubUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-sm text-foreground/70 hover:text-tech-blue transition-colors font-medium relative after:content-[''] after:absolute after:bottom-[-2px] after:left-0 after:w-0 after:h-px after:bg-tech-blue after:transition-all after:duration-300 hover:after:w-full"
+                className="text-sm text-foreground/70 hover:text-crimson transition-colors font-medium relative after:content-[''] after:absolute after:bottom-[-2px] after:left-0 after:w-0 after:h-px after:bg-crimson after:transition-all after:duration-300 hover:after:w-full"
               >
                 GitHub
               </a>
@@ -81,7 +81,7 @@ export function Footer() {
                 href={CONTACT.linkedinUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-sm text-foreground/70 hover:text-tech-blue transition-colors font-medium relative after:content-[''] after:absolute after:bottom-[-2px] after:left-0 after:w-0 after:h-px after:bg-tech-blue after:transition-all after:duration-300 hover:after:w-full"
+                className="text-sm text-foreground/70 hover:text-crimson transition-colors font-medium relative after:content-[''] after:absolute after:bottom-[-2px] after:left-0 after:w-0 after:h-px after:bg-crimson after:transition-all after:duration-300 hover:after:w-full"
               >
                 LinkedIn
               </a>
@@ -89,7 +89,7 @@ export function Footer() {
             <span className="w-px h-4 bg-white/20" />
             <a
               href="/contact"
-              className="text-sm text-accent-violet font-semibold hover:brightness-110 transition-all px-3 py-1.5 rounded-full bg-accent-violet/10 hover:bg-accent-violet/20 border border-accent-violet/20"
+              className="text-sm text-blood-red font-semibold hover:brightness-110 transition-all px-3 py-1.5 rounded-full bg-blood-red/10 hover:bg-blood-red/20 border border-blood-red/20"
             >
               Contact
             </a>

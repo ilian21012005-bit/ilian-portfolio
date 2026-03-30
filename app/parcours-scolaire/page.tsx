@@ -19,10 +19,10 @@ export default function ParcoursScolairePage() {
           </div>
         </SectionWrapper>
         <div className="max-w-3xl mx-auto px-6 pb-12 flex flex-wrap gap-4 justify-center">
-          <Link href="/parcours-pro" className="text-tech-blue hover:underline font-medium">
+          <Link href="/parcours-pro" className="text-crimson hover:underline font-medium">
             Parcours professionnel →
           </Link>
-          <Link href="/contact" className="text-foreground/70 hover:text-tech-blue transition-colors">
+          <Link href="/contact" className="text-foreground/70 hover:text-crimson transition-colors">
             Contact
           </Link>
         </div>

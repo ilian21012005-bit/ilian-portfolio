@@ -21,7 +21,7 @@ import { SKILLS_CATEGORIES } from "@/lib/skills";
 const ARSENAL_CARD_WRAPPER_CLASS =
   "rounded-2xl border border-white/10 bg-white/[0.02] shadow-[0_8px_32px_rgba(0,0,0,0.24)] overflow-hidden h-full flex hover:border-white/20 hover:shadow-[0_12px_40px_rgba(0,0,0,0.3)] transition-all duration-300";
 
-type Accent = "tech-blue" | "success-green";
+type Accent = "crimson" | "dark-red";
 type SkillsKey = keyof typeof SKILLS_CATEGORIES;
 
 const ARSENAL_CARDS: Array<{
@@ -37,7 +37,7 @@ const ARSENAL_CARDS: Array<{
     description:
       "Architecture des ordinateurs et des réseaux, administration Linux/Windows, programmation système. Virtualisation, services réseaux, routage, VLAN, pare-feu. Analyse Wireshark, simulation Marionnet, réseaux avancés.",
     Icon: Server,
-    accent: "tech-blue",
+    accent: "crimson",
     tagsKey: "systemsNetworks",
     colSpan: 2,
   },
@@ -46,7 +46,7 @@ const ARSENAL_CARDS: Array<{
     description:
       "Modélisation relationnelle, SQL, exploitation et création de BDD. Intégration SQL dans un langage de programmation (requêtes, scripts).",
     Icon: Database,
-    accent: "success-green",
+    accent: "dark-red",
     tagsKey: "databases",
   },
   {
@@ -54,7 +54,7 @@ const ARSENAL_CARDS: Array<{
     description:
       "Programmation orientée objet, IHM, qualité de développement. Développement web, conception et architecture logicielle, analyse. En BUT : compléments web sémantique, développement Android, automates et langages.",
     Icon: Code2,
-    accent: "tech-blue",
+    accent: "crimson",
     tagsKey: "development",
   },
   {
@@ -62,7 +62,7 @@ const ARSENAL_CARDS: Array<{
     description:
       "Gestion de projet et des organisations, management des SI. Communication professionnelle, PPP, droit des contrats et du numérique. Travail d'équipe, rigueur, autonomie.",
     Icon: Users,
-    accent: "success-green",
+    accent: "dark-red",
     tagsKey: "qualitiesProjects",
   },
   {
@@ -70,7 +70,7 @@ const ARSENAL_CARDS: Array<{
     description:
       "Cryptographie et sécurité, sécurité système et réseau (BUT 2). Pare-feu, sécurisation des services, bonnes pratiques.",
     Icon: Shield,
-    accent: "tech-blue",
+    accent: "crimson",
     tagsKey: "cybersecurity",
   },
 ];
@@ -96,17 +96,17 @@ export default function ArsenalPage() {
                 className={`${ARSENAL_CARD_WRAPPER_CLASS} ${colSpan === 2 ? "md:col-span-2" : ""}`}
               >
                 <span
-                  className={`w-1 shrink-0 ${accent === "tech-blue" ? "bg-tech-blue/60" : "bg-success-green/60"} rounded-l-2xl`}
+                  className={`w-1 shrink-0 ${accent === "crimson" ? "bg-crimson/60" : "bg-dark-red/60"} rounded-l-2xl`}
                   aria-hidden
                 />
                 <TiltCard3d className="flex-1 min-w-0">
                   <SpotlightCard className="[&>div:last-child]:p-6 [&>div]:border-0 [&>div]:shadow-none h-full">
                     <div className="flex items-start gap-4">
                       <div
-                        className={`p-2.5 rounded-xl w-fit shrink-0 ${accent === "tech-blue" ? "bg-tech-blue/20" : "bg-success-green/20"}`}
+                        className={`p-2.5 rounded-xl w-fit shrink-0 ${accent === "crimson" ? "bg-crimson/20" : "bg-dark-red/20"}`}
                       >
                         <Icon
-                          className={`w-7 h-7 ${accent === "tech-blue" ? "text-tech-blue" : "text-success-green"}`}
+                          className={`w-7 h-7 ${accent === "crimson" ? "text-crimson" : "text-dark-red"}`}
                         />
                       </div>
                       <div>
@@ -141,13 +141,13 @@ export default function ArsenalPage() {
           >
             <Link
               href="/projets"
-              className="text-tech-blue hover:underline font-medium"
+              className="text-crimson hover:underline font-medium"
             >
               Voir les projets →
             </Link>
             <Link
               href="/contact"
-              className="text-foreground/80 hover:text-tech-blue transition-colors"
+              className="text-foreground/80 hover:text-crimson transition-colors"
             >
               Contact
             </Link>

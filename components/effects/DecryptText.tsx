@@ -37,7 +37,7 @@ export function DecryptText({ children, className = "" }: DecryptTextProps) {
   return (
     <span
       onMouseEnter={handleMouseEnter}
-      className={`cursor-pointer inline-block hover:text-tech-blue transition-colors ${className}`}
+      className={`cursor-pointer inline-block hover:text-crimson transition-colors ${className}`}
     >
       {display}
     </span>

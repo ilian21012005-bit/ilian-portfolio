@@ -16,7 +16,7 @@ export default function OpenGraphImage() {
           flexDirection: "column",
           justifyContent: "space-between",
           padding: "72px",
-          background: "radial-gradient(circle at 20% 20%, rgba(59,130,246,0.35), transparent 50%), radial-gradient(circle at 80% 30%, rgba(16,185,129,0.25), transparent 45%), #050505",
+          background: "radial-gradient(circle at 20% 20%, rgba(220,20,60,0.35), transparent 50%), radial-gradient(circle at 80% 30%, rgba(139,0,0,0.25), transparent 45%), #050505",
           color: "#EDEDED",
           fontFamily: "ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, sans-serif",
         }}
@@ -36,7 +36,7 @@ export default function OpenGraphImage() {
               color: "rgba(237,237,237,0.85)",
             }}
           >
-            <span style={{ width: "10px", height: "10px", borderRadius: "50%", background: "#10B981" }} />
+            <span style={{ width: "10px", height: "10px", borderRadius: "50%", background: "#8B0000" }} />
             Disponible pour stage Avril–Juillet 2026
           </div>
 
@@ -52,7 +52,7 @@ export default function OpenGraphImage() {
           <div style={{ fontSize: "22px", color: "rgba(237,237,237,0.7)" }}>
             BUT 2 Informatique — Paris-Saclay
           </div>
-          <div style={{ fontSize: "22px", color: "rgba(59,130,246,0.95)", fontWeight: 700 }}>
+          <div style={{ fontSize: "22px", color: "rgba(220,20,60,0.95)", fontWeight: 700 }}>
             ilian.dev
           </div>
         </div>

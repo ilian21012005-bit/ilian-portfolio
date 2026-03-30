@@ -85,8 +85,8 @@ function CommitItem({
   isLast: boolean;
 }) {
   const dotStyles = {
-    head: "border-tech-blue bg-tech-blue shadow-[0_0_12px_rgba(59,130,246,0.6)]",
-    work: "border-success-green/60 bg-success-green/30",
+    head: "border-crimson bg-crimson shadow-[0_0_12px_rgba(220,20,60,0.6)]",
+    work: "border-dark-red/60 bg-dark-red/30",
     default: "border-white/30 bg-background",
   };
 
@@ -106,11 +106,11 @@ function CommitItem({
         className={`absolute left-[-37px] top-1 w-3 h-3 rounded-full border-2 transition-all duration-200 group-hover:scale-125 ${dotStyles[commit.type]}`}
       />
 
-      <div className={`rounded-xl border bg-white/[0.02] p-4 sm:p-5 transition-all duration-300 ${commit.type === "head" ? "border-tech-blue/20 hover:border-tech-blue/40 hover:shadow-[0_0_20px_-5px_rgba(59,130,246,0.1)]" : "border-white/10 hover:border-white/20"} hover:bg-white/[0.04]`}>
+      <div className={`rounded-xl border bg-white/[0.02] p-4 sm:p-5 transition-all duration-300 ${commit.type === "head" ? "border-crimson/20 hover:border-crimson/40 hover:shadow-[0_0_20px_-5px_rgba(220,20,60,0.1)]" : "border-white/10 hover:border-white/20"} hover:bg-white/[0.04]`}>
         <div className="font-mono text-xs text-foreground/50 mb-1">
           {commit.hash}
           {commit.tag && (
-            <span className={`ml-2 ${commit.type === "head" ? "text-tech-blue" : "text-success-green"}`}>
+            <span className={`ml-2 ${commit.type === "head" ? "text-crimson" : "text-dark-red"}`}>
               ({commit.tag})
             </span>
           )}

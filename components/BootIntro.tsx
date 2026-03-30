@@ -54,16 +54,16 @@ export function BootIntro({ children }: { children: React.ReactNode }) {
             initial={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.4 }}
-            className="fixed inset-0 z-[100] bg-black flex flex-col p-6 font-mono text-sm text-success-green overflow-hidden"
+            className="fixed inset-0 z-[100] bg-black flex flex-col p-6 font-mono text-sm text-dark-red overflow-hidden"
           >
             <div className="flex-1 overflow-auto space-y-0.5">
               {lines.map((line, i) => (
-                <motion.div key={i} initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="text-success-green/90">
+                <motion.div key={i} initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="text-dark-red/90">
                   {line}
                 </motion.div>
               ))}
             </div>
-            <span className="inline-block w-2 h-4 bg-success-green animate-pulse" />
+            <span className="inline-block w-2 h-4 bg-dark-red animate-pulse" />
           </motion.div>
         )}
       </AnimatePresence>

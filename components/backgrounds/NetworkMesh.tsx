@@ -60,7 +60,7 @@ export function NetworkMesh() {
 
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-        ctx.fillStyle = "rgba(59, 130, 246, 0.8)";
+        ctx.fillStyle = "rgba(220, 20, 60, 0.8)";
         ctx.fill();
       });
 
@@ -71,7 +71,7 @@ export function NetworkMesh() {
           const distSq = dx * dx + dy * dy;
           if (distSq < CONNECT_DIST * CONNECT_DIST) {
             const opacity = 1 - distSq / (CONNECT_DIST * CONNECT_DIST);
-            ctx.strokeStyle = `rgba(59, 130, 246, ${opacity * 0.4})`;
+            ctx.strokeStyle = `rgba(220, 20, 60, ${opacity * 0.4})`;
             ctx.lineWidth = 1;
             ctx.beginPath();
             ctx.moveTo(particles[a].x, particles[a].y);

@@ -22,7 +22,7 @@ export function InfiniteMarquee() {
         {[...TAGS, ...TAGS].map((tag, i) => (
           <span
             key={i}
-            className="mx-8 text-3xl md:text-4xl font-bold text-transparent [-webkit-text-stroke:1px_rgba(255,255,255,0.35)] hover:[-webkit-text-stroke-color:rgba(59,130,246,0.8)] hover:drop-shadow-[0_0_8px_rgba(59,130,246,0.3)] transition-all duration-300"
+            className="mx-8 text-3xl md:text-4xl font-bold text-transparent [-webkit-text-stroke:1px_rgba(255,255,255,0.35)] hover:[-webkit-text-stroke-color:rgba(220,20,60,0.8)] hover:drop-shadow-[0_0_8px_rgba(220,20,60,0.3)] transition-all duration-300"
           >
             {tag}
           </span>

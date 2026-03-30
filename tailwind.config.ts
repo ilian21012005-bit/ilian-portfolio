@@ -9,11 +9,11 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        background: "#050505",
+        background: "#030000",
         foreground: "#EDEDED",
-        "tech-blue": "#3B82F6",
-        "success-green": "#10B981",
-        "accent-violet": "#8B5CF6",
+        crimson: "#DC143C",
+        "dark-red": "#8B0000",
+        "blood-red": "#FF0000",
       },
       fontFamily: {
         sans: ["var(--font-inter)", "system-ui", "sans-serif"],
@@ -37,11 +37,11 @@ const config: Config = {
       },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
-        "gradient-mesh": "linear-gradient(135deg, rgba(59,130,246,0.05) 0%, transparent 50%, rgba(16,185,129,0.05) 100%)",
+        "gradient-mesh": "linear-gradient(135deg, rgba(220,20,60,0.05) 0%, transparent 50%, rgba(139,0,0,0.05) 100%)",
       },
       boxShadow: {
-        "glow-blue": "0 0 40px rgba(59, 130, 246, 0.2)",
-        "glow-green": "0 0 40px rgba(16, 185, 129, 0.2)",
+        "glow-crimson": "0 0 40px rgba(220, 20, 60, 0.2)",
+        "glow-dark-red": "0 0 40px rgba(139, 0, 0, 0.2)",
       },
     },
   },

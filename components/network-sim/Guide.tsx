@@ -37,9 +37,9 @@ function Spoiler({ title, children, defaultOpen = false, level = 0 }: SpoilerPro
         className={`w-full flex items-center gap-2 text-left text-foreground hover:bg-white/5 transition-colors ${btnStyles[level]}`}
       >
         {isOpen ? (
-          <ChevronDown className="w-4 h-4 text-tech-blue flex-shrink-0" />
+          <ChevronDown className="w-4 h-4 text-crimson flex-shrink-0" />
         ) : (
-          <ChevronRight className="w-4 h-4 text-tech-blue flex-shrink-0" />
+          <ChevronRight className="w-4 h-4 text-crimson flex-shrink-0" />
         )}
         <span>{title}</span>
       </button>
@@ -56,7 +56,7 @@ export function Guide() {
   return (
     <div className="space-y-3">
       <div className="flex items-center gap-2 mb-4">
-        <BookOpen className="w-5 h-5 text-tech-blue" />
+        <BookOpen className="w-5 h-5 text-crimson" />
         <span className="font-semibold text-foreground">Guide réseau — du débutant à l&apos;avancé</span>
       </div>
 

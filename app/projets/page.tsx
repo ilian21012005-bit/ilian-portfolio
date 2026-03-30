@@ -36,7 +36,7 @@ export default function ProjetsPage() {
 
             <StackingCards cards={PROJECTS} />
             <div className="mt-8 flex justify-center">
-              <Link href="/contact" className="text-tech-blue hover:underline font-medium">
+              <Link href="/contact" className="text-crimson hover:underline font-medium">
                 Me contacter pour en discuter →
               </Link>
             </div>
