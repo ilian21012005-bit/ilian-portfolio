@@ -1,0 +1,24 @@
+{
+  "Navigation": {
+    "home": "Accueil",
+    "about": "À propos",
+    "skills": "Arsenal",
+    "projects": "Projets",
+    "simulator": "Simulateur",
+    "journey": "Parcours",
+    "interests": "Intérêts",
+    "contact": "Contact",
+    "language_switch": "EN"
+  },
+  "Home": {
+    "title1": "Building Secure",
+    "title2": "Systems",
+    "title3": "& Code",
+    "subtitle": "Étudiant BUT 2 à Paris-Saclay — motivé, polyvalent et prêt à contribuer.",
+    "availability": "Disponible pour stage Avril 2026",
+    "cvButton": "Télécharger CV",
+    "projectsButton": "Voir les Projets",
+    "explorer": "Explorer",
+    "why_me": "Pourquoi moi"
+  }
+}

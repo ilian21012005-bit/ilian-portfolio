@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
 import { Inter, Space_Grotesk, JetBrains_Mono } from "next/font/google";
-import "./globals.css";
+import "../globals.css";
 import { Navbar } from "@/components/Navbar";
+import { NextIntlClientProvider } from "next-intl";
+import { getMessages, getTranslations } from "next-intl/server";
 import { ScrollProgress } from "@/components/ScrollProgress";
 import { BootIntro } from "@/components/BootIntro";
 import { AuroraBg } from "@/components/backgrounds/AuroraBg";
@@ -78,25 +80,31 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
+  params: { locale }
 }: Readonly<{
   children: React.ReactNode;
+  params: { locale: string };
 }>) {
+  const messages = await getMessages();
+
   return (
-    <html lang="fr" className="dark">
+    <html lang={locale} className="dark">
       <body
         className={`${inter.variable} ${spaceGrotesk.variable} ${jetbrainsMono.variable} ${inter.className} antialiased font-sans`}
       >
-        <BootIntro>
-          <a href="#main-content" className="skip-link">
-            Aller au contenu principal
-          </a>
-          <AuroraBg />
-          <ScrollProgress />
-          <Navbar />
-          {children}
-        </BootIntro>
+        <NextIntlClientProvider messages={messages}>
+          <BootIntro>
+            <a href="#main-content" className="skip-link">
+              Aller au contenu principal
+            </a>
+            <AuroraBg />
+            <ScrollProgress />
+            <Navbar />
+            {children}
+          </BootIntro>
+        </NextIntlClientProvider>
       </body>
     </html>
   );

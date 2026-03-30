@@ -41,18 +41,18 @@ export function MagneticButton({
 
   const variants = {
     primary:
-      "bg-crimson text-white hover:bg-crimson/90 border-crimson shadow-lg shadow-crimson/20",
+      "cyber-btn bg-crimson text-white hover:bg-crimson/90 border-crimson shadow-[0_0_15px_rgba(220,20,60,0.4)] hover:shadow-[0_0_25px_rgba(220,20,60,0.6)]",
     secondary:
-      "bg-transparent text-foreground border-white/30 hover:border-crimson hover:text-crimson",
+      "cyber-btn bg-transparent text-foreground border-white/30 hover:border-crimson hover:text-crimson hover:shadow-[0_0_15px_rgba(220,20,60,0.2)]",
   };
 
   const baseStyles =
-    "inline-flex items-center justify-center px-6 py-3 rounded-xl font-medium border transition-colors cursor-pointer";
+    "inline-flex items-center justify-center px-6 py-3 rounded-xl font-medium border transition-all duration-300 cursor-pointer";
 
   const content = (
     <motion.span
       style={{ x: xSpring, y: ySpring }}
-      className="inline-block"
+      className="inline-block cyber-text relative z-20"
     >
       {children}
     </motion.span>

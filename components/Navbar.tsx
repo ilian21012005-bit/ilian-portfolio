@@ -5,25 +5,35 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useTranslations, useLocale } from "next-intl";
 import { CONTACT } from "@/lib/contact";
 
 const navLinks = [
-  { href: "/", label: "Accueil" },
-  { href: "/a-propos", label: "À propos" },
-  { href: "/arsenal", label: "Arsenal" },
-  { href: "/projets", label: "Projets" },
-  { href: "/simulateur", label: "Simulateur" },
-  { href: "/parcours", label: "Parcours" },
-  { href: "/interets", label: "Intérêts" },
-  { href: "/contact", label: "Contact" },
+  { href: "/", key: "home" },
+  { href: "/a-propos", key: "about" },
+  { href: "/arsenal", key: "skills" },
+  { href: "/projets", key: "projects" },
+  { href: "/simulateur", key: "simulator" },
+  { href: "/parcours", key: "journey" },
+  { href: "/interets", key: "interests" },
+  { href: "/contact", key: "contact" },
 ];
 
 export function Navbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
   const pathname = usePathname();
+  const t = useTranslations("Navigation");
+  const locale = useLocale();
 
-  const isActive = (href: string) => (href === "/" ? pathname === "/" : pathname?.startsWith(href));
+  const localizedHref = (href: string) => `/${locale}${href === '/' ? '' : href}`;
+  const switchLocale = locale === 'fr' ? 'en' : 'fr';
+  const switchPath = pathname.replace(`/${locale}`, `/${switchLocale}`) || `/${switchLocale}`;
+
+  const isActive = (href: string) => {
+    if (href === "/") return pathname === `/${locale}`;
+    return pathname?.startsWith(`/${locale}${href}`);
+  };
 
   return (
     <>
@@ -61,7 +71,7 @@ export function Navbar() {
                 {navLinks.map((link) => (
                   <Link
                     key={link.href}
-                    href={link.href}
+                    href={localizedHref(link.href)}
                     aria-current={isActive(link.href) ? "page" : undefined}
                     className={`text-xs font-medium transition-colors shrink-0 ${
                       isActive(link.href)
@@ -69,7 +79,7 @@ export function Navbar() {
                         : "text-foreground/80 hover:text-crimson"
                     }`}
                   >
-                    {link.label}
+                    {t(link.key)}
                   </Link>
                 ))}
                 <a
@@ -80,6 +90,13 @@ export function Navbar() {
                 >
                   CV
                 </a>
+                <div className="w-px h-4 bg-white/20 mx-1" />
+                <Link
+                  href={switchPath}
+                  className="text-xs font-bold text-foreground hover:text-crimson transition-colors"
+                >
+                  {t("language_switch")}
+                </Link>
               </motion.div>
             )}
           </motion.div>
@@ -122,14 +139,14 @@ export function Navbar() {
               {navLinks.map((link, i) => (
                 <motion.li key={link.href} initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: i * 0.05 }}>
                   <Link
-                    href={link.href}
+                    href={localizedHref(link.href)}
                     onClick={() => setIsMobileMenuOpen(false)}
                     aria-current={isActive(link.href) ? "page" : undefined}
                     className={`block py-3 transition-colors ${
                       isActive(link.href) ? "text-crimson" : "text-foreground hover:text-crimson"
                     }`}
                   >
-                    {link.label}
+                    {t(link.key)}
                   </Link>
                 </motion.li>
               ))}
@@ -140,8 +157,15 @@ export function Navbar() {
                 onClick={() => setIsMobileMenuOpen(false)}
                 className="mt-2 py-3 rounded-xl bg-crimson text-white text-center font-medium"
               >
-                Télécharger CV
+                CV
               </a>
+              <Link
+                href={switchPath}
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="mt-2 py-3 rounded-xl border border-white/20 text-center font-bold hover:border-crimson hover:text-crimson transition-colors"
+              >
+                {t("language_switch")}
+              </Link>
             </motion.ul>
           </motion.div>
         )}

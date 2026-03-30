@@ -8,8 +8,11 @@ import { QuickLinkCard } from "@/components/QuickLinkCard";
 import { PROJECTS } from "@/lib/projects";
 import Link from "next/link";
 import { WHY_ME } from "@/lib/whyMe";
+import { useTranslations } from "next-intl";
 
 export default function Home() {
+  const t = useTranslations("Home");
+
   return (
     <PageLayout>
         <HeroSection />
@@ -25,7 +28,7 @@ export default function Home() {
                 viewport={{ once: true }}
                 className="font-display text-2xl font-bold text-foreground"
               >
-                Explorer
+                {t("explorer")}
               </motion.h2>
               <span className="w-12 h-0.5 rounded-full bg-crimson/60 shadow-[0_0_8px_rgba(220,20,60,0.4)]" />
             </div>
@@ -71,7 +74,7 @@ export default function Home() {
                 viewport={{ once: true }}
                 className="font-display text-2xl font-bold text-foreground"
               >
-                Pourquoi moi
+                {t("why_me")}
               </motion.h2>
               <span className="w-12 h-0.5 rounded-full bg-dark-red/60 shadow-[0_0_8px_rgba(139,0,0,0.35)]" />
             </div>

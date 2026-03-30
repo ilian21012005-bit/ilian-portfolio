@@ -8,6 +8,7 @@ import { GlitchText } from "./effects/GlitchText";
 import { DecryptText } from "./effects/DecryptText";
 import { InfiniteMarquee } from "./InfiniteMarquee";
 import { CONTACT } from "@/lib/contact";
+import { useTranslations } from "next-intl";
 
 const NetworkMesh = dynamic(
   () => import("./backgrounds/NetworkMesh").then((m) => m.NetworkMesh),
@@ -20,6 +21,8 @@ const TechGrid = dynamic(
 );
 
 export function HeroSection() {
+  const t = useTranslations("Home");
+
   return (
     <section
       id="hero"
@@ -54,7 +57,7 @@ export function HeroSection() {
             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-dark-red opacity-75" />
             <span className="relative inline-flex rounded-full h-2 w-2 bg-dark-red" />
           </span>
-          <span className="text-sm text-foreground/80">Disponible pour stage Avril 2026</span>
+          <span className="text-sm text-foreground/80">{t("availability")}</span>
         </motion.div>
 
         <motion.h1
@@ -65,15 +68,14 @@ export function HeroSection() {
         >
           <KineticText>
             <span className="text-transparent [-webkit-text-stroke:2px_rgba(255,255,255,0.9)] hover:text-white hover:[-webkit-text-stroke-color:transparent] transition-all duration-300" style={{ textShadow: "0 0 40px rgba(220, 20, 60, 0.5)" }}>
-              Building Secure
+              {t("title1")}
             </span>
           </KineticText>
           <br />
           <span className="text-crimson">
-            <GlitchText>Systems</GlitchText>
+            <GlitchText>{t("title2")}</GlitchText>
           </span>
-          {" "}&{" "}
-          <GlitchText>Code</GlitchText>
+          {" "}{t("title3")}
         </motion.h1>
 
         <motion.p
@@ -90,7 +92,7 @@ export function HeroSection() {
           transition={{ duration: 0.5, delay: 0.4 }}
           className="text-sm md:text-base text-foreground/60 mb-10 max-w-xl mx-auto"
         >
-          Étudiant BUT 2 à Paris-Saclay — motivé, polyvalent et prêt à contribuer.
+          {t("subtitle")}
         </motion.p>
 
         <motion.div
@@ -104,14 +106,14 @@ export function HeroSection() {
             variant="primary"
             className="w-full sm:w-auto"
           >
-            Télécharger CV
+            {t("cvButton")}
           </MagneticButton>
           <MagneticButton
             href="/projets"
             variant="secondary"
             className="w-full sm:w-auto"
           >
-            Voir les Projets
+            {t("projectsButton")}
           </MagneticButton>
         </motion.div>
       </div>

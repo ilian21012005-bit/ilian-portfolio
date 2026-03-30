@@ -131,6 +131,40 @@ body::before {
   .text-body {
     @apply text-foreground/80;
   }
+
+  /* Cyber Button */
+  .cyber-btn {
+    @apply relative overflow-hidden;
+  }
+  
+  .cyber-btn::before {
+    content: '';
+    position: absolute;
+    top: 0; left: -100%;
+    width: 30%; height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.6), transparent);
+    transform: skewX(-20deg);
+    transition: all 0.5s ease;
+    z-index: 10;
+  }
+  
+  .cyber-btn:hover::before {
+    left: 120%;
+    transition: left 0.5s ease;
+  }
+
+  .cyber-btn:hover .cyber-text {
+    animation: btn-glitch-anim 0.3s cubic-bezier(.25, .46, .45, .94) both infinite;
+  }
+}
+
+@keyframes btn-glitch-anim {
+  0% { transform: translate(0) }
+  20% { transform: translate(-1.5px, 1.5px) }
+  40% { transform: translate(-1.5px, -1.5px) }
+  60% { transform: translate(1.5px, 1.5px) }
+  80% { transform: translate(1.5px, -1.5px) }
+  100% { transform: translate(0) }
 }
 
 @keyframes gradient {

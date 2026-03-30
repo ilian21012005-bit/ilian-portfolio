@@ -1,0 +1,24 @@
+{
+  "Navigation": {
+    "home": "Home",
+    "about": "About",
+    "skills": "Arsenal",
+    "projects": "Projects",
+    "simulator": "Simulator",
+    "journey": "Journey",
+    "interests": "Interests",
+    "contact": "Contact",
+    "language_switch": "FR"
+  },
+  "Home": {
+    "title1": "Building Secure",
+    "title2": "Systems",
+    "title3": "& Code",
+    "subtitle": "IT Student (BUT 2) at Paris-Saclay — driven, versatile, and ready to impact.",
+    "availability": "Available for internship: April 2026",
+    "cvButton": "Download CV",
+    "projectsButton": "View Projects",
+    "explorer": "Explore",
+    "why_me": "Why me"
+  }
+}
