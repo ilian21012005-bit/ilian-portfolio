@@ -8,7 +8,8 @@
     "journey": "Journey",
     "interests": "Interests",
     "contact": "Contact",
-    "language_switch": "FR"
+    "language_switch": "FR",
+    "back_home": "Home"
   },
   "Home": {
     "title1": "Building Secure",
@@ -19,6 +20,119 @@
     "cvButton": "Download CV",
     "projectsButton": "View Projects",
     "explorer": "Explore",
-    "why_me": "Why me"
+    "why_me": "Why me",
+    "links_about": "About",
+    "links_about_sub": "Who I am",
+    "links_skills": "Arsenal",
+    "links_skills_sub": "Skills",
+    "links_projects_sub": "projects",
+    "links_simulator": "Simulator",
+    "links_simulator_sub": "Network demo",
+    "links_journey": "Journey",
+    "links_journey_sub": "Pro & school",
+    "links_interests": "Interests",
+    "links_interests_sub": "Passions",
+    "links_contact": "Contact",
+    "links_contact_sub": "Internship April 2026",
+    "whyme_0_title": "Security by design",
+    "whyme_0_desc": "I apply security reflexes (XSS/SQLi, permissions, hardening) and document my choices — useful in web dev as well as systems/networks.",
+    "whyme_1_title": "Hands-on systems & networks",
+    "whyme_1_desc": "I can diagnose (Wireshark), automate (scripts), and reason TCP/IP — and I demonstrate it through my network simulator.",
+    "whyme_2_title": "Rigor + product mindset",
+    "whyme_2_desc": "Clean, maintainable code, testing/quality when relevant, and readable UX (focus, performance, accessibility).",
+    "contact_link": "Contact me →"
+  },
+  "About": {
+    "title": "About me",
+    "subtitle": "Passionate about software architecture and cybersecurity.",
+    "p1": "Computer science student in <strong>BUT 2</strong> (IUT Paris-Saclay), track <accent>Deployment of communicating and secure applications</accent>, I combine systems/networks and development — through projects like <strong>ZeroStrike</strong> (LAN multiplayer) and <strong>Guess The Like</strong> (real-time).",
+    "p2": "I am looking for an <accent>internship from April to July 2026</accent> to strengthen my skills in a professional environment.",
+    "p3": "I am <strong>motivated</strong>, <strong>versatile</strong>, and eager to gain new experiences in dynamic environments.",
+    "badge_fr": "French (native)",
+    "badge_en": "English B2",
+    "badge_location": "91140 Villebon-Sur-Yvette",
+    "link_skills": "See my skills →",
+    "link_contact": "Contact"
+  },
+  "Arsenal": {
+    "title": "Arsenal",
+    "subtitle": "Technical skills and areas of expertise.",
+    "card_sysnet_title": "Systems & Networks",
+    "card_sysnet_desc": "Computer and network architecture, Linux/Windows administration, system programming. Virtualization, network services, routing, VLAN, firewalls. Wireshark analysis, Marionnet simulation, advanced networks.",
+    "card_db_title": "Databases",
+    "card_db_desc": "Relational modeling, SQL, database creation and exploitation. SQL integration in a programming language (queries, scripts).",
+    "card_dev_title": "Development",
+    "card_dev_desc": "Object-oriented programming, GUI, development quality. Web development, software architecture and design, analysis. In BUT: semantic web, Android development, automata and languages.",
+    "card_quality_title": "Qualities & Project",
+    "card_quality_desc": "Project and organizational management, IS management. Professional communication, personal development, contract and digital law. Teamwork, rigor, autonomy.",
+    "card_cyber_title": "Cybersecurity",
+    "card_cyber_desc": "Cryptography and security, system and network security (BUT 2). Firewalls, service hardening, best practices.",
+    "link_projects": "View projects →",
+    "link_contact": "Contact"
+  },
+  "Journey": {
+    "title": "Journey",
+    "subtitle": "Pro & education.",
+    "card_pro_title": "Professional journey",
+    "card_pro_sub": "Work experience, internships",
+    "card_school_title": "Academic journey",
+    "card_school_sub": "Academic background"
+  },
+  "JourneyPro": {
+    "title": "Professional journey",
+    "subtitle": "Boulanger, Toyota France Financement, discovery internship — git log work/",
+    "link_school": "Academic journey →",
+    "link_contact": "Contact"
+  },
+  "JourneySchool": {
+    "title": "Academic journey",
+    "subtitle": "Academic background through BUT 2 — git log formation/",
+    "link_pro": "Professional journey →",
+    "link_contact": "Contact"
+  },
+  "Projects": {
+    "title": "Projects",
+    "subtitle": "Detailed sheets: architecture, security/networks and role — selection of projects during BUT.",
+    "section_selection": "Selection",
+    "link_contact": "Contact me to discuss →",
+    "detail_subtitle": "Detailed sheet: architecture, security/networks, and role in the project.",
+    "btn_repo": "Repo",
+    "btn_demo": "Demo",
+    "btn_back": "Back to projects",
+    "section_techstack": "Tech stack",
+    "section_highlights": "Highlights",
+    "section_architecture": "Architecture",
+    "section_security": "Security & networks (by design)",
+    "section_role": "Role & contributions",
+    "section_summary": "30-second summary",
+    "section_decisions": "Technical decisions",
+    "section_tradeoffs": "Trade-offs",
+    "section_checklist": "Interview checklist",
+    "section_learned": "What I learned",
+    "section_future": "Future improvements"
+  },
+  "Simulator": {
+    "title": "Network Simulator",
+    "subtitle": "Interactive demo — explore the topology and commands.",
+    "desc_main": "Small simulated network: <b>PCs</b> and <b>routers</b> connected by subnets. Click a machine to open its terminal and type commands.",
+    "desc_goal": "Goal: configure interfaces, get an address or set up routing, then test connectivity with ping.",
+    "link_skills": "See my systems & networks skills →"
+  },
+  "Interests": {
+    "title": "Interests",
+    "subtitle": "What I'm passionate about.",
+    "music_title": "My Top 2025",
+    "link_contact": "Contact →",
+    "sport": "Sport",
+    "cinema": "Cinema",
+    "music": "Music",
+    "gaming": "Valo, CS & RL",
+    "manga": "Manga"
+  },
+  "Contact": {
+    "title": "Contact",
+    "subtitle": "Available for an internship April — July 2026.",
+    "available_badge": "Available for internship: April 2026",
+    "footer_text": "Looking for internship: April — July 2026 • Systems, Networks or Development"
   }
 }

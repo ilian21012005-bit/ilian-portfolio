@@ -5,11 +5,13 @@ import { PageHeader } from "@/components/PageHeader";
 import { PageLayout } from "@/components/PageLayout";
 import { ContactForm } from "@/components/ContactForm";
 import { ContactCLI } from "@/components/ContactCLI";
+import { useTranslations } from "next-intl";
 
 export default function ContactPage() {
+  const t = useTranslations("Contact");
   return (
     <PageLayout>
-        <PageHeader title="Contact" subtitle="Disponible pour un stage Avril — Juillet 2026." />
+        <PageHeader title={t("title")} subtitle={t("subtitle")} />
         <footer className="relative py-24 px-6 border-t border-white/10 overflow-hidden bg-gradient-to-b from-transparent to-accent/[0.02]">
           <div
             className="absolute inset-0 pointer-events-none opacity-[0.04]"
@@ -28,11 +30,11 @@ export default function ContactPage() {
               className="flex justify-center mb-10"
             >
               <div className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full border border-accent-secondary/40 bg-accent-secondary/10 shadow-[0_0_20px_-5px_rgb(var(--accent-secondary-rgb)/0.2)]">
-                <span className="relative flex h-2.5 w-2.5" title="Disponible pour Avril 2026">
+                <span className="relative flex h-2.5 w-2.5" title={t("available_badge")}>
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent-secondary opacity-75" />
                   <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-accent-secondary" />
                 </span>
-                <span className="text-sm text-accent-secondary font-medium">Disponible pour stage Avril 2026</span>
+                <span className="text-sm text-accent-secondary font-medium">{t("available_badge")}</span>
               </div>
             </motion.div>
             <ContactForm />
@@ -43,7 +45,7 @@ export default function ContactPage() {
               viewport={{ once: true }}
               className="text-center text-sm text-foreground/50 mt-8"
             >
-              Stage recherché : Avril — Juillet 2026 • Systèmes, Réseaux ou Développement
+              {t("footer_text")}
             </motion.p>
           </div>
         </footer>

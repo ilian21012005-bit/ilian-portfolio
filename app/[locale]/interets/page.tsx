@@ -7,19 +7,22 @@ import { PageLayout } from "@/components/PageLayout";
 import { SectionWrapper } from "@/components/SectionWrapper";
 import { LazyIframe } from "@/components/LazyIframe";
 import { Link } from "@/lib/navigation";
-
-const INTERESTS = [
-  { icon: Dumbbell, label: "Sport", href: "https://www.youtube.com/watch?v=n1BjNH_H2-8", title: "David Laid" },
-  { icon: Film, label: "Cinéma", href: "", title: "" },
-  { icon: Music, label: "Musique", href: "https://www.deezer.com/us/playlist/14803330743", title: "My Top 2025" },
-  { icon: Gamepad2, label: "Valo, CS & RL", href: "https://rocketleague.tracker.network/rocket-league/profile/steam/76561199021621098/overview", title: "Rocket League Tracker" },
-  { icon: BookOpen, label: "Manga", href: "https://www.youtube.com/watch?v=xiWjulqTquo", title: "AMV Gojo vs Sukuna" },
-];
+import { useTranslations } from "next-intl";
 
 export default function InteretsPage() {
+  const t = useTranslations("Interests");
+
+  const INTERESTS = [
+    { icon: Dumbbell, labelKey: "sport", href: "https://www.youtube.com/watch?v=n1BjNH_H2-8", title: "David Laid" },
+    { icon: Film, labelKey: "cinema", href: "", title: "" },
+    { icon: Music, labelKey: "music", href: "https://www.deezer.com/us/playlist/14803330743", title: "My Top 2025" },
+    { icon: Gamepad2, labelKey: "gaming", href: "https://rocketleague.tracker.network/rocket-league/profile/steam/76561199021621098/overview", title: "Rocket League Tracker" },
+    { icon: BookOpen, labelKey: "manga", href: "https://www.youtube.com/watch?v=xiWjulqTquo", title: "AMV Gojo vs Sukuna" },
+  ];
+
   return (
     <PageLayout>
-        <PageHeader title="Centres d'intérêt" subtitle="Ce qui me passionne au quotidien." />
+        <PageHeader title={t("title")} subtitle={t("subtitle")} />
         <SectionWrapper id="interests" className="bg-white/[0.01]">
           <div className="max-w-4xl mx-auto">
             <motion.div
@@ -31,7 +34,7 @@ export default function InteretsPage() {
               <div className="rounded-2xl border border-white/10 bg-white/[0.02] p-4 overflow-hidden hover:border-accent/20 transition-colors">
                 <h3 className="text-lg font-semibold text-foreground mb-4 flex items-center gap-2">
                   <span className="w-1 h-5 rounded-full bg-accent" />
-                  My Top 2025
+                  {t("music_title")}
                 </h3>
                 <LazyIframe
                   title="deezer-widget"
@@ -50,7 +53,7 @@ export default function InteretsPage() {
                   : {};
                 return (
                   <Wrapper
-                    key={item.label}
+                    key={item.labelKey}
                     {...wrapperProps}
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
@@ -61,14 +64,14 @@ export default function InteretsPage() {
                   >
                     <div className="absolute inset-0 bg-gradient-to-br from-accent/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
                     <item.icon className="w-10 h-10 text-accent relative z-10 group-hover:scale-110 transition-transform" />
-                    <span className="text-sm font-medium text-foreground text-center relative z-10">{item.label}</span>
+                    <span className="text-sm font-medium text-foreground text-center relative z-10">{t(item.labelKey as any)}</span>
                   </Wrapper>
                 );
               })}
             </div>
             <div className="mt-8 flex justify-center">
               <Link href="/contact" className="text-accent hover:underline font-medium">
-                Contact →
+                {t("link_contact")}
               </Link>
             </div>
           </div>

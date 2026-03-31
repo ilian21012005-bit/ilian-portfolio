@@ -7,19 +7,17 @@ import { StackingCards } from "@/components/StackingCards";
 import { ProjectCard } from "@/components/ProjectCard";
 import { PROJECTS } from "@/lib/projects";
 import { Link } from "@/lib/navigation";
+import { useTranslations } from "next-intl";
 
 export default function ProjetsPage() {
+  const t = useTranslations("Projects");
   return (
     <PageLayout>
-        <PageHeader
-          title="Projets"
-          subtitle="Fiches détaillées : architecture, sécurité/réseaux et rôle — sélection de projets durant le BUT."
-        />
+        <PageHeader title={t("title")} subtitle={t("subtitle")} />
         <SectionWrapper id="projects" allowSticky className="pb-8">
           <div className="max-w-6xl mx-auto">
-            {/* Sélection rapide (recruteur / stage) */}
             <div className="mb-10 px-2">
-              <h2 className="text-lg md:text-xl font-semibold text-foreground mb-4">Sélection</h2>
+              <h2 className="text-lg md:text-xl font-semibold text-foreground mb-4">{t("section_selection")}</h2>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                 {PROJECTS.slice(0, 3).map((p, idx) => (
                   <Link key={p.slug} href={`/projets/${p.slug}`} className="block">
@@ -33,11 +31,10 @@ export default function ProjetsPage() {
                 ))}
               </div>
             </div>
-
             <StackingCards cards={PROJECTS} />
             <div className="mt-8 flex justify-center">
               <Link href="/contact" className="text-accent hover:underline font-medium">
-                Me contacter pour en discuter →
+                {t("link_contact")}
               </Link>
             </div>
           </div>

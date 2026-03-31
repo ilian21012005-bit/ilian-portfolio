@@ -8,7 +8,8 @@
     "journey": "Parcours",
     "interests": "Intérêts",
     "contact": "Contact",
-    "language_switch": "EN"
+    "language_switch": "EN",
+    "back_home": "Accueil"
   },
   "Home": {
     "title1": "Building Secure",
@@ -19,6 +20,119 @@
     "cvButton": "Télécharger CV",
     "projectsButton": "Voir les Projets",
     "explorer": "Explorer",
-    "why_me": "Pourquoi moi"
+    "why_me": "Pourquoi moi",
+    "links_about": "À propos",
+    "links_about_sub": "Qui je suis",
+    "links_skills": "Arsenal",
+    "links_skills_sub": "Compétences",
+    "links_projects_sub": "réalisations",
+    "links_simulator": "Simulateur",
+    "links_simulator_sub": "Démo réseau",
+    "links_journey": "Parcours",
+    "links_journey_sub": "Pro & scolaire",
+    "links_interests": "Intérêts",
+    "links_interests_sub": "Passions",
+    "links_contact": "Contact",
+    "links_contact_sub": "Stage Avril 2026",
+    "whyme_0_title": "Sécurité by design",
+    "whyme_0_desc": "J'applique des réflexes sécurité (XSS/SQLi, permissions, durcissement) et je documente mes choix — utile en dev web comme en systèmes/réseaux.",
+    "whyme_1_title": "Systèmes & réseau concrets",
+    "whyme_1_desc": "Je sais diagnostiquer (Wireshark), automatiser (scripts), et raisonner TCP/IP — et je le montre via mon simulateur réseau.",
+    "whyme_2_title": "Rigueur + esprit produit",
+    "whyme_2_desc": "Code propre, maintenable, tests/qualité quand c'est pertinent, et une UX lisible (focus, perf, accessibilité).",
+    "contact_link": "Me contacter →"
+  },
+  "About": {
+    "title": "À propos",
+    "subtitle": "Passionné par l'architecture logicielle et la cybersécurité.",
+    "p1": "Étudiant en <strong>BUT 2 Informatique</strong> (IUT Paris-Saclay), parcours <accent>Déploiement d'applications communicantes et sécurisées</accent>, je combine systèmes/réseaux et développement — notamment via des projets comme <strong>ZeroStrike</strong> (multijoueur LAN) et <strong>Guess The Like</strong> (temps réel).",
+    "p2": "Je recherche un <accent>stage d'avril à juillet 2026</accent> pour renforcer mes compétences en entreprise.",
+    "p3": "Je suis <strong>motivé</strong>, <strong>polyvalent</strong> et désireux d'acquérir de nouvelles expériences dans des environnements dynamiques.",
+    "badge_fr": "Français (natif)",
+    "badge_en": "Anglais B2",
+    "badge_location": "91140 Villebon-Sur-Yvette",
+    "link_skills": "Voir mes compétences →",
+    "link_contact": "Contact"
+  },
+  "Arsenal": {
+    "title": "Arsenal",
+    "subtitle": "Compétences techniques et domaines de maîtrise.",
+    "card_sysnet_title": "Systèmes & Réseaux",
+    "card_sysnet_desc": "Architecture des ordinateurs et des réseaux, administration Linux/Windows, programmation système. Virtualisation, services réseaux, routage, VLAN, pare-feu. Analyse Wireshark, simulation Marionnet, réseaux avancés.",
+    "card_db_title": "Base de données",
+    "card_db_desc": "Modélisation relationnelle, SQL, exploitation et création de BDD. Intégration SQL dans un langage de programmation (requêtes, scripts).",
+    "card_dev_title": "Développement",
+    "card_dev_desc": "Programmation orientée objet, IHM, qualité de développement. Développement web, conception et architecture logicielle, analyse. En BUT : compléments web sémantique, développement Android, automates et langages.",
+    "card_quality_title": "Qualités & Projet",
+    "card_quality_desc": "Gestion de projet et des organisations, management des SI. Communication professionnelle, PPP, droit des contrats et du numérique. Travail d'équipe, rigueur, autonomie.",
+    "card_cyber_title": "Cybersécurité",
+    "card_cyber_desc": "Cryptographie et sécurité, sécurité système et réseau (BUT 2). Pare-feu, sécurisation des services, bonnes pratiques.",
+    "link_projects": "Voir les projets →",
+    "link_contact": "Contact"
+  },
+  "Journey": {
+    "title": "Parcours",
+    "subtitle": "Pro & formation.",
+    "card_pro_title": "Parcours professionnel",
+    "card_pro_sub": "Expériences travail, stages",
+    "card_school_title": "Parcours scolaire",
+    "card_school_sub": "Formation académique"
+  },
+  "JourneyPro": {
+    "title": "Parcours professionnel",
+    "subtitle": "Boulanger, Toyota France Financement, stage de découverte — git log work/",
+    "link_school": "Parcours scolaire →",
+    "link_contact": "Contact"
+  },
+  "JourneySchool": {
+    "title": "Parcours scolaire",
+    "subtitle": "Formation académique jusqu'au BUT 2 — git log formation/",
+    "link_pro": "Parcours professionnel →",
+    "link_contact": "Contact"
+  },
+  "Projects": {
+    "title": "Projets",
+    "subtitle": "Fiches détaillées : architecture, sécurité/réseaux et rôle — sélection de projets durant le BUT.",
+    "section_selection": "Sélection",
+    "link_contact": "Me contacter pour en discuter →",
+    "detail_subtitle": "Fiche détaillée : architecture, sécurité/réseaux, et rôle dans le projet.",
+    "btn_repo": "Repo",
+    "btn_demo": "Demo",
+    "btn_back": "Retour aux projets",
+    "section_techstack": "Tech stack",
+    "section_highlights": "Highlights",
+    "section_architecture": "Architecture",
+    "section_security": "Sécurité & réseaux (by design)",
+    "section_role": "Rôle & apports",
+    "section_summary": "Résumé 30 secondes",
+    "section_decisions": "Décisions techniques",
+    "section_tradeoffs": "Trade-offs",
+    "section_checklist": "Checklist entretien",
+    "section_learned": "Ce que j'ai appris",
+    "section_future": "Améliorations futures"
+  },
+  "Simulator": {
+    "title": "Simulateur réseau",
+    "subtitle": "Démo interactive — explore la topologie et les commandes.",
+    "desc_main": "Petit réseau simulé : <b>postes (PC)</b> et <b>routeurs</b> reliés par des sous-réseaux. Clique sur une machine pour ouvrir son terminal et taper des commandes.",
+    "desc_goal": "Objectif : configurer les interfaces, obtenir une adresse ou faire du routage, puis tester la connectivité avec ping.",
+    "link_skills": "Voir mes compétences systèmes & réseaux →"
+  },
+  "Interests": {
+    "title": "Centres d'intérêt",
+    "subtitle": "Ce qui me passionne au quotidien.",
+    "music_title": "My Top 2025",
+    "link_contact": "Contact →",
+    "sport": "Sport",
+    "cinema": "Cinéma",
+    "music": "Musique",
+    "gaming": "Valo, CS & RL",
+    "manga": "Manga"
+  },
+  "Contact": {
+    "title": "Contact",
+    "subtitle": "Disponible pour un stage Avril — Juillet 2026.",
+    "available_badge": "Disponible pour stage Avril 2026",
+    "footer_text": "Stage recherché : Avril — Juillet 2026 • Systèmes, Réseaux ou Développement"
   }
 }

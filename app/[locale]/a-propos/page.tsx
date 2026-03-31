@@ -7,38 +7,36 @@ import { PageLayout } from "@/components/PageLayout";
 import { SpotlightCard } from "@/components/SpotlightCard";
 import { SectionWrapper } from "@/components/SectionWrapper";
 import { Link } from "@/lib/navigation";
+import { useTranslations } from "next-intl";
 
 export default function AProposPage() {
+  const t = useTranslations("About");
   return (
     <PageLayout>
-        <PageHeader title="À propos" subtitle="Passionné par l'architecture logicielle et la cybersécurité." />
+        <PageHeader title={t("title")} subtitle={t("subtitle")} />
         <SectionWrapper id="about" size="compact">
           <div className="max-w-4xl mx-auto">
             <SpotlightCard>
               <p className="text-foreground/80 text-lg leading-relaxed mb-6">
-                Étudiant en <strong className="text-foreground">BUT 2 Informatique</strong> (IUT
-                Paris-Saclay), parcours{" "}
-                <span className="text-accent font-medium">
-                  Déploiement d&apos;applications communicantes et sécurisées
-                </span>
-                , je combine systèmes/réseaux et développement — notamment via des projets comme{" "}
-                <strong className="text-foreground">ZeroStrike</strong> (multijoueur LAN) et{" "}
-                <strong className="text-foreground">Guess The Like</strong> (temps réel).
+                {t.rich("p1", {
+                  strong: (c) => <strong className="text-foreground">{c}</strong>,
+                  accent: (c) => <span className="text-accent font-medium">{c}</span>,
+                })}
               </p>
               <p className="text-foreground/80 text-lg leading-relaxed mb-6">
-                Je recherche un{" "}
-                <span className="text-accent font-medium">stage d&apos;avril à juillet 2026</span>{" "}
-                pour renforcer mes compétences en entreprise.
+                {t.rich("p2", {
+                  accent: (c) => <span className="text-accent font-medium">{c}</span>,
+                })}
               </p>
               <p className="text-foreground/80 text-lg leading-relaxed">
-                Je suis <strong className="text-foreground">motivé</strong>,{" "}
-                <strong className="text-foreground">polyvalent</strong> et désireux d&apos;acquérir
-                de nouvelles expériences dans des environnements dynamiques.
+                {t.rich("p3", {
+                  strong: (c) => <strong className="text-foreground">{c}</strong>,
+                })}
               </p>
               <div className="mt-8 flex flex-wrap gap-3">
-                <Badge variant="tech">Français (natif)</Badge>
-                <Badge variant="tech">Anglais B2</Badge>
-                <Badge variant="success">91140 Villebon-Sur-Yvette</Badge>
+                <Badge variant="tech">{t("badge_fr")}</Badge>
+                <Badge variant="tech">{t("badge_en")}</Badge>
+                <Badge variant="success">{t("badge_location")}</Badge>
               </div>
             </SpotlightCard>
             <motion.div
@@ -47,17 +45,11 @@ export default function AProposPage() {
               viewport={{ once: true }}
               className="mt-8 flex flex-wrap gap-4"
             >
-              <Link
-                href="/arsenal"
-                className="text-accent hover:underline font-medium"
-              >
-                Voir mes compétences →
+              <Link href="/arsenal" className="text-accent hover:underline font-medium">
+                {t("link_skills")}
               </Link>
-              <Link
-                href="/contact"
-                className="text-foreground/70 hover:text-accent transition-colors"
-              >
-                Contact
+              <Link href="/contact" className="text-foreground/70 hover:text-accent transition-colors">
+                {t("link_contact")}
               </Link>
             </motion.div>
           </div>

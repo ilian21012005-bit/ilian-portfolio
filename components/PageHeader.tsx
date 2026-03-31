@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { Link } from "@/lib/navigation";
 import { ChevronLeft } from "lucide-react";
+import { useTranslations } from "next-intl";
 
 interface PageHeaderProps {
   title: string;
@@ -10,6 +11,7 @@ interface PageHeaderProps {
 }
 
 export function PageHeader({ title, subtitle }: PageHeaderProps) {
+  const t = useTranslations("Navigation");
   return (
     <header className="relative overflow-hidden border-b border-white/10">
       {/* Fond subtil : dégradé + lueur */}
@@ -39,7 +41,7 @@ export function PageHeader({ title, subtitle }: PageHeaderProps) {
               className="inline-flex items-center gap-1.5 text-sm text-foreground/50 hover:text-accent-tertiary transition-colors w-fit rounded-full px-4 py-2 -ml-2 hover:bg-white/[0.04] border border-transparent hover:border-white/10"
             >
               <ChevronLeft className="w-4 h-4" />
-              Accueil
+              {t("back_home")}
             </Link>
           </motion.div>
 

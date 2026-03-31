@@ -6,6 +6,7 @@ import { PageHeader } from "@/components/PageHeader";
 import { PageLayout } from "@/components/PageLayout";
 import { Link } from "@/lib/navigation";
 import { Cpu, Terminal } from "lucide-react";
+import { useTranslations } from "next-intl";
 
 const NetworkSimulator = dynamic(
   () => import("@/components/network-sim").then((m) => m.NetworkSimulator),
@@ -26,13 +27,10 @@ const NetworkSimulator = dynamic(
 );
 
 export default function SimulateurPage() {
+  const t = useTranslations("Simulator");
   return (
     <PageLayout>
-        <PageHeader
-          title="Simulateur réseau"
-          subtitle="Démo interactive — explore la topologie et les commandes."
-        />
-        {/* Bloc intro unifié, style carte */}
+        <PageHeader title={t("title")} subtitle={t("subtitle")} />
         <motion.section
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
@@ -51,18 +49,16 @@ export default function SimulateurPage() {
               </div>
               <div className="space-y-3 min-w-0">
                 <p className="text-foreground/85 text-base md:text-lg leading-relaxed">
-                  Petit réseau simulé : <span className="text-foreground font-medium">postes (PC)</span> et{" "}
-                  <span className="text-foreground font-medium">routeurs</span> reliés par des sous-réseaux.
-                  Clique sur une machine pour ouvrir son terminal et taper des commandes{" "}
+                  {t.rich("desc_main", {
+                    b: (c) => <span className="text-foreground font-medium">{c}</span>,
+                  })}{" "}
                   <code className="px-1.5 py-0.5 rounded bg-white/10 text-accent font-mono text-sm">ip</code>,{" "}
                   <code className="px-1.5 py-0.5 rounded bg-white/10 text-accent font-mono text-sm">dhclient</code>,{" "}
                   <code className="px-1.5 py-0.5 rounded bg-white/10 text-accent font-mono text-sm">ping</code>,{" "}
                   <code className="px-1.5 py-0.5 rounded bg-white/10 text-accent font-mono text-sm">save</code>,{" "}
                   <code className="px-1.5 py-0.5 rounded bg-white/10 text-accent font-mono text-sm">reboot</code>.
                 </p>
-                <p className="text-foreground/55 text-sm">
-                  Objectif : configurer les interfaces, obtenir une adresse ou faire du routage, puis tester la connectivité avec <code className="font-mono text-foreground/70">ping</code>.
-                </p>
+                <p className="text-foreground/55 text-sm">{t("desc_goal")}</p>
               </div>
             </div>
           </div>
@@ -70,7 +66,7 @@ export default function SimulateurPage() {
         <NetworkSimulator />
         <div className="max-w-4xl mx-auto px-6 mt-8 flex justify-center pb-12">
           <Link href="/arsenal" className="text-accent hover:underline font-medium">
-            Voir mes compétences systèmes & réseaux →
+            {t("link_skills")}
           </Link>
         </div>
     </PageLayout>

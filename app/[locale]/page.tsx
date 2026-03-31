@@ -7,8 +7,13 @@ import { PageLayout } from "@/components/PageLayout";
 import { QuickLinkCard } from "@/components/QuickLinkCard";
 import { PROJECTS } from "@/lib/projects";
 import { Link } from "@/lib/navigation";
-import { WHY_ME } from "@/lib/whyMe";
 import { useTranslations } from "next-intl";
+
+const WHY_ME_KEYS = [
+  { titleKey: "whyme_0_title", descKey: "whyme_0_desc" },
+  { titleKey: "whyme_1_title", descKey: "whyme_1_desc" },
+  { titleKey: "whyme_2_title", descKey: "whyme_2_desc" },
+];
 
 export default function Home() {
   const t = useTranslations("Home");
@@ -38,23 +43,23 @@ export default function Home() {
               viewport={{ once: true }}
               className="grid grid-cols-2 md:grid-cols-4 gap-4"
             >
-              <QuickLinkCard href="/a-propos" icon={User} title="À propos" subtitle="Qui je suis" />
-              <QuickLinkCard href="/arsenal" icon={Wrench} title="Arsenal" subtitle="Compétences" />
-              <QuickLinkCard href="/projets" icon={FolderGit2} title="Projets" subtitle={`${PROJECTS.length} réalisations`} />
-              <QuickLinkCard href="/simulateur" icon={Cpu} title="Simulateur" subtitle="Démo réseau" />
+              <QuickLinkCard href="/a-propos" icon={User} title={t("links_about")} subtitle={t("links_about_sub")} />
+              <QuickLinkCard href="/arsenal" icon={Wrench} title={t("links_skills")} subtitle={t("links_skills_sub")} />
+              <QuickLinkCard href="/projets" icon={FolderGit2} title="Projets" subtitle={`${PROJECTS.length} ${t("links_projects_sub")}`} />
+              <QuickLinkCard href="/simulateur" icon={Cpu} title={t("links_simulator")} subtitle={t("links_simulator_sub")} />
               <QuickLinkCard
                 href="/parcours"
                 icon={GraduationCap}
-                title="Parcours"
-                subtitle="Pro & scolaire"
+                title={t("links_journey")}
+                subtitle={t("links_journey_sub")}
                 className="md:col-span-2"
               />
-              <QuickLinkCard href="/interets" icon={Heart} title="Intérêts" subtitle="Passions" />
+              <QuickLinkCard href="/interets" icon={Heart} title={t("links_interests")} subtitle={t("links_interests_sub")} />
               <QuickLinkCard
                 href="/contact"
                 icon={Mail}
-                title={<span className="text-accent-tertiary font-semibold group-hover:underline block">Contact</span>}
-                subtitle={<span className="text-sm text-foreground/80">Stage Avril 2026</span>}
+                title={<span className="text-accent-tertiary font-semibold group-hover:underline block">{t("links_contact")}</span>}
+                subtitle={<span className="text-sm text-foreground/80">{t("links_contact_sub")}</span>}
                 iconClassName="w-9 h-9 text-accent-tertiary"
                 variant="violet"
                 className="p-7"
@@ -80,9 +85,9 @@ export default function Home() {
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-              {WHY_ME.map((item, idx) => (
+              {WHY_ME_KEYS.map((item, idx) => (
                 <motion.article
-                  key={item.title}
+                  key={item.titleKey}
                   initial={{ opacity: 0, y: 18 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
@@ -90,10 +95,10 @@ export default function Home() {
                   className="rounded-2xl p-6 border border-white/10 bg-white/[0.02] hover:border-accent-secondary/30 hover:bg-white/[0.04] transition-colors"
                 >
                   <h3 className="text-lg font-semibold text-foreground mb-2">
-                    {item.title}
+                    {t(item.titleKey as any)}
                   </h3>
                   <p className="text-sm text-foreground/70 leading-relaxed">
-                    {item.description}
+                    {t(item.descKey as any)}
                   </p>
                 </motion.article>
               ))}
@@ -101,7 +106,7 @@ export default function Home() {
 
             <div className="mt-8 flex justify-center">
               <Link href="/contact" className="text-accent hover:underline font-medium">
-                Discutons de ton besoin de stage →
+                {t("contact_link")}
               </Link>
             </div>
           </div>

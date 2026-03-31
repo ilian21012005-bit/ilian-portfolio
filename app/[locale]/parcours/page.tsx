@@ -6,11 +6,13 @@ import { PageLayout } from "@/components/PageLayout";
 import { SectionWrapper } from "@/components/SectionWrapper";
 import { Briefcase, GraduationCap } from "lucide-react";
 import { QuickLinkCard } from "@/components/QuickLinkCard";
+import { useTranslations } from "next-intl";
 
 export default function ParcoursPage() {
+  const t = useTranslations("Journey");
   return (
     <PageLayout>
-        <PageHeader title="Parcours" subtitle="Pro & formation." />
+        <PageHeader title={t("title")} subtitle={t("subtitle")} />
         <SectionWrapper id="parcours">
           <div className="max-w-2xl mx-auto">
             <motion.div
@@ -22,8 +24,8 @@ export default function ParcoursPage() {
               <QuickLinkCard
                 href="/parcours-pro"
                 icon={Briefcase}
-                title={<span className="text-foreground font-semibold">Parcours professionnel</span>}
-                subtitle="Expériences travail, stages"
+                title={<span className="text-foreground font-semibold">{t("card_pro_title")}</span>}
+                subtitle={t("card_pro_sub")}
                 iconClassName="w-10 h-10 text-accent"
                 variant="default"
                 className="p-8"
@@ -31,8 +33,8 @@ export default function ParcoursPage() {
               <QuickLinkCard
                 href="/parcours-scolaire"
                 icon={GraduationCap}
-                title={<span className="text-foreground font-semibold">Parcours scolaire</span>}
-                subtitle="Formation académique"
+                title={<span className="text-foreground font-semibold">{t("card_school_title")}</span>}
+                subtitle={t("card_school_sub")}
                 iconClassName="w-10 h-10 text-accent-secondary"
                 variant="success"
                 className="p-8"
