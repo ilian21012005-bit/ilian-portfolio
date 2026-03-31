@@ -1,12 +1,14 @@
 "use client";
 
 import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, useMotionValue, useTransform } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useTranslations, useLocale } from "next-intl";
 import { CONTACT } from "@/lib/contact";
+import { ThemeToggle } from "@/components/ThemeToggle";
+import { useTheme } from "@/components/ThemeProvider";
 
 const navLinks = [
   { href: "/", key: "home" },
@@ -25,6 +27,7 @@ export function Navbar() {
   const pathname = usePathname();
   const t = useTranslations("Navigation");
   const locale = useLocale();
+  const { theme } = useTheme();
 
   const localizedHref = (href: string) => `/${locale}${href === '/' ? '' : href}`;
   const switchLocale = locale === 'fr' ? 'en' : 'fr';
@@ -34,6 +37,10 @@ export function Navbar() {
     if (href === "/") return pathname === `/${locale}`;
     return pathname?.startsWith(`/${locale}${href}`);
   };
+
+  const accentBorderHovered = theme === "red"
+    ? "rgba(220, 20, 60, 0.3)"
+    : "rgba(59, 130, 246, 0.35)";
 
   return (
     <>
@@ -51,22 +58,22 @@ export function Navbar() {
         >
           <motion.div
             animate={{
-              width: isHovered ? 680 : 140,
+              width: isHovered ? 760 : 140,
               backgroundColor: isHovered ? "rgba(5, 5, 5, 0.9)" : "rgba(255, 255, 255, 0.06)",
-              borderColor: isHovered ? "rgba(220, 20, 60, 0.3)" : "rgba(255, 255, 255, 0.1)",
+              borderColor: isHovered ? accentBorderHovered : "rgba(255, 255, 255, 0.1)",
             }}
             transition={{ type: "spring", damping: 25, stiffness: 200 }}
             className="h-12 rounded-full flex items-center justify-center overflow-hidden border backdrop-blur-xl shadow-xl shadow-black/30 max-w-[95vw]"
           >
             {!isHovered ? (
               <span className="text-sm font-bold text-foreground whitespace-nowrap">
-                <span className="text-crimson">I</span>Menu
+                <span className="text-accent">I</span>Menu
               </span>
             ) : (
               <motion.div
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
-                className="flex items-center gap-4 px-5 whitespace-nowrap"
+                className="flex items-center gap-3 px-5 whitespace-nowrap"
               >
                 {navLinks.map((link) => (
                   <Link
@@ -75,8 +82,8 @@ export function Navbar() {
                     aria-current={isActive(link.href) ? "page" : undefined}
                     className={`text-xs font-medium transition-colors shrink-0 ${
                       isActive(link.href)
-                        ? "text-crimson"
-                        : "text-foreground/80 hover:text-crimson"
+                        ? "text-accent"
+                        : "text-foreground/80 hover:text-accent"
                     }`}
                   >
                     {t(link.key)}
@@ -86,17 +93,19 @@ export function Navbar() {
                   href={CONTACT.cvUrl || "/cv.pdf"}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-xs font-semibold text-crimson hover:text-crimson/80"
+                  className="text-xs font-semibold text-accent hover:text-accent/80"
                 >
                   CV
                 </a>
-                <div className="w-px h-4 bg-white/20 mx-1" />
+                <div className="w-px h-4 bg-white/20" />
                 <Link
                   href={switchPath}
-                  className="text-xs font-bold text-foreground hover:text-crimson transition-colors"
+                  className="text-xs font-bold text-foreground hover:text-accent transition-colors"
                 >
                   {t("language_switch")}
                 </Link>
+                <div className="w-px h-4 bg-white/20" />
+                <ThemeToggle />
               </motion.div>
             )}
           </motion.div>
@@ -143,7 +152,7 @@ export function Navbar() {
                     onClick={() => setIsMobileMenuOpen(false)}
                     aria-current={isActive(link.href) ? "page" : undefined}
                     className={`block py-3 transition-colors ${
-                      isActive(link.href) ? "text-crimson" : "text-foreground hover:text-crimson"
+                      isActive(link.href) ? "text-accent" : "text-foreground hover:text-accent"
                     }`}
                   >
                     {t(link.key)}
@@ -155,17 +164,21 @@ export function Navbar() {
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => setIsMobileMenuOpen(false)}
-                className="mt-2 py-3 rounded-xl bg-crimson text-white text-center font-medium"
+                className="mt-2 py-3 rounded-xl bg-accent text-white text-center font-medium"
               >
                 CV
               </a>
               <Link
                 href={switchPath}
                 onClick={() => setIsMobileMenuOpen(false)}
-                className="mt-2 py-3 rounded-xl border border-white/20 text-center font-bold hover:border-crimson hover:text-crimson transition-colors"
+                className="mt-2 py-3 rounded-xl border border-white/20 text-center font-bold hover:border-accent hover:text-accent transition-colors"
               >
                 {t("language_switch")}
               </Link>
+              <div className="flex items-center justify-between mt-2 px-2">
+                <span className="text-xs text-foreground/50 font-medium">Équipe</span>
+                <ThemeToggle />
+              </div>
             </motion.ul>
           </motion.div>
         )}

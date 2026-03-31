@@ -7,8 +7,8 @@ export function TechGrid() {
       aria-hidden
       style={{
         backgroundImage: `
-          repeating-linear-gradient(0deg, transparent 0px, transparent 49px, rgba(220, 20, 60, 0.15) 49px, rgba(220, 20, 60, 0.15) 50px),
-          repeating-linear-gradient(90deg, transparent 0px, transparent 49px, rgba(220, 20, 60, 0.15) 49px, rgba(220, 20, 60, 0.15) 50px)
+          repeating-linear-gradient(0deg, transparent 0px, transparent 49px, rgb(var(--accent-rgb) / 0.15) 49px, rgb(var(--accent-rgb) / 0.15) 50px),
+          repeating-linear-gradient(90deg, transparent 0px, transparent 49px, rgb(var(--accent-rgb) / 0.15) 49px, rgb(var(--accent-rgb) / 0.15) 50px)
         `,
       }}
     />

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import Link from "next/link";
+import { Link } from "@/lib/navigation";
 import { notFound } from "next/navigation";
 
 import { PageLayout } from "@/components/PageLayout";
@@ -41,7 +41,7 @@ export default function ProjetDetailPage({ params }: { params: { slug: string } 
       return (
         <Link
           href={href}
-          className="inline-flex items-center justify-center px-3 py-1.5 rounded-full text-xs font-semibold border border-crimson/30 bg-crimson/10 text-crimson hover:bg-crimson/15 hover:border-crimson/50 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-crimson/60"
+          className="inline-flex items-center justify-center px-3 py-1.5 rounded-full text-xs font-semibold border border-accent/30 bg-accent/10 text-accent hover:bg-accent/15 hover:border-accent/50 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/60"
         >
           {label}
         </Link>
@@ -53,7 +53,7 @@ export default function ProjetDetailPage({ params }: { params: { slug: string } 
         href={href}
         target="_blank"
         rel="noopener noreferrer"
-        className="inline-flex items-center justify-center px-3 py-1.5 rounded-full text-xs font-semibold border border-crimson/30 bg-crimson/10 text-crimson hover:bg-crimson/15 hover:border-crimson/50 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-crimson/60"
+        className="inline-flex items-center justify-center px-3 py-1.5 rounded-full text-xs font-semibold border border-accent/30 bg-accent/10 text-accent hover:bg-accent/15 hover:border-accent/50 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/60"
       >
         {label}
       </a>
@@ -75,7 +75,7 @@ export default function ProjetDetailPage({ params }: { params: { slug: string } 
 
             <Link
               href="/projets"
-              className="inline-flex items-center justify-center px-3 py-1.5 rounded-full text-xs font-semibold border border-white/15 bg-white/[0.02] text-foreground/80 hover:text-crimson hover:border-crimson/40 hover:bg-white/[0.04] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-crimson/60"
+              className="inline-flex items-center justify-center px-3 py-1.5 rounded-full text-xs font-semibold border border-white/15 bg-white/[0.02] text-foreground/80 hover:text-accent hover:border-accent/40 hover:bg-white/[0.04] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/60"
             >
               Retour aux projets
             </Link>

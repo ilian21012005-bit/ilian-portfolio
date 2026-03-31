@@ -37,14 +37,14 @@ export function HeroSection() {
       <div
         className="absolute left-0 top-0 w-full h-[4px] pointer-events-none z-0 scan-line-anim"
         style={{
-          background: "rgba(220, 20, 60, 0.4)",
-          boxShadow: "0 0 20px rgba(220, 20, 60, 0.6)",
+          background: "rgb(var(--accent-rgb) / 0.4)",
+          boxShadow: "0 0 20px rgb(var(--accent-rgb) / 0.6)",
         }}
       />
 
       {/* Gradient orbs */}
-      <div className="gradient-orb gradient-orb-crimson w-[500px] h-[500px] -top-48 -right-48" />
-      <div className="gradient-orb gradient-orb-dark-red w-[400px] h-[400px] -bottom-32 -left-32" />
+      <div className="gradient-orb gradient-orb-accent w-[500px] h-[500px] -top-48 -right-48" />
+      <div className="gradient-orb gradient-orb-accent-secondary w-[400px] h-[400px] -bottom-32 -left-32" />
 
       <div className="relative z-10 text-center px-6 max-w-5xl mx-auto">
         <motion.div
@@ -54,8 +54,8 @@ export function HeroSection() {
           className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass mb-8"
         >
           <span className="relative flex h-2 w-2">
-            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-dark-red opacity-75" />
-            <span className="relative inline-flex rounded-full h-2 w-2 bg-dark-red" />
+            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent-secondary opacity-75" />
+            <span className="relative inline-flex rounded-full h-2 w-2 bg-accent-secondary" />
           </span>
           <span className="text-sm text-foreground/80">{t("availability")}</span>
         </motion.div>
@@ -67,12 +67,12 @@ export function HeroSection() {
           className="font-display text-4xl md:text-6xl lg:text-7xl xl:text-8xl font-bold text-foreground leading-[1.1] tracking-tight mb-4"
         >
           <KineticText>
-            <span className="text-transparent [-webkit-text-stroke:2px_rgba(255,255,255,0.9)] hover:text-white hover:[-webkit-text-stroke-color:transparent] transition-all duration-300" style={{ textShadow: "0 0 40px rgba(220, 20, 60, 0.5)" }}>
+            <span className="text-transparent [-webkit-text-stroke:2px_rgba(255,255,255,0.9)] hover:text-white hover:[-webkit-text-stroke-color:transparent] transition-all duration-300" style={{ textShadow: "0 0 40px rgb(var(--accent-rgb) / 0.5)" }}>
               {t("title1")}
             </span>
           </KineticText>
           <br />
-          <span className="text-crimson">
+          <span className="text-accent">
             <GlitchText>{t("title2")}</GlitchText>
           </span>
           {" "}{t("title3")}

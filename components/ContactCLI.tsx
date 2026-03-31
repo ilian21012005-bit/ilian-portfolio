@@ -21,21 +21,21 @@ export function ContactCLI() {
       className="max-w-lg mx-auto relative"
     >
       {/* Coins HUD style */}
-      <div className="absolute -top-px -left-px w-6 h-6 border-t-2 border-l-2 border-dark-red/60 rounded-tl" />
-      <div className="absolute -bottom-px -right-px w-6 h-6 border-b-2 border-r-2 border-dark-red/60 rounded-br" />
+      <div className="absolute -top-px -left-px w-6 h-6 border-t-2 border-l-2 border-accent-secondary/60 rounded-tl" />
+      <div className="absolute -bottom-px -right-px w-6 h-6 border-b-2 border-r-2 border-accent-secondary/60 rounded-br" />
       
       <div className="p-6 border border-white/10 bg-black/40 rounded-lg font-mono">
-        <h3 className="text-dark-red text-sm font-semibold mb-4 pb-2 border-b border-white/10">
+        <h3 className="text-accent-secondary text-sm font-semibold mb-4 pb-2 border-b border-white/10">
           &gt; INITIATE_HANDSHAKE
         </h3>
         
         <div className="space-y-4 text-sm">
           <div>
-            <label className="text-dark-red/80 block mb-1">var USER_IDENTITY =</label>
+            <label className="text-accent-secondary/80 block mb-1">var USER_IDENTITY =</label>
             {CONTACT.email ? (
               <a
                 href={`mailto:${CONTACT.email}`}
-                className="text-foreground hover:text-crimson transition-colors"
+                className="text-foreground hover:text-accent transition-colors"
               >
                 &quot;{CONTACT.name}&quot;
               </a>
@@ -44,9 +44,9 @@ export function ContactCLI() {
             )}
           </div>
           <div>
-            <label className="text-dark-red/80 block mb-1">var RETURN_ADDRESS =</label>
+            <label className="text-accent-secondary/80 block mb-1">var RETURN_ADDRESS =</label>
             {CONTACT.email ? (
-              <a href={`mailto:${CONTACT.email}`} className="text-crimson hover:underline">
+              <a href={`mailto:${CONTACT.email}`} className="text-accent hover:underline">
                 {CONTACT.email}
               </a>
             ) : (
@@ -54,9 +54,9 @@ export function ContactCLI() {
             )}
           </div>
           <div>
-            <label className="text-dark-red/80 block mb-1">var GEO_COORDS =</label>
+            <label className="text-accent-secondary/80 block mb-1">var GEO_COORDS =</label>
             <span className="text-foreground/80 flex items-center gap-2">
-              <MapPin className="w-4 h-4 text-dark-red" />
+              <MapPin className="w-4 h-4 text-accent-secondary" />
               {CONTACT.location || "non défini"}
             </span>
           </div>
@@ -66,7 +66,7 @@ export function ContactCLI() {
           {CONTACT.email && (
             <a
               href={`mailto:${CONTACT.email}`}
-              className="inline-flex items-center gap-2 px-4 py-2 border border-dark-red/50 text-dark-red hover:bg-dark-red/10 transition-colors rounded"
+              className="inline-flex items-center gap-2 px-4 py-2 border border-accent-secondary/50 text-accent-secondary hover:bg-accent-secondary/10 transition-colors rounded"
             >
               <Mail className="w-4 h-4" />
               Email
@@ -75,7 +75,7 @@ export function ContactCLI() {
           {CONTACT.phone && (
             <a
               href={`tel:${CONTACT.phone}`}
-              className="inline-flex items-center gap-2 px-4 py-2 border border-dark-red/50 text-dark-red hover:bg-dark-red/10 transition-colors rounded"
+              className="inline-flex items-center gap-2 px-4 py-2 border border-accent-secondary/50 text-accent-secondary hover:bg-accent-secondary/10 transition-colors rounded"
             >
               <Phone className="w-4 h-4" />
               {CONTACT.phone}
@@ -86,7 +86,7 @@ export function ContactCLI() {
               href={CONTACT.linkedinUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-4 py-2 border border-dark-red/50 text-dark-red hover:bg-dark-red/10 transition-colors rounded"
+              className="inline-flex items-center gap-2 px-4 py-2 border border-accent-secondary/50 text-accent-secondary hover:bg-accent-secondary/10 transition-colors rounded"
             >
               <Linkedin className="w-4 h-4" />
               LinkedIn
@@ -97,7 +97,7 @@ export function ContactCLI() {
               href={CONTACT.githubUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-4 py-2 border border-dark-red/50 text-dark-red hover:bg-dark-red/10 transition-colors rounded"
+              className="inline-flex items-center gap-2 px-4 py-2 border border-accent-secondary/50 text-accent-secondary hover:bg-accent-secondary/10 transition-colors rounded"
             >
               <Github className="w-4 h-4" />
               GitHub
@@ -111,8 +111,8 @@ export function ContactCLI() {
               onClick={handleSend}
               className={`inline-flex items-center gap-2 px-4 py-2 border rounded transition-colors ${
                 sendStatus === "sent"
-                  ? "border-dark-red bg-dark-red/20 text-dark-red"
-                  : "border-dark-red text-dark-red hover:bg-dark-red/10"
+                  ? "border-accent-secondary bg-accent-secondary/20 text-accent-secondary"
+                  : "border-accent-secondary text-accent-secondary hover:bg-accent-secondary/10"
               }`}
             >
               <Download className="w-4 h-4" />

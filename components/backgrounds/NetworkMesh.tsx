@@ -6,6 +6,13 @@ const PARTICLES = 80;
 const CONNECT_DIST = 150;
 const MOUSE_RADIUS = 180;
 
+function getAccentRgb(): string {
+  if (typeof window === "undefined") return "220 20 60";
+  return getComputedStyle(document.documentElement)
+    .getPropertyValue("--accent-rgb")
+    .trim() || "220 20 60";
+}
+
 export function NetworkMesh() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
@@ -58,12 +65,14 @@ export function NetworkMesh() {
         if (p.x < 0 || p.x > canvas.width) p.dx *= -1;
         if (p.y < 0 || p.y > canvas.height) p.dy *= -1;
 
+        const rgb = getAccentRgb().replace(/\s+/g, ", ");
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-        ctx.fillStyle = "rgba(220, 20, 60, 0.8)";
+        ctx.fillStyle = `rgba(${rgb}, 0.8)`;
         ctx.fill();
       });
 
+      const rgb = getAccentRgb().replace(/\s+/g, ", ");
       for (let a = 0; a < particles.length; a++) {
         for (let b = a + 1; b < particles.length; b++) {
           const dx = particles[a].x - particles[b].x;
@@ -71,7 +80,7 @@ export function NetworkMesh() {
           const distSq = dx * dx + dy * dy;
           if (distSq < CONNECT_DIST * CONNECT_DIST) {
             const opacity = 1 - distSq / (CONNECT_DIST * CONNECT_DIST);
-            ctx.strokeStyle = `rgba(220, 20, 60, ${opacity * 0.4})`;
+            ctx.strokeStyle = `rgba(${rgb}, ${opacity * 0.4})`;
             ctx.lineWidth = 1;
             ctx.beginPath();
             ctx.moveTo(particles[a].x, particles[a].y);

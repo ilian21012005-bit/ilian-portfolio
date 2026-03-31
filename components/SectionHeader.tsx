@@ -21,7 +21,7 @@ export function SectionHeader({ title, subtitle, accent = "blue", center = false
     >
       <div className={`flex items-center gap-3 ${tight ? "mb-2" : "mb-3"} ${center ? "justify-center" : ""}`}>
         <span
-          className={`w-12 h-0.5 shrink-0 rounded-full ${accent === "blue" ? "bg-crimson shadow-[0_0_8px_rgba(220,20,60,0.5)]" : "bg-dark-red shadow-[0_0_8px_rgba(139,0,0,0.4)]"}`}
+          className={`w-12 h-0.5 shrink-0 rounded-full ${accent === "blue" ? "bg-accent shadow-[0_0_8px_rgb(var(--accent-rgb)/0.5)]" : "bg-accent-secondary shadow-[0_0_8px_rgb(var(--accent-secondary-rgb)/0.4)]"}`}
         />
         <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground tracking-tight">
           {title}

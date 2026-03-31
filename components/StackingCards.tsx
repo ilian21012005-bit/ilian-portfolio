@@ -34,8 +34,8 @@ export function StackingCards({ cards }: StackingCardsProps) {
         className="h-[12vh] min-h-[80px] w-full flex flex-col items-center justify-center gap-2 cursor-pointer hover:opacity-100 opacity-70 transition-opacity group"
         aria-label="Défiler vers les projets"
       >
-        <div className="w-px h-12 bg-gradient-to-b from-transparent to-crimson/50 group-hover:to-crimson transition-colors" />
-        <p className="text-foreground/40 text-sm font-mono tracking-widest group-hover:text-crimson/70 transition-colors">SCROLL TO EXPLORE</p>
+        <div className="w-px h-12 bg-gradient-to-b from-transparent to-accent/50 group-hover:to-accent transition-colors" />
+        <p className="text-foreground/40 text-sm font-mono tracking-widest group-hover:text-accent/70 transition-colors">SCROLL TO EXPLORE</p>
       </button>
       <div ref={cardsRef} className="space-y-12 pb-8">
         {cards.map((card, i) => (
@@ -49,13 +49,13 @@ export function StackingCards({ cards }: StackingCardsProps) {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-100px" }}
               transition={{ duration: 0.5, delay: i * 0.08 }}
-              className="group relative rounded-2xl p-[1px] bg-gradient-to-br from-crimson/30 via-transparent to-dark-red/20 overflow-hidden"
+              className="group relative rounded-2xl p-[1px] bg-gradient-to-br from-accent/30 via-transparent to-accent-secondary/20 overflow-hidden"
             >
               <div className="absolute inset-0 bg-background/80 rounded-2xl" />
-              <div className="relative bg-white/[0.03] border border-white/10 rounded-2xl p-6 hover:border-crimson/30 transition-all duration-300 group-hover:shadow-[0_0_30px_rgba(220,20,60,0.1)]">
+              <div className="relative bg-white/[0.03] border border-white/10 rounded-2xl p-6 hover:border-accent/30 transition-all duration-300 group-hover:shadow-[0_0_30px_rgb(var(--accent-rgb)/0.1)]">
                 <div className="flex items-start justify-between gap-4 mb-3">
                   <h3 className="text-xl font-semibold text-foreground">{card.title}</h3>
-                  <span className="text-2xl font-bold text-crimson/40 font-mono tabular-nums">
+                  <span className="text-2xl font-bold text-accent/40 font-mono tabular-nums">
                     {String(i + 1).padStart(2, "0")}
                   </span>
                 </div>
@@ -68,7 +68,7 @@ export function StackingCards({ cards }: StackingCardsProps) {
                       card.links.repo.startsWith("/") ? (
                         <Link
                           href={card.links.repo}
-                          className="inline-flex items-center justify-center px-3 py-1.5 rounded-full text-xs font-semibold border border-white/15 bg-white/[0.02] text-foreground/80 hover:text-crimson hover:border-crimson/40 hover:bg-white/[0.04] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-crimson/60"
+                          className="inline-flex items-center justify-center px-3 py-1.5 rounded-full text-xs font-semibold border border-white/15 bg-white/[0.02] text-foreground/80 hover:text-accent hover:border-accent/40 hover:bg-white/[0.04] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/60"
                         >
                           Repo
                         </Link>
@@ -77,7 +77,7 @@ export function StackingCards({ cards }: StackingCardsProps) {
                           href={card.links.repo}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="inline-flex items-center justify-center px-3 py-1.5 rounded-full text-xs font-semibold border border-white/15 bg-white/[0.02] text-foreground/80 hover:text-crimson hover:border-crimson/40 hover:bg-white/[0.04] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-crimson/60"
+                          className="inline-flex items-center justify-center px-3 py-1.5 rounded-full text-xs font-semibold border border-white/15 bg-white/[0.02] text-foreground/80 hover:text-accent hover:border-accent/40 hover:bg-white/[0.04] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/60"
                         >
                           Repo
                         </a>
@@ -87,7 +87,7 @@ export function StackingCards({ cards }: StackingCardsProps) {
                       card.links.demo.startsWith("/") ? (
                         <Link
                           href={card.links.demo}
-                          className="inline-flex items-center justify-center px-3 py-1.5 rounded-full text-xs font-semibold border border-crimson/30 bg-crimson/10 text-crimson hover:bg-crimson/15 hover:border-crimson/50 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-crimson/60"
+                          className="inline-flex items-center justify-center px-3 py-1.5 rounded-full text-xs font-semibold border border-accent/30 bg-accent/10 text-accent hover:bg-accent/15 hover:border-accent/50 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/60"
                         >
                           Demo
                         </Link>
@@ -96,7 +96,7 @@ export function StackingCards({ cards }: StackingCardsProps) {
                           href={card.links.demo}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="inline-flex items-center justify-center px-3 py-1.5 rounded-full text-xs font-semibold border border-crimson/30 bg-crimson/10 text-crimson hover:bg-crimson/15 hover:border-crimson/50 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-crimson/60"
+                          className="inline-flex items-center justify-center px-3 py-1.5 rounded-full text-xs font-semibold border border-accent/30 bg-accent/10 text-accent hover:bg-accent/15 hover:border-accent/50 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/60"
                         >
                           Demo
                         </a>
@@ -105,7 +105,7 @@ export function StackingCards({ cards }: StackingCardsProps) {
                     {card.slug && (
                       <Link
                         href={`/projets/${card.slug}`}
-                        className="inline-flex items-center justify-center px-3 py-1.5 rounded-full text-xs font-semibold border border-white/15 bg-white/[0.02] text-foreground/80 hover:text-crimson hover:border-crimson/40 hover:bg-white/[0.04] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-crimson/60"
+                        className="inline-flex items-center justify-center px-3 py-1.5 rounded-full text-xs font-semibold border border-white/15 bg-white/[0.02] text-foreground/80 hover:text-accent hover:border-accent/40 hover:bg-white/[0.04] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/60"
                       >
                         Détails
                       </Link>
@@ -116,7 +116,7 @@ export function StackingCards({ cards }: StackingCardsProps) {
                   {card.techStack.map((tech) => (
                     <span
                       key={tech}
-                      className="px-3 py-1 rounded-full text-xs font-medium bg-crimson/20 text-crimson border border-crimson/30"
+                      className="px-3 py-1 rounded-full text-xs font-medium bg-accent/20 text-accent border border-accent/30"
                     >
                       {tech}
                     </span>
@@ -129,7 +129,7 @@ export function StackingCards({ cards }: StackingCardsProps) {
       </div>
       <div className="h-[12vh] min-h-[80px] flex flex-col items-center justify-center gap-2">
         <p className="text-foreground/40 text-sm font-mono tracking-widest">END OF PROJECTS</p>
-        <div className="w-px h-8 bg-gradient-to-b from-crimson/50 to-transparent" />
+        <div className="w-px h-8 bg-gradient-to-b from-accent/50 to-transparent" />
       </div>
     </div>
   );

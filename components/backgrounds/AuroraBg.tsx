@@ -2,69 +2,73 @@
 
 import { useEffect, useState } from "react";
 
-// Couleurs en haut de page (scroll = 0)
-const COLORS_TOP = {
-  blob1: "#8B0000", // dark-red
-  blob2: "#DC143C", // crimson
-  blob3: "#8B0000", // dark-red
-};
+function getCssRgb(varName: string, fallback: string): [number, number, number] {
+  if (typeof window === "undefined") return fallback.split(" ").map(Number) as [number, number, number];
+  const raw = getComputedStyle(document.documentElement).getPropertyValue(varName).trim() || fallback;
+  const parts = raw.split(/\s+/).map(Number);
+  return [parts[0] ?? 0, parts[1] ?? 0, parts[2] ?? 0];
+}
 
-// Couleurs en bas de page (scroll = 1)
-const COLORS_BOTTOM = {
-  blob1: "#FF0000", // blood-red
-  blob2: "#DC143C", // crimson
-  blob3: "#8B0000", // dark-red
-};
-
-function lerpColor(hex1: string, hex2: string, t: number): string {
-  const parse = (hex: string) => {
-    const n = parseInt(hex.slice(1), 16);
-    return [(n >> 16) & 255, (n >> 8) & 255, n & 255];
-  };
-  const [r1, g1, b1] = parse(hex1);
-  const [r2, g2, b2] = parse(hex2);
-  const r = Math.round(r1 + (r2 - r1) * t);
-  const g = Math.round(g1 + (g2 - g1) * t);
-  const b = Math.round(b1 + (b2 - b1) * t);
+function lerpColor(c1: [number, number, number], c2: [number, number, number], t: number): string {
+  const r = Math.round(c1[0] + (c2[0] - c1[0]) * t);
+  const g = Math.round(c1[1] + (c2[1] - c1[1]) * t);
+  const b = Math.round(c1[2] + (c2[2] - c1[2]) * t);
   return `rgb(${r}, ${g}, ${b})`;
 }
 
 export function AuroraBg() {
   const [scrollProgress, setScrollProgress] = useState(0);
+  const [colors, setColors] = useState({ c1: "rgb(139,0,0)", c2: "rgb(220,20,60)", c3: "rgb(139,0,0)" });
 
   useEffect(() => {
+    const computeColors = (progress: number) => {
+      const accent = getCssRgb("--accent-rgb", "220 20 60");
+      const secondary = getCssRgb("--accent-secondary-rgb", "139 0 0");
+      const tertiary = getCssRgb("--accent-tertiary-rgb", "255 0 0");
+      return {
+        c1: lerpColor(secondary, tertiary, progress),
+        c2: lerpColor(accent, accent, progress),
+        c3: lerpColor(secondary, secondary, progress),
+      };
+    };
+
     const onScroll = () => {
       const { scrollTop, scrollHeight, clientHeight } = document.documentElement;
       const maxScroll = Math.max(0, scrollHeight - clientHeight);
       const progress = maxScroll > 0 ? Math.min(1, scrollTop / maxScroll) : 0;
       setScrollProgress(progress);
+      setColors(computeColors(progress));
+    };
+
+    const onThemeChange = () => {
+      setColors(computeColors(scrollProgress));
     };
 
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
 
-  const c1 = lerpColor(COLORS_TOP.blob1, COLORS_BOTTOM.blob1, scrollProgress);
-  const c2 = lerpColor(COLORS_TOP.blob2, COLORS_BOTTOM.blob2, scrollProgress);
-  const c3 = lerpColor(COLORS_TOP.blob3, COLORS_BOTTOM.blob3, scrollProgress);
+    const observer = new MutationObserver(onThemeChange);
+    observer.observe(document.documentElement, { attributes: true, attributeFilter: ["data-theme"] });
+
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      observer.disconnect();
+    };
+  }, [scrollProgress]);
 
   return (
     <div className="fixed inset-0 pointer-events-none overflow-hidden -z-10" aria-hidden>
-      {/* Blob 1 - haut gauche */}
       <div
-        className="absolute -top-[10%] -left-[10%] w-[50vw] h-[50vw] rounded-full blur-[80px] opacity-60 animate-aurora-1 transition-colors duration-300"
-        style={{ background: c1 }}
+        className="absolute -top-[10%] -left-[10%] w-[50vw] h-[50vw] rounded-full blur-[80px] opacity-60 animate-aurora-1 transition-colors duration-500"
+        style={{ background: colors.c1 }}
       />
-      {/* Blob 2 - bas droite */}
       <div
-        className="absolute -bottom-[10%] -right-[10%] w-[60vw] h-[60vw] rounded-full blur-[80px] opacity-60 animate-aurora-2 transition-colors duration-300"
-        style={{ background: c2 }}
+        className="absolute -bottom-[10%] -right-[10%] w-[60vw] h-[60vw] rounded-full blur-[80px] opacity-60 animate-aurora-2 transition-colors duration-500"
+        style={{ background: colors.c2 }}
       />
-      {/* Blob 3 - centre bas gauche */}
       <div
-        className="absolute bottom-[20%] left-[20%] w-[40vw] h-[40vw] rounded-full blur-[80px] opacity-50 animate-aurora-3 transition-colors duration-300"
-        style={{ background: c3 }}
+        className="absolute bottom-[20%] left-[20%] w-[40vw] h-[40vw] rounded-full blur-[80px] opacity-50 animate-aurora-3 transition-colors duration-500"
+        style={{ background: colors.c3 }}
       />
     </div>
   );

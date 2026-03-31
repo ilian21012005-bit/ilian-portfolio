@@ -42,7 +42,7 @@ export function ContactForm() {
       onSubmit={handleSubmit}
       className="max-w-lg mx-auto mb-10 p-6 border border-white/10 bg-black/40 rounded-lg font-mono space-y-4"
     >
-      <h3 className="text-crimson text-sm font-semibold pb-2 border-b border-white/10">
+      <h3 className="text-accent text-sm font-semibold pb-2 border-b border-white/10">
         &gt; SEND_MESSAGE
       </h3>
       <div>
@@ -56,7 +56,7 @@ export function ContactForm() {
           required
           value={formData.name}
           onChange={(e) => setFormData((p) => ({ ...p, name: e.target.value }))}
-          className="w-full px-3 py-2 rounded border border-white/20 bg-white/5 text-foreground placeholder-foreground/40 focus:outline-none focus:ring-2 focus:ring-crimson/50"
+          className="w-full px-3 py-2 rounded border border-white/20 bg-white/5 text-foreground placeholder-foreground/40 focus:outline-none focus:ring-2 focus:ring-accent/50"
           placeholder="Ton nom ou société"
           disabled={status === "sending"}
         />
@@ -72,7 +72,7 @@ export function ContactForm() {
           required
           value={formData.email}
           onChange={(e) => setFormData((p) => ({ ...p, email: e.target.value }))}
-          className="w-full px-3 py-2 rounded border border-white/20 bg-white/5 text-foreground placeholder-foreground/40 focus:outline-none focus:ring-2 focus:ring-crimson/50"
+          className="w-full px-3 py-2 rounded border border-white/20 bg-white/5 text-foreground placeholder-foreground/40 focus:outline-none focus:ring-2 focus:ring-accent/50"
           placeholder="email@exemple.com"
           disabled={status === "sending"}
         />
@@ -88,7 +88,7 @@ export function ContactForm() {
           rows={4}
           value={formData.message}
           onChange={(e) => setFormData((p) => ({ ...p, message: e.target.value }))}
-          className="w-full px-3 py-2 rounded border border-white/20 bg-white/5 text-foreground placeholder-foreground/40 focus:outline-none focus:ring-2 focus:ring-crimson/50 resize-y min-h-[100px]"
+          className="w-full px-3 py-2 rounded border border-white/20 bg-white/5 text-foreground placeholder-foreground/40 focus:outline-none focus:ring-2 focus:ring-accent/50 resize-y min-h-[100px]"
           placeholder="Proposition de stage, question..."
           disabled={status === "sending"}
         />
@@ -97,7 +97,7 @@ export function ContactForm() {
         <button
           type="submit"
           disabled={status === "sending"}
-          className="px-4 py-2 rounded border border-crimson text-crimson hover:bg-crimson/10 transition-colors disabled:opacity-50 disabled:cursor-not-allowed focus:outline-none focus-visible:ring-2 focus-visible:ring-crimson"
+          className="px-4 py-2 rounded border border-accent text-accent hover:bg-accent/10 transition-colors disabled:opacity-50 disabled:cursor-not-allowed focus:outline-none focus-visible:ring-2 focus-visible:ring-accent"
         >
           {status === "idle" && "Envoyer"}
           {status === "sending" && "Envoi…"}
@@ -105,7 +105,7 @@ export function ContactForm() {
           {status === "error" && "Erreur — réessayer"}
         </button>
         {status === "sent" && (
-          <span className="text-dark-red text-sm">Message bien reçu.</span>
+          <span className="text-accent-secondary text-sm">Message bien reçu.</span>
         )}
         {status === "error" && (
           <span className="text-red-400 text-sm">Échec d’envoi. Utilise le lien Email ci‑dessous.</span>

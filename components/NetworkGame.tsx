@@ -93,8 +93,8 @@ export function NetworkGame() {
           viewport={{ once: true }}
           className="flex items-center gap-3 mb-4"
         >
-          <div className="p-2 rounded-xl bg-crimson/20">
-            <Route className="w-8 h-8 text-crimson" />
+          <div className="p-2 rounded-xl bg-accent/20">
+            <Route className="w-8 h-8 text-accent" />
           </div>
           <div>
             <h2 className="text-3xl md:text-4xl font-bold text-foreground">
@@ -129,11 +129,11 @@ export function NetworkGame() {
                 initial={{ scale: 0 }}
                 animate={{ scale: 1 }}
                 transition={{ type: "spring", delay: 0.2 }}
-                className="inline-flex p-4 rounded-full bg-dark-red/20 mb-4"
+                className="inline-flex p-4 rounded-full bg-accent-secondary/20 mb-4"
               >
-                <Trophy className="w-16 h-16 text-dark-red" />
+                <Trophy className="w-16 h-16 text-accent-secondary" />
               </motion.div>
-              <h3 className="text-2xl font-bold text-dark-red mb-2">
+              <h3 className="text-2xl font-bold text-accent-secondary mb-2">
                 Paquet livré !
               </h3>
               <p className="text-foreground/80 mb-2">
@@ -146,7 +146,7 @@ export function NetworkGame() {
                 onClick={handleReset}
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
-                className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-crimson text-white font-medium"
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-accent text-white font-medium"
               >
                 <RotateCcw className="w-5 h-5" />
                 Rejouer
@@ -163,7 +163,7 @@ export function NetworkGame() {
               {/* Stats */}
               <div className="flex justify-between items-center mb-6">
                 <span className="text-sm text-foreground/60">
-                  Sauts : <strong className="text-crimson">{path.length}</strong>
+                  Sauts : <strong className="text-accent">{path.length}</strong>
                 </span>
                 <button
                   onClick={handleReset}
@@ -195,7 +195,7 @@ export function NetworkGame() {
                           y1={nodeA.y}
                           x2={nodeB.x}
                           y2={nodeB.y}
-                          stroke={inPath ? "#DC143C" : "rgba(255,255,255,0.15)"}
+                          stroke={inPath ? "rgb(var(--accent-rgb))" : "rgba(255,255,255,0.15)"}
                           strokeWidth={inPath ? 3 : 1.5}
                           className="transition-all duration-300"
                         />
@@ -218,18 +218,18 @@ export function NetworkGame() {
                           r={node.type === "router" ? 12 : 16}
                           fill={
                             node.type === "client"
-                              ? "rgba(220, 20, 60, 0.3)"
+                              ? "rgb(var(--accent-rgb) / 0.3)"
                               : node.type === "server"
-                              ? "rgba(139, 0, 0, 0.3)"
+                              ? "rgb(var(--accent-secondary-rgb) / 0.3)"
                               : "rgba(255,255,255,0.05)"
                           }
                           stroke={
                             isCurrent
-                              ? "#DC143C"
+                              ? "rgb(var(--accent-rgb))"
                               : isClickable
-                              ? "rgba(220, 20, 60, 0.6)"
+                              ? "rgb(var(--accent-rgb) / 0.6)"
                               : inPath
-                              ? "rgba(220, 20, 60, 0.4)"
+                              ? "rgb(var(--accent-rgb) / 0.4)"
                               : "rgba(255,255,255,0.2)"
                           }
                           strokeWidth={isCurrent ? 3 : 1.5}
@@ -237,7 +237,7 @@ export function NetworkGame() {
                           onClick={() => handleNodeClick(node.id)}
                           style={{
                             cursor: isClickable ? "pointer" : "default",
-                            filter: isClickable ? "drop-shadow(0 0 8px rgba(220,20,60,0.5))" : "none",
+                            filter: isClickable ? "drop-shadow(0 0 8px rgb(var(--accent-rgb) / 0.5))" : "none",
                           }}
                           whileHover={isClickable ? { scale: 1.15 } : {}}
                           animate={{
@@ -268,7 +268,7 @@ export function NetworkGame() {
                   >
                     <motion.circle
                       r={8}
-                      fill="#DC143C"
+                      fill="rgb(var(--accent-rgb))"
                       animate={{ opacity: [1, 0.6, 1] }}
                       transition={{ duration: 1, repeat: Infinity }}
                     />

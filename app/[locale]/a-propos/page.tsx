@@ -6,7 +6,7 @@ import { Badge } from "@/components/Badge";
 import { PageLayout } from "@/components/PageLayout";
 import { SpotlightCard } from "@/components/SpotlightCard";
 import { SectionWrapper } from "@/components/SectionWrapper";
-import Link from "next/link";
+import { Link } from "@/lib/navigation";
 
 export default function AProposPage() {
   return (
@@ -18,7 +18,7 @@ export default function AProposPage() {
               <p className="text-foreground/80 text-lg leading-relaxed mb-6">
                 Étudiant en <strong className="text-foreground">BUT 2 Informatique</strong> (IUT
                 Paris-Saclay), parcours{" "}
-                <span className="text-crimson font-medium">
+                <span className="text-accent font-medium">
                   Déploiement d&apos;applications communicantes et sécurisées
                 </span>
                 , je combine systèmes/réseaux et développement — notamment via des projets comme{" "}
@@ -27,7 +27,7 @@ export default function AProposPage() {
               </p>
               <p className="text-foreground/80 text-lg leading-relaxed mb-6">
                 Je recherche un{" "}
-                <span className="text-crimson font-medium">stage d&apos;avril à juillet 2026</span>{" "}
+                <span className="text-accent font-medium">stage d&apos;avril à juillet 2026</span>{" "}
                 pour renforcer mes compétences en entreprise.
               </p>
               <p className="text-foreground/80 text-lg leading-relaxed">
@@ -49,13 +49,13 @@ export default function AProposPage() {
             >
               <Link
                 href="/arsenal"
-                className="text-crimson hover:underline font-medium"
+                className="text-accent hover:underline font-medium"
               >
                 Voir mes compétences →
               </Link>
               <Link
                 href="/contact"
-                className="text-foreground/70 hover:text-crimson transition-colors"
+                className="text-foreground/70 hover:text-accent transition-colors"
               >
                 Contact
               </Link>

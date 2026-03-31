@@ -6,7 +6,7 @@ import { SectionWrapper } from "@/components/SectionWrapper";
 import { StackingCards } from "@/components/StackingCards";
 import { ProjectCard } from "@/components/ProjectCard";
 import { PROJECTS } from "@/lib/projects";
-import Link from "next/link";
+import { Link } from "@/lib/navigation";
 
 export default function ProjetsPage() {
   return (
@@ -36,7 +36,7 @@ export default function ProjetsPage() {
 
             <StackingCards cards={PROJECTS} />
             <div className="mt-8 flex justify-center">
-              <Link href="/contact" className="text-crimson hover:underline font-medium">
+              <Link href="/contact" className="text-accent hover:underline font-medium">
                 Me contacter pour en discuter →
               </Link>
             </div>

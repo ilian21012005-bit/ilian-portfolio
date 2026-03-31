@@ -16,28 +16,28 @@ interface TimelineItemProps {
 
 const variantClasses = {
   formation: {
-    line: "from-dark-red/40",
-    iconBorder: "border-dark-red/50",
-    iconBg: "bg-dark-red",
-    iconGlow: "bg-dark-red",
-    gradient: "from-dark-red/60 to-dark-red/10",
-    borderHover: "group-hover:border-dark-red/40",
-    shadow: "shadow-dark-red/15",
-    shadowHover: "group-hover:shadow-dark-red/25",
-    badge: "bg-dark-red/15 text-dark-red border-dark-red/30",
-    subtitle: "text-dark-red",
+    line: "from-accent-secondary/40",
+    iconBorder: "border-accent-secondary/50",
+    iconBg: "bg-accent-secondary",
+    iconGlow: "bg-accent-secondary",
+    gradient: "from-accent-secondary/60 to-accent-secondary/10",
+    borderHover: "group-hover:border-accent-secondary/40",
+    shadow: "shadow-accent-secondary/15",
+    shadowHover: "group-hover:shadow-accent-secondary/25",
+    badge: "bg-accent-secondary/15 text-accent-secondary border-accent-secondary/30",
+    subtitle: "text-accent-secondary",
   },
   experience: {
-    line: "from-crimson/40",
-    iconBorder: "border-crimson/50",
-    iconBg: "bg-crimson",
-    iconGlow: "bg-crimson",
-    gradient: "from-crimson/60 to-crimson/10",
-    borderHover: "group-hover:border-crimson/40",
-    shadow: "shadow-crimson/15",
-    shadowHover: "group-hover:shadow-crimson/25",
-    badge: "bg-crimson/15 text-crimson border-crimson/30",
-    subtitle: "text-crimson",
+    line: "from-accent/40",
+    iconBorder: "border-accent/50",
+    iconBg: "bg-accent",
+    iconGlow: "bg-accent",
+    gradient: "from-accent/60 to-accent/10",
+    borderHover: "group-hover:border-accent/40",
+    shadow: "shadow-accent/15",
+    shadowHover: "group-hover:shadow-accent/25",
+    badge: "bg-accent/15 text-accent border-accent/30",
+    subtitle: "text-accent",
   },
 };
 
@@ -70,7 +70,7 @@ export function TimelineItem({
       <div className="absolute left-0 top-5 flex items-center justify-center">
         <motion.div
           whileHover={{ scale: 1.1 }}
-          className={`relative z-10 w-8 h-8 sm:w-10 sm:h-10 rounded-xl border-2 ${c.iconBorder} flex items-center justify-center shadow-lg backdrop-blur-sm ${variant === "formation" ? "bg-dark-red" : "bg-crimson"}`}
+          className={`relative z-10 w-8 h-8 sm:w-10 sm:h-10 rounded-xl border-2 ${c.iconBorder} flex items-center justify-center shadow-lg backdrop-blur-sm ${variant === "formation" ? "bg-accent-secondary" : "bg-accent"}`}
         >
           <Icon className="w-4 h-4 sm:w-5 sm:h-5 text-[#050505]" strokeWidth={2.5} />
           <div className={`absolute inset-0 rounded-xl ${c.iconGlow} opacity-30 blur-md -z-10`} />

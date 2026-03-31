@@ -36,7 +36,7 @@ export function NetworkSimulator() {
           <span>4 sous-réseaux 192.168.1–4.0/24</span>
           <span className="text-white/30">|</span>
           <span className="flex items-center gap-1.5">
-            <Cable className="w-4 h-4 text-crimson/80" />
+            <Cable className="w-4 h-4 text-accent/80" />
             2 routeurs
           </span>
         </motion.div>
@@ -49,21 +49,21 @@ export function NetworkSimulator() {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="rounded-2xl p-6 mb-6 border border-white/10 bg-white/[0.02] hover:border-crimson/20 transition-colors"
+          className="rounded-2xl p-6 mb-6 border border-white/10 bg-white/[0.02] hover:border-accent/20 transition-colors"
         >
           <Guide />
         </motion.div>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           {/* Topology */}
-          <div className="lg:col-span-2 rounded-2xl p-6 border border-white/10 bg-white/[0.02] hover:border-crimson/20 transition-colors">
+          <div className="lg:col-span-2 rounded-2xl p-6 border border-white/10 bg-white/[0.02] hover:border-accent/20 transition-colors">
             <div className="relative w-full aspect-[16/10] min-h-[260px]">
               <svg viewBox="0 0 600 280" className="w-full h-full" preserveAspectRatio="xMidYMid meet">
                 <defs>
                   {/* Gradient 3D sphère - bleu (routeur) */}
                   <radialGradient id="grad3d-router" cx="35%" cy="35%" r="65%">
                     <stop offset="0%" stopColor="#60a5fa" />
-                    <stop offset="50%" stopColor="#DC143C" />
+                    <stop offset="50%" stopColor="rgb(var(--accent-rgb))" />
                     <stop offset="100%" stopColor="#1d4ed8" />
                   </radialGradient>
                   {/* Gradient 3D sphère - gris (PC) */}
@@ -75,7 +75,7 @@ export function NetworkSimulator() {
                   {/* Gradient 3D - sélectionné */}
                   <radialGradient id="grad3d-selected" cx="35%" cy="35%" r="65%">
                     <stop offset="0%" stopColor="#93c5fd" />
-                    <stop offset="50%" stopColor="#DC143C" />
+                    <stop offset="50%" stopColor="rgb(var(--accent-rgb))" />
                     <stop offset="100%" stopColor="#1e40af" />
                   </radialGradient>
                   {/* Ombre portée 3D */}
@@ -84,7 +84,7 @@ export function NetworkSimulator() {
                   </filter>
                   {/* Glow sélection */}
                   <filter id="glow-select" x="-100%" y="-100%" width="300%" height="300%">
-                    <feDropShadow dx="0" dy="0" stdDeviation="4" floodColor="#DC143C" floodOpacity="0.6" />
+                    <feDropShadow dx="0" dy="0" stdDeviation="4" floodColor="rgb(var(--accent-rgb))" floodOpacity="0.6" />
                   </filter>
                 </defs>
                 {LINKS.map((link, i) => {
@@ -97,7 +97,7 @@ export function NetworkSimulator() {
                       y1={fromNode.y}
                       x2={toNode.x}
                       y2={toNode.y}
-                      stroke="rgba(220, 20, 60, 0.3)"
+                      stroke="rgb(var(--accent-rgb) / 0.3)"
                       strokeWidth={2}
                     />
                   );

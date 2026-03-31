@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import Link from "next/link";
+import { Link } from "@/lib/navigation";
 import { ChevronLeft } from "lucide-react";
 
 interface PageHeaderProps {
@@ -16,11 +16,11 @@ export function PageHeader({ title, subtitle }: PageHeaderProps) {
       <div
         className="absolute inset-0 pointer-events-none"
         style={{
-          background: "linear-gradient(180deg, rgba(220, 20, 60, 0.03) 0%, transparent 50%)",
+          background: "linear-gradient(180deg, rgb(var(--accent-rgb) / 0.03) 0%, transparent 50%)",
         }}
       />
-      <div className="absolute top-0 right-0 w-[40%] h-full max-h-64 bg-gradient-to-bl from-crimson/5 to-transparent pointer-events-none" />
-      <div className="absolute bottom-0 left-0 w-32 h-px bg-gradient-to-r from-crimson/40 to-transparent" />
+      <div className="absolute top-0 right-0 w-[40%] h-full max-h-64 bg-gradient-to-bl from-accent/5 to-transparent pointer-events-none" />
+      <div className="absolute bottom-0 left-0 w-32 h-px bg-gradient-to-r from-accent/40 to-transparent" />
 
       <div className="relative max-w-4xl mx-auto px-6 py-14 md:py-20">
         <motion.div
@@ -36,7 +36,7 @@ export function PageHeader({ title, subtitle }: PageHeaderProps) {
           >
             <Link
               href="/"
-              className="inline-flex items-center gap-1.5 text-sm text-foreground/50 hover:text-blood-red transition-colors w-fit rounded-full px-4 py-2 -ml-2 hover:bg-white/[0.04] border border-transparent hover:border-white/10"
+              className="inline-flex items-center gap-1.5 text-sm text-foreground/50 hover:text-accent-tertiary transition-colors w-fit rounded-full px-4 py-2 -ml-2 hover:bg-white/[0.04] border border-transparent hover:border-white/10"
             >
               <ChevronLeft className="w-4 h-4" />
               Accueil
@@ -44,7 +44,7 @@ export function PageHeader({ title, subtitle }: PageHeaderProps) {
           </motion.div>
 
           <div className="flex items-baseline gap-3 flex-wrap">
-            <span className="w-1.5 h-8 md:h-10 rounded-full bg-crimson shadow-[0_0_12px_rgba(220,20,60,0.5)] shrink-0" />
+            <span className="w-1.5 h-8 md:h-10 rounded-full bg-accent shadow-[0_0_12px_rgb(var(--accent-rgb)/0.5)] shrink-0" />
             <h1 className="font-display text-3xl md:text-5xl font-bold text-foreground tracking-tight">
               {title}
             </h1>

@@ -25,7 +25,8 @@ export function Oscilloscope() {
       const h = canvas.height;
       ctx.fillStyle = "rgba(5, 5, 5, 0.15)";
       ctx.fillRect(0, 0, w, h);
-      ctx.strokeStyle = "#8B0000";
+      const accentRgb = getComputedStyle(document.documentElement).getPropertyValue("--accent-secondary-rgb").trim().replace(/\s+/g, ", ") || "139, 0, 0";
+      ctx.strokeStyle = `rgb(${accentRgb})`;
       ctx.lineWidth = 2;
       ctx.beginPath();
       for (let x = 0; x < w; x++) {
@@ -47,8 +48,8 @@ export function Oscilloscope() {
   }, []);
 
   return (
-    <div className="relative rounded-lg overflow-hidden border border-dark-red/20 bg-black/50">
-      <div className="absolute top-2 left-2 text-dark-red/80 text-xs font-mono z-10">
+    <div className="relative rounded-lg overflow-hidden border border-accent-secondary/20 bg-black/50">
+      <div className="absolute top-2 left-2 text-accent-secondary/80 text-xs font-mono z-10">
         SIGNAL: 2.4GHz // PACKET STREAM
       </div>
       <canvas ref={canvasRef} className="w-full h-20 block" />

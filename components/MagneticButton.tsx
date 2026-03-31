@@ -1,6 +1,7 @@
 "use client";
 
 import { motion, useMotionValue, useSpring } from "framer-motion";
+import { useLocale } from "next-intl";
 
 interface MagneticButtonProps {
   children: React.ReactNode;
@@ -17,6 +18,11 @@ export function MagneticButton({
   variant = "primary",
   className = "",
 }: MagneticButtonProps) {
+  const locale = useLocale();
+  const localizedHref = href && href.startsWith('/') && !href.startsWith(`/${locale}`)
+    ? `/${locale}${href}`
+    : href;
+
   const x = useMotionValue(0);
   const y = useMotionValue(0);
 
@@ -41,9 +47,9 @@ export function MagneticButton({
 
   const variants = {
     primary:
-      "cyber-btn bg-crimson text-white hover:bg-crimson/90 border-crimson shadow-[0_0_15px_rgba(220,20,60,0.4)] hover:shadow-[0_0_25px_rgba(220,20,60,0.6)]",
+      "cyber-btn bg-accent text-white hover:bg-accent/90 border-accent shadow-[0_0_15px_rgb(var(--accent-rgb)/0.4)] hover:shadow-[0_0_25px_rgb(var(--accent-rgb)/0.6)]",
     secondary:
-      "cyber-btn bg-transparent text-foreground border-white/30 hover:border-crimson hover:text-crimson hover:shadow-[0_0_15px_rgba(220,20,60,0.2)]",
+      "cyber-btn bg-transparent text-foreground border-white/30 hover:border-accent hover:text-accent hover:shadow-[0_0_15px_rgb(var(--accent-rgb)/0.2)]",
   };
 
   const baseStyles =
@@ -58,10 +64,10 @@ export function MagneticButton({
     </motion.span>
   );
 
-  if (href) {
+  if (localizedHref) {
     return (
       <motion.a
-        href={href}
+        href={localizedHref}
         onMouseMove={handleMouseMove}
         onMouseLeave={handleMouseLeave}
         className={`${baseStyles} ${variants[variant]} ${className}`}

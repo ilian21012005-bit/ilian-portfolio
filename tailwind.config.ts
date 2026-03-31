@@ -9,11 +9,12 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        background: "#030000",
+        background: "var(--background)",
         foreground: "#EDEDED",
-        crimson: "#DC143C",
-        "dark-red": "#8B0000",
-        "blood-red": "#FF0000",
+        /* Couleurs sémantiques — changent selon le thème blue/red */
+        accent: "rgb(var(--accent-rgb) / <alpha-value>)",
+        "accent-secondary": "rgb(var(--accent-secondary-rgb) / <alpha-value>)",
+        "accent-tertiary": "rgb(var(--accent-tertiary-rgb) / <alpha-value>)",
       },
       fontFamily: {
         sans: ["var(--font-inter)", "system-ui", "sans-serif"],
@@ -37,11 +38,11 @@ const config: Config = {
       },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
-        "gradient-mesh": "linear-gradient(135deg, rgba(220,20,60,0.05) 0%, transparent 50%, rgba(139,0,0,0.05) 100%)",
+        "gradient-mesh": "linear-gradient(135deg, rgb(var(--accent-rgb)/0.05) 0%, transparent 50%, rgb(var(--accent-secondary-rgb)/0.05) 100%)",
       },
       boxShadow: {
-        "glow-crimson": "0 0 40px rgba(220, 20, 60, 0.2)",
-        "glow-dark-red": "0 0 40px rgba(139, 0, 0, 0.2)",
+        "glow-accent": "0 0 40px rgb(var(--accent-rgb)/0.2)",
+        "glow-accent-secondary": "0 0 40px rgb(var(--accent-secondary-rgb)/0.2)",
       },
     },
   },

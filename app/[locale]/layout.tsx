@@ -3,10 +3,12 @@ import { Inter, Space_Grotesk, JetBrains_Mono } from "next/font/google";
 import "../globals.css";
 import { Navbar } from "@/components/Navbar";
 import { NextIntlClientProvider } from "next-intl";
-import { getMessages, getTranslations } from "next-intl/server";
+import { getMessages } from "next-intl/server";
 import { ScrollProgress } from "@/components/ScrollProgress";
 import { BootIntro } from "@/components/BootIntro";
 import { AuroraBg } from "@/components/backgrounds/AuroraBg";
+import { ThemeProvider } from "@/components/ThemeProvider";
+import { THEME_STORAGE_KEY, DEFAULT_THEME } from "@/lib/theme";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -91,19 +93,29 @@ export default async function RootLayout({
 
   return (
     <html lang={locale} className="dark">
+      {/* Script inline exécuté avant le premier paint pour éviter le flash de couleur */}
+      <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(function(){try{var t=localStorage.getItem('${THEME_STORAGE_KEY}');if(t==='blue'||t==='red'){document.documentElement.setAttribute('data-theme',t);}else{document.documentElement.setAttribute('data-theme','${DEFAULT_THEME}');}}catch(e){}})();`,
+          }}
+        />
+      </head>
       <body
         className={`${inter.variable} ${spaceGrotesk.variable} ${jetbrainsMono.variable} ${inter.className} antialiased font-sans`}
       >
         <NextIntlClientProvider messages={messages}>
-          <BootIntro>
-            <a href="#main-content" className="skip-link">
-              Aller au contenu principal
-            </a>
-            <AuroraBg />
-            <ScrollProgress />
-            <Navbar />
-            {children}
-          </BootIntro>
+          <ThemeProvider>
+            <BootIntro>
+              <a href="#main-content" className="skip-link">
+                Aller au contenu principal
+              </a>
+              <AuroraBg />
+              <ScrollProgress />
+              <Navbar />
+              {children}
+            </BootIntro>
+          </ThemeProvider>
         </NextIntlClientProvider>
       </body>
     </html>

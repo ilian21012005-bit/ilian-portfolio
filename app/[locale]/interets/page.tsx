@@ -6,7 +6,7 @@ import { PageHeader } from "@/components/PageHeader";
 import { PageLayout } from "@/components/PageLayout";
 import { SectionWrapper } from "@/components/SectionWrapper";
 import { LazyIframe } from "@/components/LazyIframe";
-import Link from "next/link";
+import { Link } from "@/lib/navigation";
 
 const INTERESTS = [
   { icon: Dumbbell, label: "Sport", href: "https://www.youtube.com/watch?v=n1BjNH_H2-8", title: "David Laid" },
@@ -28,9 +28,9 @@ export default function InteretsPage() {
               viewport={{ once: true }}
               className="w-full max-w-[800px] mx-auto mb-12"
             >
-              <div className="rounded-2xl border border-white/10 bg-white/[0.02] p-4 overflow-hidden hover:border-crimson/20 transition-colors">
+              <div className="rounded-2xl border border-white/10 bg-white/[0.02] p-4 overflow-hidden hover:border-accent/20 transition-colors">
                 <h3 className="text-lg font-semibold text-foreground mb-4 flex items-center gap-2">
-                  <span className="w-1 h-5 rounded-full bg-crimson" />
+                  <span className="w-1 h-5 rounded-full bg-accent" />
                   My Top 2025
                 </h3>
                 <LazyIframe
@@ -56,18 +56,18 @@ export default function InteretsPage() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ delay: i * 0.1 }}
-                    className={`group relative rounded-2xl p-6 flex flex-col items-center gap-3 border border-white/10 bg-white/[0.02] overflow-hidden ${item.href ? "cursor-pointer hover:border-crimson/40 hover:bg-white/[0.04] hover:shadow-[0_0_20px_rgba(220,20,60,0.08)] transition-all duration-300" : "cursor-default"}`}
+                    className={`group relative rounded-2xl p-6 flex flex-col items-center gap-3 border border-white/10 bg-white/[0.02] overflow-hidden ${item.href ? "cursor-pointer hover:border-accent/40 hover:bg-white/[0.04] hover:shadow-[0_0_20px_rgb(var(--accent-rgb)/0.08)] transition-all duration-300" : "cursor-default"}`}
                     title={item.title || undefined}
                   >
-                    <div className="absolute inset-0 bg-gradient-to-br from-crimson/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
-                    <item.icon className="w-10 h-10 text-crimson relative z-10 group-hover:scale-110 transition-transform" />
+                    <div className="absolute inset-0 bg-gradient-to-br from-accent/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+                    <item.icon className="w-10 h-10 text-accent relative z-10 group-hover:scale-110 transition-transform" />
                     <span className="text-sm font-medium text-foreground text-center relative z-10">{item.label}</span>
                   </Wrapper>
                 );
               })}
             </div>
             <div className="mt-8 flex justify-center">
-              <Link href="/contact" className="text-crimson hover:underline font-medium">
+              <Link href="/contact" className="text-accent hover:underline font-medium">
                 Contact →
               </Link>
             </div>
