@@ -1,106 +1,38 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { useTranslations } from "next-intl";
 import { CONTACT } from "@/lib/contact";
 import { Link } from "@/lib/navigation";
 
-/** Hauteur de réserve pour que le contenu ne soit pas caché sous la capsule */
-const FOOTER_HEIGHT = 80;
-
-/** Seuil en px : afficher le footer quand on est à moins de X px du bas */
-const BOTTOM_THRESHOLD = 250;
+const V1_URL =
+  process.env.NEXT_PUBLIC_V1_URL || "https://github.com/ilian21012005-bit/ilian-portfolio/tree/v1";
 
 export function Footer() {
-  const [ping, setPing] = useState(24);
-  const [isNearBottom, setIsNearBottom] = useState(false);
-
-  useEffect(() => {
-    const checkScroll = () => {
-      const scrollBottom = window.scrollY + window.innerHeight;
-      const threshold = document.documentElement.scrollHeight - BOTTOM_THRESHOLD;
-      setIsNearBottom(scrollBottom > threshold);
-    };
-
-    checkScroll();
-    window.addEventListener("scroll", checkScroll, { passive: true });
-    window.addEventListener("resize", checkScroll);
-    return () => {
-      window.removeEventListener("scroll", checkScroll);
-      window.removeEventListener("resize", checkScroll);
-    };
-  }, []);
-
-  useEffect(() => {
-    const t = setInterval(() => {
-      setPing((p) => Math.floor(18 + Math.random() * 22));
-    }, 3000);
-    return () => clearInterval(t);
-  }, []);
+  const t = useTranslations("Navigation");
 
   return (
-    <>
-      <div style={{ height: FOOTER_HEIGHT }} aria-hidden />
-      <div className="fixed bottom-5 left-0 right-0 flex justify-center z-50 pointer-events-none px-4">
-        <AnimatePresence>
-          {isNearBottom && (
-            <motion.footer
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: 20 }}
-              transition={{ duration: 0.25 }}
-          className="pointer-events-auto flex items-center gap-6 sm:gap-10 py-3 px-5 sm:px-8 rounded-full bg-white/[0.04] backdrop-blur-xl border border-white/10 shadow-xl shadow-black/30 hover:bg-white/[0.06] hover:border-accent/30 hover:shadow-[0_0_30px_-5px_rgb(var(--accent-rgb)/0.15)] hover:-translate-y-0.5 transition-all duration-300"
-        >
-          <div className="flex items-center gap-2.5">
-            <div className="w-7 h-7 rounded-full bg-gradient-to-br from-accent to-accent/70 border border-accent/40 flex items-center justify-center text-[10px] font-bold text-white shadow-[0_0_12px_rgb(var(--accent-rgb)/0.3)]">
-              IE
-            </div>
-            <span className="text-xs text-foreground/60 font-medium">© 2026</span>
-          </div>
-
-          <div className="hidden sm:flex items-center gap-2.5 border-x border-white/10 px-6 py-1 font-mono text-xs text-foreground/50">
-            <span className="w-1.5 h-1.5 rounded-full bg-accent-secondary animate-pulse shadow-[0_0_6px_rgb(var(--accent-secondary-rgb))]" />
-            <span>ONLINE</span>
-            <span className="text-foreground/30 mx-1">|</span>
-            <span>{ping}ms</span>
-          </div>
-
-          <div className="flex items-center gap-5">
-            {CONTACT.githubUrl && (
-              <a
-                href={CONTACT.githubUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-sm text-foreground/70 hover:text-accent transition-colors font-medium relative after:content-[''] after:absolute after:bottom-[-2px] after:left-0 after:w-0 after:h-px after:bg-accent after:transition-all after:duration-300 hover:after:w-full"
-              >
-                GitHub
-              </a>
-            )}
-            <span className="w-px h-4 bg-white/20" />
-            {CONTACT.linkedinUrl && (
-              <a
-                href={CONTACT.linkedinUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-sm text-foreground/70 hover:text-accent transition-colors font-medium relative after:content-[''] after:absolute after:bottom-[-2px] after:left-0 after:w-0 after:h-px after:bg-accent after:transition-all after:duration-300 hover:after:w-full"
-              >
-                LinkedIn
-              </a>
-            )}
-            <span className="w-px h-4 bg-white/20" />
-            <Link
-              href="/contact"
-              className="text-sm text-accent-tertiary font-semibold hover:brightness-110 transition-all px-3 py-1.5 rounded-full bg-accent-tertiary/10 hover:bg-accent-tertiary/20 border border-accent-tertiary/20"
-            >
-              Contact
-            </Link>
-          </div>
-        </motion.footer>
+    <footer className="border-t border-white/[0.1] px-6 py-10">
+      <div className="mx-auto flex max-w-5xl flex-col gap-6 text-sm text-muted sm:flex-row sm:items-center sm:justify-between">
+        <p>© 2026 Ilian El Bouazzaoui Prieur</p>
+        <div className="flex flex-wrap items-center gap-3">
+          {CONTACT.githubUrl && (
+            <a href={CONTACT.githubUrl} target="_blank" rel="noopener noreferrer" className="px-2 py-1">
+              GitHub
+            </a>
           )}
-        </AnimatePresence>
+          {CONTACT.linkedinUrl && (
+            <a href={CONTACT.linkedinUrl} target="_blank" rel="noopener noreferrer" className="px-2 py-1">
+              LinkedIn
+            </a>
+          )}
+          <Link href="/contact" className="px-2 py-1">
+            {t("contact")}
+          </Link>
+          <a href={V1_URL} target="_blank" rel="noopener noreferrer" className="px-2 py-1">
+            {t("previous_version")}
+          </a>
+        </div>
       </div>
-    </>
+    </footer>
   );
 }
-
-export { FOOTER_HEIGHT };

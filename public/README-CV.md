@@ -1,10 +1,12 @@
-# Fichier CV — obligatoire pour le lien « Télécharger CV »
+# Fichiers CV
 
-Sans ce fichier, le bouton **Télécharger CV** mène vers une page 404.
+- FR : `CV-Ilian-Stage-SOC-Reseau.pdf` (source `Job-Etudiant/CV-Ilian-Stage-SOC-Reseau.html`)
+- EN : `CV-Ilian-Internship-SOC-Network.pdf` (source `Job-Etudiant/CV-Ilian-Internship-SOC-Network.html`)
 
-1. Place **ton fichier PDF** de CV dans ce dossier (`public/`).
-2. Nom du fichier **exact** : **`CV-ILIAN-EL-BOUAZZAOUI-PRIEUR.pdf`**  
-   (même nom que dans `NEXT_PUBLIC_CONTACT_CV_URL`).
-3. Commit + push pour que le site (Vercel) serve le PDF.
+Le menu CV suit la langue du site. Contact affiche les deux.
 
-Si tu utilises un autre nom (ex. `mon-cv.pdf`), mets à jour `NEXT_PUBLIC_CONTACT_CV_URL` dans `.env.local` et sur Vercel (ex. `/mon-cv.pdf`).
+Pour régénérer un PDF :
+
+```
+chrome --headless=new --no-pdf-header-footer --print-to-pdf=public/CV-Ilian-Internship-SOC-Network.pdf file:///…/CV-Ilian-Internship-SOC-Network.html
+```

@@ -3,310 +3,377 @@ type ProjectLinks = {
   demo?: string;
 };
 
-type Project = {
+export type Localized<T = string> = { fr: T; en: T };
+
+export function loc<T>(value: Localized<T>, locale: string): T {
+  return locale.startsWith("en") ? value.en : value.fr;
+}
+
+export type Project = {
+  slug: string;
+  title: Localized;
+  description: Localized;
+  techStack: string[];
+  featured?: boolean;
+  status?: "in-progress" | "done";
+  links?: ProjectLinks;
+  highlights?: Localized<string[]>;
+  architectureBullets?: Localized<string[]>;
+  roleBullets?: Localized<string[]>;
+  learnedBullets?: Localized<string[]>;
+};
+
+export type ResolvedProject = {
   slug: string;
   title: string;
   description: string;
   techStack: string[];
+  featured?: boolean;
+  status?: "in-progress" | "done";
   links?: ProjectLinks;
   highlights?: string[];
   architectureBullets?: string[];
-  securityBullets?: string[];
   roleBullets?: string[];
-  decisionsBullets?: string[];
-  tradeOffsBullets?: string[];
-  interviewChecklistBullets?: string[];
-  summary30sBullets?: string[];
   learnedBullets?: string[];
-  futureImprovementsBullets?: string[];
 };
 
+export function resolveProject(project: Project, locale: string): ResolvedProject {
+  return {
+    slug: project.slug,
+    title: loc(project.title, locale),
+    description: loc(project.description, locale),
+    techStack: project.techStack,
+    featured: project.featured,
+    status: project.status,
+    links: project.links,
+    highlights: project.highlights ? loc(project.highlights, locale) : undefined,
+    architectureBullets: project.architectureBullets
+      ? loc(project.architectureBullets, locale)
+      : undefined,
+    roleBullets: project.roleBullets ? loc(project.roleBullets, locale) : undefined,
+    learnedBullets: project.learnedBullets ? loc(project.learnedBullets, locale) : undefined,
+  };
+}
+
+/* Fiche « Analyse d’attaques / MITRE » volontairement absente : après le CR TP2 R5B09 uniquement. */
 export const PROJECTS: Project[] = [
   {
-    slug: "guess-the-like",
-    title: "Guess The Like",
-    description:
-      "Jeu multi-joueurs en temps réel : devine qui a liké le TikTok. Node.js, PostgreSQL, WebSocket ; récupération des likes via Playwright sur une session navigateur utilisateur (projet personnel, usage responsable des données). Déployé sur Render.",
-    techStack: ["Node.js", "PostgreSQL", "WebSocket", "Playwright", "JavaScript", "HTML/CSS"],
-    links: {
-      repo: "https://github.com/ilian21012005-bit/guess-the-like",
-      demo: "https://guess-the-like-eu.onrender.com/",
+    slug: "lab-gns3-data-tricks",
+    title: {
+      fr: "Lab GNS3 multi-sites (Data-Tricks)",
+      en: "Multi-site GNS3 lab (Data-Tricks)",
     },
-    highlights: [
-      "Multijoueur en temps réel (sessions, synchronisation état partie).",
-      "Persistences et historique via PostgreSQL.",
-      "Scraping automatisé via Playwright sur une session utilisateur (explication conformité/usage responsable).",
-      "Récupération des likes uniquement au moment du lancement (« Prêt ») pour limiter l’exposition des données.",
-    ],
-    architectureBullets: [
-      "Serveur : logique partie + stockage (PostgreSQL).",
-      "Temps réel : WebSocket pour l’échange état/événements.",
-      "Récupération likes : automatisation navigateur (Playwright) via session légitime.",
-      "Front : UI jeu (PC/mobile) et gestion des rounds.",
-    ],
-    securityBullets: [
-      "Usage responsable : pas de présentation “commerciale”, cadrage du projet comme technique/perso.",
-      "Vie privée : réduire le temps d’accès aux données (clic “Prêt”), limiter l’exposition côté UI.",
-      "Hygiène dev : variables d’environnement, pas de secrets commités.",
-    ],
-    roleBullets: [
-      "Conception architecture client-serveur temps réel.",
-      "Intégration persistance et flux de jeu (lobby, rounds, scoring).",
-      "Mise en place du pipeline Playwright (robustesse session).",
-    ],
-    decisionsBullets: [
-      "Découplage logique jeu (serveur) et interface (front) via WebSocket.",
-      "Récupération des likes déclenchée uniquement au moment du lancement (“Prêt”) pour limiter l’exposition des données.",
-      "Automatisation via Playwright basée sur une session utilisateur légitime (éviter la “double session” fragile).",
-      "Whitelisting/validation côté serveur des paramètres de jeu pour éviter des états incohérents.",
-    ],
-    tradeOffsBullets: [
-      "Précision et stabilité de l’extraction (Playwright) vs contraintes de temps d’attente (robustesse session).",
-      "Persistance PostgreSQL vs mode mémoire : plus fiable pour historique, mais plus d’opérations serveur.",
-      "Simplicité des messages WebSocket vs granularité fine des “diffs” (payload vs complexité).",
-    ],
-    interviewChecklistBullets: [
-      "Expliquer pourquoi WebSocket plutôt que HTTP polling (temps réel, latence).",
-      "Décrire le flux “lobby → Prêt → récupération likes → rounds → scoring”.",
-      "Comment gérer les erreurs d’automatisation (timeouts, session expirée) proprement côté back/front.",
-      "Sécurité by design : validation entrées, réduction exposition données, gestion des secrets via .env.",
-    ],
-    summary30sBullets: [
-      "Jeu temps réel : synchronisation état via WebSocket et serveur Node.js.",
-      "Persistance (PostgreSQL) pour historique/parties, et récupération déclenchée sur action explicite (“Prêt”).",
-      "Automatisation Playwright basée sur une session utilisateur légitime (usage responsable).",
-    ],
-    learnedBullets: [
-      "Pourquoi “authoritative server” réduit les états incohérents en temps réel.",
-      "Comment fiabiliser un pipeline Playwright (timeouts, robustesse session, retries).",
-      "L’importance de la validation/whitelisting côté serveur pour éviter des bugs de synchro.",
-    ],
-    futureImprovementsBullets: [
-      "Passer à des mises à jour incrémentales (diffs) plutôt qu’un broadcast complet si besoin perf.",
-      "Renforcer la gestion des erreurs UI (messages actionnables quand la session navigateur expire).",
-      "Ajouter une couche d’observabilité plus riche (logs structurés + métriques jeu).",
-    ],
+    featured: true,
+    description: {
+      fr: "Stage infrastructure & sécurité en fintech : laboratoire GNS3 multi-sites (France, Tunisie, Cloud). Segmentation VLAN, Zero Trust, VPN IPsec IKEv2 sur MikroTik CHR, inventaire GLPI.",
+      en: "Infrastructure & security internship in fintech: multi-site GNS3 lab (France, Tunisia, Cloud). VLAN segmentation, Zero Trust, IPsec IKEv2 VPN on MikroTik CHR, GLPI inventory.",
+    },
+    techStack: ["GNS3", "MikroTik / RouterOS", "VLAN", "VPN IPsec", "Docker", "GLPI"],
+    highlights: {
+      fr: [
+        "Topologie multi-sites : France, Tunisie et Cloud, simulée sous GNS3.",
+        "Segmentation VLAN et isolation du VLAN Management et du RH (pratiques ANSSI).",
+        "Tunnels VPN IPsec IKEv2 sur MikroTik CHR — 14 tests / 14 conformes.",
+        "Lab GLPI sous Docker : procédure d’inventaire et d’agent.",
+      ],
+      en: [
+        "Multi-site topology: France, Tunisia and Cloud, simulated in GNS3.",
+        "VLAN segmentation and isolation of the Management and HR VLANs (ANSSI practices).",
+        "IPsec IKEv2 VPN tunnels on MikroTik CHR — 14 / 14 tests passed.",
+        "GLPI lab on Docker: inventory and agent procedure.",
+      ],
+    },
+    architectureBullets: {
+      fr: [
+        "Sites interconnectés dans GNS3, pas un réseau plat unique.",
+        "Politique Zero Trust : chaque flux est un choix, pas un « tout ouvert » entre sites.",
+        "Configurations RouterOS documentées et versionnées sous Git.",
+      ],
+      en: [
+        "Sites interconnected in GNS3, not one flat network.",
+        "Zero Trust policy: every flow is a choice, not an open path between sites.",
+        "RouterOS configurations documented and versioned in Git.",
+      ],
+    },
+    roleBullets: {
+      fr: [
+        "Conception et tests de la topologie, des VLAN et des tunnels.",
+        "Documentation des configs et des procédures (Draw.io, Git).",
+        "Mise en place du lab GLPI et échanges en anglais.",
+      ],
+      en: [
+        "Design and tests of the topology, VLANs and tunnels.",
+        "Documentation of configs and procedures (Draw.io, Git).",
+        "GLPI lab setup and work in English.",
+      ],
+    },
+    learnedBullets: {
+      fr: [
+        "Un VPN qui « monte » ne suffit pas : il faut un plan de tests (les 14 contrôles).",
+        "L’isolation RH / management se décide dans le plan d’adressage, pas après coup.",
+      ],
+      en: [
+        "A VPN that comes up is not enough: you need a test plan (the 14 checks).",
+        "HR / management isolation is decided in the addressing plan, not afterwards.",
+      ],
+    },
+  },
+  {
+    slug: "lab-active-directory",
+    title: {
+      fr: "Lab Active Directory / LDAP",
+      en: "Active Directory / LDAP lab",
+    },
+    featured: true,
+    status: "in-progress",
+    description: {
+      fr: "Mini-infrastructure d’entreprise en lab : Windows Server 2022 (contrôleur de domaine) et poste Windows 11. Mise en place d’un annuaire LDAP via AD DS, jointure au domaine, OU, groupes et GPO. En cours.",
+      en: "Small enterprise lab: Windows Server 2022 (domain controller) and a Windows 11 client. LDAP directory via AD DS, domain join, OUs, groups and GPOs. In progress.",
+    },
+    techStack: ["Windows Server 2022", "Active Directory", "LDAP", "GPO", "DNS", "VirtualBox"],
+    highlights: {
+      fr: [
+        "Topologie isolée : serveur 192.168.100.10, client 192.168.100.20, domaine de lab.",
+        "Rôle AD DS, promotion en contrôleur de domaine, DNS intégré.",
+        "Arborescence d’OU (départements, services), groupes et comptes de test.",
+        "GPO (mots de passe, partages, restrictions) et délégation — en cours de finalisation.",
+      ],
+      en: [
+        "Isolated topology: server 192.168.100.10, client 192.168.100.20, lab domain.",
+        "AD DS role, promotion to domain controller, integrated DNS.",
+        "OU tree (departments, services), groups and test accounts.",
+        "GPOs (passwords, shares, restrictions) and delegation — still being finished.",
+      ],
+    },
+    architectureBullets: {
+      fr: [
+        "Deux VM VirtualBox sur réseau interne de lab.",
+        "Le serveur fait autorité sur l’annuaire et le DNS du domaine.",
+        "Le poste client s’authentifie auprès de l’annuaire (LDAP / AD).",
+      ],
+      en: [
+        "Two VirtualBox VMs on an internal lab network.",
+        "The server is authoritative for the directory and domain DNS.",
+        "The client authenticates against the directory (LDAP / AD).",
+      ],
+    },
+    roleBullets: {
+      fr: [
+        "Conception de la topologie, adressage et résolution DNS.",
+        "Installation AD DS, création de la forêt, jointure du client.",
+        "Structuration des identités (OU, groupes, utilisateurs) avant durcissement GPO.",
+      ],
+      en: [
+        "Topology, addressing and DNS design.",
+        "AD DS install, forest creation, client join.",
+        "Identity structure (OUs, groups, users) before GPO hardening.",
+      ],
+    },
+    learnedBullets: {
+      fr: [
+        "Un domaine n’est pas « le login Windows » : il faut vérifier LDAP réellement (port, DNS, jointure).",
+        "Les GPO et la délégation se pensent par OU, pas par machine isolée.",
+      ],
+      en: [
+        "A domain is not just “Windows login”: LDAP has to be checked for real (port, DNS, join).",
+        "GPOs and delegation are thought per OU, not per isolated machine.",
+      ],
+    },
+  },
+  {
+    slug: "reseau-securise-entreprise",
+    title: {
+      fr: "Réseau sécurisé entreprise",
+      en: "Secure enterprise network",
+    },
+    featured: true,
+    description: {
+      fr: "Lab d’équipe : réseau d’entreprise fictif, observation du trafic (Wireshark), simulation Marionnet, programmation C.",
+      en: "Team lab: fictional enterprise network, traffic observation (Wireshark), Marionnet simulation, C programming.",
+    },
+    techStack: ["C", "Wireshark", "Marionnet", "Réseau"],
+    highlights: {
+      fr: ["Analyse de trafic et réglages réseau en environnement simulé."],
+      en: ["Traffic analysis and network setup in a simulated environment."],
+    },
+    roleBullets: {
+      fr: ["Déploiement et tests en lab simulé."],
+      en: ["Deployment and tests in the simulated lab."],
+    },
+  },
+  {
+    slug: "taskbar-clear",
+    title: { fr: "TaskbarClear", en: "TaskbarClear" },
+    description: {
+      fr: "Barre des tâches Windows 11 vraiment transparente : DLL dans Explorer, aucun processus résident. Alternative légère aux outils trop lourds.",
+      en: "A truly transparent Windows 11 taskbar: a DLL in Explorer, no resident process. A light alternative to heavier tools.",
+    },
+    techStack: ["C++", "Win32", "XAML", "Windows 11", "Explorer"],
+    links: {
+      repo: "https://github.com/ilian21012005-bit/taskbar-clear",
+    },
+    highlights: {
+      fr: [
+        "Injection minimale dans Explorer, pas de service en fond.",
+        "Cible uniquement le fond de la barre (BackgroundFill).",
+        "Open source, sans télémétrie ni réseau.",
+      ],
+      en: [
+        "Minimal injection into Explorer, no background service.",
+        "Only the taskbar background (BackgroundFill) is targeted.",
+        "Open source, no telemetry, no network.",
+      ],
+    },
+    architectureBullets: {
+      fr: [
+        "Injecteur + DLL TAP pour agir sur l’arbre XAML d’Explorer.",
+        "Scope volontairement étroit : un élément visuel, pas le shell entier.",
+      ],
+      en: [
+        "Injector + TAP DLL acting on Explorer’s XAML tree.",
+        "Narrow scope on purpose: one visual element, not the whole shell.",
+      ],
+    },
+    roleBullets: {
+      fr: ["Conception, implémentation native et documentation du repo public."],
+      en: ["Design, native implementation and public repo documentation."],
+    },
   },
   {
     slug: "zero-strike",
-    title: "ZeroStrike",
-    description:
-      "Jeu de tir tactique multijoueur LAN (jusqu'à 40 joueurs) : grand écran Phaser 3 + smartphones en manettes. Serveur Node.js autoritaire (~60 TPS), Socket.io, modes Search & Destroy et Deathmatch, vote de map, SQLite (sql.js) pour le classement. Docker, CI GitHub Actions, déploiement Render.",
-    techStack: [
-      "Node.js",
-      "Socket.io",
-      "Express",
-      "Phaser 3",
-      "SQLite",
-      "sql.js",
-      "Docker",
-      "GitHub Actions",
-    ],
+    title: { fr: "ZeroStrike", en: "ZeroStrike" },
+    description: {
+      fr: "Jeu de tir tactique LAN : grand écran Phaser 3, smartphones en manettes, jusqu’à 40 joueurs. Serveur Node.js autoritaire, Socket.io, classement SQLite. Docker et Render.",
+      en: "Tactical LAN shooter: Phaser 3 big screen, phones as controllers, up to 40 players. Authoritative Node.js server, Socket.io, SQLite leaderboard. Docker and Render.",
+    },
+    techStack: ["Node.js", "Socket.io", "Phaser 3", "SQLite", "Docker"],
     links: {
       repo: "https://github.com/ilian21012005-bit/ZeroStrike",
       demo: "https://zerostrike.onrender.com/mobile/",
     },
-    highlights: [
-      "Serveur authoritative : état de partie (physique, scores) centralisé côté serveur.",
-      "Expérience salle/LAN party : hub web + grands écrans + mobiles en manettes.",
-      "Vote de map + profils de partie (Fun / Compétitif / Démo).",
-      "Classement persistant : SQLite via sql.js.",
-    ],
-    architectureBullets: [
-      "Client-serveur : logique métier + boucle ~60 TPS côté serveur Node.js.",
-      "Display : Phaser 3 (scènes Lobby/Game, HUD, effets).",
-      "Mobile : manette tactile (HTML/CSS/JS + nipple.js).",
-      "Design serveur MVC (controllers/services/models) + séparation Display/Mobile.",
-    ],
-    securityBullets: [
-      "CORS HTTP + origines Socket.io pilotées par `ALLOWED_ORIGINS` (durcissement).",
-      "Rate limiting sur endpoints (via express-rate-limit) et endpoints protégés (ex. métriques).",
-      "Validation/whitelisting des entrées API (ex. limite/ordre classement, parsing paramètres).",
-      "Observabilité/config via `.env.example` et bonnes pratiques de déploiement (DB_PATH).",
-    ],
-    roleBullets: [
-      "Conception architecture réseau et synchronisation état temps réel.",
-      "Mise en place des flux lobby/jeu, classement et persistance.",
-      "Documentation technique (installation, maintenance, audit sécurité).",
-    ],
-    decisionsBullets: [
-      "Serveur authoritative pour éliminer la triche : l’état (physique, scores, rounds) n’est jamais “décidé” par le client.",
-      "Boucle temps réel côté serveur (~60 TPS) + rendu séparé (Phaser display, client mobile).",
-      "Persistance de classement en SQLite (sql.js) pour être autonome sans dépendance MongoDB.",
-      "Hardening réseau : CORS + origines Socket.io, rate limiting, validation/whitelisting des entrées API.",
-    ],
-    tradeOffsBullets: [
-      "Équilibre fluidité vs bande passante : broadcast d’état complet plus simple, mais payload plus gros (optimisations possibles en delta).",
-      "Déploiement “LAN-first” vs ouverture internet : protocole/URLs plus stricts côté production.",
-      "SQLite embarqué (sql.js) vs DB externe : plus simple à déployer, mais limites en charge très forte.",
-    ],
-    interviewChecklistBullets: [
-      "Expliquer la séparation Display/Mobile/Serveur et le rôle du GameService (MVC).",
-      "Comment tu gères la machine à états des rounds et la synchronisation (authoritative).",
-      "Pourquoi CORS + ALLOWED_ORIGINS + express-rate-limit ?",
-      "Comment tu traites les entrées (whitelisting, parsing) pour éviter des états invalides.",
-    ],
-    summary30sBullets: [
-      "LAN multijoueur (jusqu’à 40) avec serveur Node.js autoritaire.",
-      "Affichage grand écran via Phaser 3 et manettes smartphones (HTML5 + nipple.js).",
-      "Classement persistant SQLite via sql.js + déploiement (Docker/CI).",
-    ],
-    learnedBullets: [
-      "Construire une machine à états de rounds propre (Buy/Action/RoundEnd) et testable.",
-      "Gérer efficacement l’update temps réel sans exploser la bande passante.",
-      "Appliquer sécurité by design : CORS/Socket.io, validation entrées, rate limiting.",
-    ],
-    futureImprovementsBullets: [
-      "Optimiser le broadcast d’état (delta vs payload complet) si le nombre de joueurs augmente.",
-      "Améliorer le modèle de sauvegarde classement (éviter writeFileSync trop fréquent).",
-      "Renforcer davantage l’observabilité (traces par round, latence WS).",
-    ],
+    highlights: {
+      fr: [
+        "Serveur authoritative (~60 TPS) : l’état de partie n’est pas décidé par le client.",
+        "Hub LAN : display + manettes mobiles.",
+        "CORS, origines Socket.io, rate limiting, validation des entrées.",
+      ],
+      en: [
+        "Authoritative server (~60 TPS): game state is not decided by the client.",
+        "LAN hub: display + mobile controllers.",
+        "CORS, Socket.io origins, rate limiting, input validation.",
+      ],
+    },
+    architectureBullets: {
+      fr: [
+        "Séparation Display / Mobile / Serveur (MVC côté Node).",
+        "Persistance classement via SQLite (sql.js).",
+      ],
+      en: [
+        "Display / Mobile / Server split (MVC on Node).",
+        "Leaderboard persistence via SQLite (sql.js).",
+      ],
+    },
+    roleBullets: {
+      fr: ["Architecture réseau temps réel, flux lobby/jeu, docs technique et déploiement."],
+      en: ["Realtime network architecture, lobby/game flow, technical docs and deploy."],
+    },
   },
   {
-    slug: "portfolio",
-    title: "Portfolio",
-    description:
-      "Ce site : portfolio développeur fullstack & étudiant Systèmes/Réseaux. Next.js 16 (App Router), design Dark Engineering, Framer Motion, SEO (sitemap, Open Graph) et accessibilité. URL de production définie par NEXT_PUBLIC_SITE_URL.",
-    techStack: ["Next.js", "TypeScript", "Tailwind", "Framer Motion", "Lucide"],
-    links: {
-      repo: "https://github.com/ilian21012005-bit/ilian-portfolio",
+    slug: "guess-the-like",
+    title: { fr: "Guess The Like", en: "Guess The Like" },
+    description: {
+      fr: "Jeu multi-joueurs en temps réel : deviner qui a liké un TikTok. Node.js, PostgreSQL, WebSocket. Déployé sur Render.",
+      en: "Realtime multiplayer game: guess who liked a TikTok. Node.js, PostgreSQL, WebSocket. Deployed on Render.",
     },
-    highlights: [
-      "Navigation et structure pensés pour recruteur/stage (sections claires, contenu actionnable).",
-      "SEO : `robots`, `sitemap`, metadata par page.",
-      "Accessibilité : focus/skip-link, rendu sémantique et contraste.",
-      "Composants réutilisables (Hero, cards, badges, timeline Git).",
-    ],
-    architectureBullets: [
-      "App Router Next.js + composants UI (composants client côté interactions).",
-      "Données centralisées : projets/compétences dans `lib/`.",
-      "Déploiement : variables `NEXT_PUBLIC_*` pour liens/contact/SEO.",
-    ],
-    roleBullets: [
-      "Conception UX + code front (animation, layout, composants).",
-      "Structuration des données pour rendre les fiches “Projets” maintenables.",
-    ],
-    decisionsBullets: [
-      "Centralisation des données de projets et compétences dans `lib/` pour éviter la duplication.",
-      "SEO : metadata, `robots`, `sitemap`, Open Graph, URLs cohérentes via `NEXT_PUBLIC_SITE_URL`.",
-      "Accessibilité : focus visible et skip link, navigation clavier-friendly.",
-      "Animations contrôlées et respect des préférences utilisateur (réduction des animations).",
-    ],
-    tradeOffsBullets: [
-      "Animations Framer Motion : effet “premium” vs coût perf (mitigation via reduced motion).",
-      "Static prerender vs pages dynamiques (certaines SSR/edge) pour conserver SEO et UX.",
-      "Tailwind pour vitesse d’itération vs risque de classes longues (mitigation via composants).",
-    ],
-    interviewChecklistBullets: [
-      "Comment tu gères le SEO Next.js (metadata/opengraph/sitemap/robots) ?",
-      "Pourquoi App Router et comment tu organises tes pages/composants ?",
-      "Comment tu t’assures de l’accessibilité (focus/skip link) ?",
-      "Performance : comment tu as pensé aux animations et au rendu ?",
-    ],
-    summary30sBullets: [
-      "Portfolio recruteur en Next.js 16 : contenu structuré et navigation claire.",
-      "Fiches projets : architecture, sécurité/réseaux, rôle et décisions techniques.",
-      "SEO + accessibilité + animations contrôlées (respect reduced motion).",
-    ],
-    learnedBullets: [
-      "Comment centraliser les données dans `lib/` pour éviter la duplication.",
-      "Pourquoi les pages dynamiques doivent rester propres côté metadata/links.",
-      "L’impact UX : micro-interactions, lisibilité et hiérarchie visuelle.",
-    ],
-    futureImprovementsBullets: [
-      "Ajouter des exports “resume” par projet (PDF/texte) pour entretien.",
-      "Optimiser les composants interactifs pour perf (bundle/SSR constraints).",
-      "Ajouter une page “Simulateur réseau” plus pédagogique avec un guide d’exercices.",
-    ],
+    techStack: ["Node.js", "PostgreSQL", "WebSocket", "Playwright"],
+    links: {
+      repo: "https://github.com/ilian21012005-bit/guess-the-like",
+      demo: "https://guess-the-like-eu.onrender.com/",
+    },
+    highlights: {
+      fr: [
+        "Synchronisation d’état via WebSocket, serveur autoritaire.",
+        "Récupération des likes déclenchée uniquement au lancement de partie.",
+        "Secrets hors git, usage personnel / responsable des données.",
+      ],
+      en: [
+        "State sync over WebSocket, authoritative server.",
+        "Likes are fetched only when a game starts.",
+        "Secrets kept out of git, personal / responsible data use.",
+      ],
+    },
+    architectureBullets: {
+      fr: [
+        "Logique de partie côté serveur + persistance PostgreSQL.",
+        "Automatisation navigateur (Playwright) sur une session utilisateur légitime.",
+      ],
+      en: [
+        "Game logic on the server + PostgreSQL persistence.",
+        "Browser automation (Playwright) on a legitimate user session.",
+      ],
+    },
+    roleBullets: {
+      fr: ["Conception client-serveur, flux lobby / rounds / scoring."],
+      en: ["Client-server design, lobby / rounds / scoring flow."],
+    },
   },
   {
     slug: "plateforme-universitaire-sae-s3",
-    title: "Plateforme universitaire (SAE S3)",
-    description:
-      "Application web PHP (MVC) et desktop Java avec algorithmes de constitution automatique de groupes TD/TP, gestion multi-rôles (responsables, enseignants, étudiants), import CSV notes, sondages, contraintes (niveau, genre, covoiturage). Architecture via API REST.",
-    techStack: ["PHP", "Java", "MySQL", "API REST", "JavaScript", "Bootstrap", "Algorithmes"],
+    title: {
+      fr: "Plateforme universitaire (SAE S3)",
+      en: "University platform (SAE S3)",
+    },
+    description: {
+      fr: "Application web PHP (MVC) et desktop Java : constitution automatique de groupes TD/TP, rôles multiples, import CSV, API REST.",
+      en: "PHP web app (MVC) and Java desktop: automatic TD/TP group building, multiple roles, CSV import, REST API.",
+    },
+    techStack: ["PHP", "Java", "MySQL", "API REST"],
     links: {
       repo: "https://git.iut-orsay.fr/hdasil3/s3projet",
     },
-    highlights: [
-      "Rôles multiples et contrôle d’accès fonctionnel via API REST.",
-      "Import/traitement de données (CSV) et contraintes de groupe.",
-      "Conception UML et intégration avec IHM.",
-    ],
-    architectureBullets: [
-      "Briques web (PHP MVC) + IHM desktop (Java).",
-      "Couplage par API REST (séparation responsabilités).",
-      "Moteur d’algorithmes pour groupes TD/TP.",
-    ],
-    roleBullets: [
-      "Participation à la conception et au raccordement web/desktop.",
-      "Cadrage des contraintes et validation des résultats de constitution.",
-    ],
+    highlights: {
+      fr: [
+        "Contrôle d’accès multi-rôles via API REST.",
+        "Moteur de contraintes pour les groupes.",
+      ],
+      en: [
+        "Multi-role access control via REST API.",
+        "Constraint engine for group building.",
+      ],
+    },
+    roleBullets: {
+      fr: ["Conception et raccordement web / desktop, cadrage des contraintes."],
+      en: ["Web / desktop design and wiring, constraint scoping."],
+    },
   },
   {
     slug: "application-medias-sae-s2",
-    title: "Application médias (SAE S2)",
-    description:
-      "Application type Letterboxd : gestion de sa collection de films et séries, listes personnalisées, notation et avis, suivi d'utilisateurs. Conception UML, Java (modèles + IHM Swing), tests unitaires, maquettes IHM.",
-    techStack: ["Java", "Swing", "UML", "JUnit", "Git", "Factory pattern"],
+    title: {
+      fr: "Application médias (SAE S2)",
+      en: "Media app (SAE S2)",
+    },
+    description: {
+      fr: "Application type Letterboxd : collection films/séries, listes, notes. Java, Swing, UML, tests JUnit.",
+      en: "Letterboxd-style app: films/series collection, lists, ratings. Java, Swing, UML, JUnit tests.",
+    },
+    techStack: ["Java", "Swing", "UML", "JUnit"],
     links: {
       repo: "https://git.iut-orsay.fr/lsukarn/s2-sae-dev-app-ef4",
     },
-    highlights: [
-      "Conception orientée objet (UML + patterns).",
-      "IHM Swing et maquettes intégrées au projet.",
-      "Tests unitaires (JUnit) pour la logique applicative.",
-    ],
-    roleBullets: ["Participation à la conception UML et à l’implémentation orientée objet."],
-  },
-  {
-    slug: "reseau-securise-entreprise",
-    title: "Réseau sécurisé entreprise",
-    description:
-      "Mise en place d'un réseau sécurisé pour une entreprise fictive en équipe. Administration du réseau avec Wireshark et Marionnet, programmation en langage C.",
-    techStack: ["C", "Wireshark", "Marionnet", "Réseau"],
-    links: {
-      demo: "/simulateur",
+    highlights: {
+      fr: ["Conception OO (UML + patterns), IHM Swing, tests unitaires."],
+      en: ["OO design (UML + patterns), Swing UI, unit tests."],
     },
-    highlights: ["Analyse trafic (Wireshark), observation et réglages réseau.", "Mise en pratique notions sécurité réseau."],
-    architectureBullets: ["Simulation réseau et observation des flux (capture/diagnostic)."],
-    roleBullets: ["Déploiement & tests en environnement simulé (Marionnet)."],
-  },
-  {
-    slug: "postes-linux",
-    title: "Postes Linux",
-    description:
-      "Installation et configuration de postes de travail sous Linux en équipe. Manipulation du système de fichiers, comptes et groupes, droits, commandes de base. Contexte : TP BUT 1 ; livrables réalisés en direct (pas de dépôt en ligne).",
-    techStack: ["Linux", "Administration système"],
-    roleBullets: ["Administration de base : utilisateurs, permissions, fichiers et commandes."],
-    highlights: ["Pratique des commandes et bonnes pratiques de droits.", "Apprentissage du diagnostic bas niveau."],
-  },
-  {
-    slug: "applications-gestion",
-    title: "Applications de gestion",
-    description:
-      "Création d'applications de gestion en équipe : Cité universitaire Paris, Jeux Olympiques 2024. Utilisation UML, IHM, JavaScript via modèle MVC. Résultat : maquettes, diagrammes et code livrés en séance (pas de dépôt public).",
-    techStack: ["JavaScript", "UML", "MVC", "IHM"],
-    highlights: ["Conception UML et séparation responsabilité front/back.", "Modèle MVC côté IHM web."],
-    roleBullets: ["Contribution à l’architecture et au raccordement des écrans."],
-  },
-  {
-    slug: "sites-web-fictifs",
-    title: "Sites web fictifs",
-    description:
-      "Création de plusieurs sites web fictifs en autonomie. Conception complète front et back avec technologies web modernes. Contexte : projets réalisés en direct, sans dépôt en ligne.",
-    techStack: ["HTML", "CSS", "PHP", "JavaScript"],
-    highlights: ["Conception fullstack (front/back) en autonomie.", "Projet “TP” : livraison en séance."],
-    roleBullets: ["Développement front & back selon maquettes."],
-  },
-  {
-    slug: "jeu-video-cpp",
-    title: "Jeu vidéo C++",
-    description:
-      "Développement d'un jeu vidéo en C++ avec bibliothèques open source. Architecture modulaire, gestion du rendu et des entités. Projet réalisé en formation (pas de démo en ligne).",
-    techStack: ["C++", "OpenGL", "Game Design"],
-    highlights: ["Architecture modulaire et gestion entités.", "Intégration bibliothèques graphiques open source."],
-    roleBullets: ["Conception et implémentation de modules de jeu (rendu/entités)."],
+    roleBullets: {
+      fr: ["Participation à la conception UML et à l’implémentation."],
+      en: ["Work on the UML design and the implementation."],
+    },
   },
 ];
 
+export const FEATURED_PROJECTS = PROJECTS.filter((p) => p.featured);
+export const SECONDARY_PROJECTS = PROJECTS.filter((p) => !p.featured);
+
+export function getProject(slug: string) {
+  return PROJECTS.find((p) => p.slug === slug);
+}

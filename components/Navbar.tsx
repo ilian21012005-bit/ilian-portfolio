@@ -1,188 +1,91 @@
 "use client";
 
 import { useState } from "react";
-import { motion, AnimatePresence, useMotionValue, useTransform } from "framer-motion";
 import { Menu, X } from "lucide-react";
-import Link from "next/link";
-import { usePathname } from "next/navigation";
 import { useTranslations, useLocale } from "next-intl";
+import { Link, usePathname } from "@/lib/navigation";
 import { CONTACT } from "@/lib/contact";
-import { ThemeToggle } from "@/components/ThemeToggle";
-import { useTheme } from "@/components/ThemeProvider";
 
 const navLinks = [
-  { href: "/", key: "home" },
-  { href: "/a-propos", key: "about" },
-  { href: "/arsenal", key: "skills" },
   { href: "/projets", key: "projects" },
-  { href: "/simulateur", key: "simulator" },
-  { href: "/parcours", key: "journey" },
-  { href: "/interets", key: "interests" },
+  { href: "/a-propos", key: "about" },
   { href: "/contact", key: "contact" },
-];
+] as const;
 
 export function Navbar() {
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [isHovered, setIsHovered] = useState(false);
+  const [open, setOpen] = useState(false);
   const pathname = usePathname();
   const t = useTranslations("Navigation");
   const locale = useLocale();
-  const { theme } = useTheme();
+  const switchLocale = locale === "fr" ? "en" : "fr";
 
-  const localizedHref = (href: string) => `/${locale}${href === '/' ? '' : href}`;
-  const switchLocale = locale === 'fr' ? 'en' : 'fr';
-  const switchPath = pathname.replace(`/${locale}`, `/${switchLocale}`) || `/${switchLocale}`;
-
-  const isActive = (href: string) => {
-    if (href === "/") return pathname === `/${locale}`;
-    return pathname?.startsWith(`/${locale}${href}`);
-  };
-
-  const accentBorderHovered = theme === "red"
-    ? "rgba(220, 20, 60, 0.3)"
-    : "rgba(59, 130, 246, 0.35)";
+  const isActive = (href: string) => pathname === href || pathname.startsWith(`${href}/`);
+  const cvHref = locale === "en" ? CONTACT.cvUrlEn : CONTACT.cvUrl;
 
   return (
-    <>
-      {/* Nav Island - Desktop */}
-      <motion.header
-        initial={{ y: -100 }}
-        animate={{ y: 0 }}
-        transition={{ duration: 0.5, ease: "easeOut" }}
-        className="fixed top-0 left-0 right-0 z-50 flex justify-center pt-5 pointer-events-none"
-      >
-        <nav
-          className="pointer-events-auto hidden md:flex"
-          onMouseEnter={() => setIsHovered(true)}
-          onMouseLeave={() => setIsHovered(false)}
-        >
-          <motion.div
-            animate={{
-              width: isHovered ? 760 : 140,
-              backgroundColor: isHovered ? "rgba(5, 5, 5, 0.9)" : "rgba(255, 255, 255, 0.06)",
-              borderColor: isHovered ? accentBorderHovered : "rgba(255, 255, 255, 0.1)",
-            }}
-            transition={{ type: "spring", damping: 25, stiffness: 200 }}
-            className="h-12 rounded-full flex items-center justify-center overflow-hidden border backdrop-blur-xl shadow-xl shadow-black/30 max-w-[95vw]"
-          >
-            {!isHovered ? (
-              <span className="text-sm font-bold text-foreground whitespace-nowrap">
-                <span className="text-accent">I</span>Menu
-              </span>
-            ) : (
-              <motion.div
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                className="flex items-center gap-3 px-5 whitespace-nowrap"
-              >
-                {navLinks.map((link) => (
-                  <Link
-                    key={link.href}
-                    href={localizedHref(link.href)}
-                    aria-current={isActive(link.href) ? "page" : undefined}
-                    className={`text-xs font-medium transition-colors shrink-0 ${
-                      isActive(link.href)
-                        ? "text-accent"
-                        : "text-foreground/80 hover:text-accent"
-                    }`}
-                  >
-                    {t(link.key)}
-                  </Link>
-                ))}
-                <a
-                  href={CONTACT.cvUrl || "/cv.pdf"}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-xs font-semibold text-accent hover:text-accent/80"
-                >
-                  CV
-                </a>
-                <div className="w-px h-4 bg-white/20" />
-                <Link
-                  href={switchPath}
-                  className="text-xs font-bold text-foreground hover:text-accent transition-colors"
-                >
-                  {t("language_switch")}
-                </Link>
-                <div className="w-px h-4 bg-white/20" />
-                <ThemeToggle />
-              </motion.div>
-            )}
-          </motion.div>
-        </nav>
+    <header className="fixed top-0 left-0 right-0 z-50 border-b border-white/[0.08] bg-background/70 backdrop-blur-md">
+      <nav className="mx-auto flex max-w-5xl items-center justify-between px-6 py-5">
+        <Link href="/" className="px-1.5 py-1 text-sm text-foreground/90">
+          Ilian El Bouazzaoui Prieur
+        </Link>
 
-        {/* Mobile: bouton flottant */}
-        <div className="md:hidden absolute top-5 right-5 pointer-events-auto">
-          <button
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="p-3 rounded-full bg-white/10 backdrop-blur-xl border border-white/10 text-foreground"
-            aria-label="Menu"
-            aria-expanded={isMobileMenuOpen}
-            aria-controls="mobile-menu"
-          >
-            {isMobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
-          </button>
-        </div>
-      </motion.header>
-
-      {/* Mobile Menu */}
-      <AnimatePresence>
-        {isMobileMenuOpen && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 z-40 md:hidden"
-          >
-            <div
-              className="absolute inset-0 bg-background/95 backdrop-blur-xl"
-              onClick={() => setIsMobileMenuOpen(false)}
-            />
-            <motion.ul
-              id="mobile-menu"
-              initial={{ y: -20, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              exit={{ y: -20, opacity: 0 }}
-              className="absolute top-24 left-6 right-6 p-6 flex flex-col gap-4 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-xl"
+        <div className="hidden items-center gap-4 text-sm md:flex">
+          {navLinks.map((link) => (
+            <Link
+              key={link.href}
+              href={link.href}
+              className={`px-2 py-1 ${isActive(link.href) ? "text-foreground" : "text-muted"}`}
             >
-              {navLinks.map((link, i) => (
-                <motion.li key={link.href} initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: i * 0.05 }}>
-                  <Link
-                    href={localizedHref(link.href)}
-                    onClick={() => setIsMobileMenuOpen(false)}
-                    aria-current={isActive(link.href) ? "page" : undefined}
-                    className={`block py-3 transition-colors ${
-                      isActive(link.href) ? "text-accent" : "text-foreground hover:text-accent"
-                    }`}
-                  >
-                    {t(link.key)}
-                  </Link>
-                </motion.li>
-              ))}
-              <a
-                href={CONTACT.cvUrl || "/cv.pdf"}
-                target="_blank"
-                rel="noopener noreferrer"
-                onClick={() => setIsMobileMenuOpen(false)}
-                className="mt-2 py-3 rounded-xl bg-accent text-white text-center font-medium"
-              >
+              {t(link.key)}
+            </Link>
+          ))}
+          <a
+            href={cvHref}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="px-2 py-1 text-muted"
+          >
+            CV
+          </a>
+          <Link href={pathname || "/"} locale={switchLocale} className="px-2 py-1 text-muted">
+            {t("language_switch")}
+          </Link>
+        </div>
+
+        <button
+          type="button"
+          className="p-2 text-foreground md:hidden"
+          onClick={() => setOpen((v) => !v)}
+          aria-label="Menu"
+          aria-expanded={open}
+        >
+          {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+        </button>
+      </nav>
+
+      {open && (
+        <div className="border-t border-white/[0.08] bg-background px-6 py-6 md:hidden">
+          <ul className="flex flex-col gap-4 text-sm">
+            {navLinks.map((link) => (
+              <li key={link.href}>
+                <Link href={link.href} onClick={() => setOpen(false)} className="block px-2 py-1.5 text-foreground/90">
+                  {t(link.key)}
+                </Link>
+              </li>
+            ))}
+            <li>
+              <a href={cvHref} target="_blank" rel="noopener noreferrer" className="block px-2 py-1.5 text-muted">
                 CV
               </a>
-              <Link
-                href={switchPath}
-                onClick={() => setIsMobileMenuOpen(false)}
-                className="mt-2 py-3 rounded-xl border border-white/20 text-center font-bold hover:border-accent hover:text-accent transition-colors"
-              >
+            </li>
+            <li>
+              <Link href={pathname || "/"} locale={switchLocale} onClick={() => setOpen(false)} className="block px-2 py-1.5 text-muted">
                 {t("language_switch")}
               </Link>
-              <div className="flex items-center justify-between mt-2 px-2">
-                <span className="text-xs text-foreground/50 font-medium">Équipe</span>
-                <ThemeToggle />
-              </div>
-            </motion.ul>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </>
+            </li>
+          </ul>
+        </div>
+      )}
+    </header>
   );
 }

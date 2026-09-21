@@ -1,14 +1,9 @@
 import type { Metadata } from "next";
-import { Inter, Space_Grotesk, JetBrains_Mono } from "next/font/google";
+import { Inter, Newsreader } from "next/font/google";
 import "../globals.css";
 import { Navbar } from "@/components/Navbar";
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages } from "next-intl/server";
-import { ScrollProgress } from "@/components/ScrollProgress";
-import { BootIntro } from "@/components/BootIntro";
-import { AuroraBg } from "@/components/backgrounds/AuroraBg";
-import { ThemeProvider } from "@/components/ThemeProvider";
-import { THEME_STORAGE_KEY, DEFAULT_THEME } from "@/lib/theme";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -16,17 +11,18 @@ const inter = Inter({
   display: "swap",
 });
 
-const spaceGrotesk = Space_Grotesk({
+const newsreader = Newsreader({
   subsets: ["latin"],
-  variable: "--font-display",
+  variable: "--font-serif",
   display: "swap",
 });
 
-const jetbrainsMono = JetBrains_Mono({
-  subsets: ["latin"],
-  variable: "--font-mono",
-  display: "swap",
-});
+export function generateStaticParams() {
+  return [{ locale: "fr" }, { locale: "en" }];
+}
+
+const SITE_DESCRIPTION =
+  "Portfolio d'Ilian El Bouazzaoui Prieur — étudiant BUT 3 Informatique, parcours B (IUT Orsay / Paris-Saclay). Administration systèmes et réseaux, labs Windows / Active Directory, cybersécurité côté analyse.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000"),
@@ -35,19 +31,16 @@ export const metadata: Metadata = {
     default: "Ilian El Bouazzaoui Prieur | Portfolio",
     template: "%s | Ilian EBP",
   },
-  description:
-    "Portfolio d'Ilian El Bouazzaoui Prieur — étudiant BUT 2 Informatique (Paris-Saclay). Recherche de stage Avril–Juillet 2026. Systèmes, réseaux et développement.",
+  description: SITE_DESCRIPTION,
   keywords: [
     "BUT Informatique",
     "Paris-Saclay",
-    "Stage",
+    "IUT Orsay",
     "Systèmes",
     "Réseaux",
+    "Active Directory",
     "Cybersécurité",
-    "Développement",
-    "Next.js",
-    "React",
-    "TypeScript",
+    "Administration système",
   ],
   authors: [{ name: "Ilian El Bouazzaoui Prieur" }],
   creator: "Ilian El Bouazzaoui Prieur",
@@ -60,14 +53,12 @@ export const metadata: Metadata = {
     url: "/",
     siteName: "Ilian — Portfolio",
     title: "Ilian El Bouazzaoui Prieur | Portfolio",
-    description:
-      "Étudiant BUT 2 Informatique (Paris-Saclay). Recherche de stage Avril–Juillet 2026. Systèmes, réseaux et développement.",
+    description: SITE_DESCRIPTION,
   },
   twitter: {
     card: "summary_large_image",
     title: "Ilian El Bouazzaoui Prieur | Portfolio",
-    description:
-      "Étudiant BUT 2 Informatique (Paris-Saclay). Recherche de stage Avril–Juillet 2026. Systèmes, réseaux et développement.",
+    description: SITE_DESCRIPTION,
   },
   robots: {
     index: true,
@@ -94,29 +85,13 @@ export default async function RootLayout({
 
   return (
     <html lang={locale} className="dark">
-      {/* Script inline exécuté avant le premier paint pour éviter le flash de couleur */}
-      <head>
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `(function(){try{var t=localStorage.getItem('${THEME_STORAGE_KEY}');if(t==='blue'||t==='red'){document.documentElement.setAttribute('data-theme',t);}else{document.documentElement.setAttribute('data-theme','${DEFAULT_THEME}');}}catch(e){}})();`,
-          }}
-        />
-      </head>
-      <body
-        className={`${inter.variable} ${spaceGrotesk.variable} ${jetbrainsMono.variable} ${inter.className} antialiased font-sans`}
-      >
+      <body className={`${inter.variable} ${newsreader.variable} ${inter.className} relative antialiased font-sans bg-background text-foreground`}>
         <NextIntlClientProvider messages={messages}>
-          <ThemeProvider>
-            <BootIntro>
-              <a href="#main-content" className="skip-link">
-                Aller au contenu principal
-              </a>
-              <AuroraBg />
-              <ScrollProgress />
-              <Navbar />
-              {children}
-            </BootIntro>
-          </ThemeProvider>
+          <a href="#main-content" className="skip-link">
+            Aller au contenu principal
+          </a>
+          <Navbar />
+          {children}
         </NextIntlClientProvider>
       </body>
     </html>

@@ -2,17 +2,18 @@ function env(name: string, fallback = "") {
   return process.env[name] ?? fallback;
 }
 
-/** Chemin du CV : même fallback partout pour éviter 404 si cache ancien sur /contact */
-const CV_PATH = "/CV-ILIAN-EL-BOUAZZAOUI-PRIEUR.pdf";
+const CV_PATH = "/CV-Ilian-Stage-SOC-Reseau.pdf";
+const CV_PATH_EN = "/CV-Ilian-Internship-SOC-Network.pdf";
 
 /** Données publiques (injectées au build) : utiliser uniquement des NEXT_PUBLIC_* */
 export const CONTACT = {
-  name: env("NEXT_PUBLIC_CONTACT_NAME", "Prénom Nom"),
-  email: env("NEXT_PUBLIC_CONTACT_EMAIL", ""),
-  phone: env("NEXT_PUBLIC_CONTACT_PHONE", ""),
-  location: env("NEXT_PUBLIC_CONTACT_LOCATION", ""),
-  linkedinUrl: env("NEXT_PUBLIC_CONTACT_LINKEDIN_URL", ""),
-  githubUrl: env("NEXT_PUBLIC_CONTACT_GITHUB_URL", ""),
+  name: env("NEXT_PUBLIC_CONTACT_NAME", "Ilian El Bouazzaoui Prieur"),
+  email: env("NEXT_PUBLIC_CONTACT_EMAIL", "ilian.elbp@gmail.com"),
+  phone: env("NEXT_PUBLIC_CONTACT_PHONE", "06 79 24 34 37"),
+  location: env("NEXT_PUBLIC_CONTACT_LOCATION", "91140 Villebon-sur-Yvette"),
+  linkedinUrl: env("NEXT_PUBLIC_CONTACT_LINKEDIN_URL", "https://www.linkedin.com/in/ilian-ebp"),
+  githubUrl: env("NEXT_PUBLIC_CONTACT_GITHUB_URL", "https://github.com/ilian21012005-bit"),
   cvUrl: env("NEXT_PUBLIC_CONTACT_CV_URL", CV_PATH),
+  cvUrlEn: env("NEXT_PUBLIC_CONTACT_CV_URL_EN", CV_PATH_EN),
 } as const;
 

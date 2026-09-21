@@ -1,21 +1,21 @@
-"use client";
-
 import { ReactNode } from "react";
-import { Footer, FOOTER_HEIGHT } from "@/components/Footer";
+import { Footer } from "@/components/Footer";
 
-interface PageLayoutProps {
+export function PageLayout({
+  children,
+  className = "",
+  flush = false,
+}: {
   children: ReactNode;
   className?: string;
-}
-
-export function PageLayout({ children, className = "" }: PageLayoutProps) {
+  flush?: boolean;
+}) {
   return (
-    <main className={`relative ${className}`}>
+    <main className={`relative z-10 ${className}`}>
       <div
         id="main-content"
         tabIndex={-1}
-        className="relative min-h-screen focus:outline-none focus:ring-2 focus:ring-accent/50 focus:ring-offset-0"
-        style={{ paddingBottom: FOOTER_HEIGHT }}
+        className={`relative min-h-screen focus:outline-none ${flush ? "" : "pt-24"}`}
       >
         {children}
       </div>
@@ -23,4 +23,3 @@ export function PageLayout({ children, className = "" }: PageLayoutProps) {
     </main>
   );
 }
-

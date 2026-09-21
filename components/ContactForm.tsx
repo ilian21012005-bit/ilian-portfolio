@@ -1,69 +1,67 @@
 "use client";
 
 import { useState } from "react";
-import { motion } from "framer-motion";
-
-const FORMSPREE_ID = process.env.NEXT_PUBLIC_FORMSPREE_ID;
+import { useTranslations } from "next-intl";
 
 export function ContactForm() {
+  const t = useTranslations("Contact");
   const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
-  const [formData, setFormData] = useState({ name: "", email: "", message: "" });
-
-  if (!FORMSPREE_ID) return null;
+  const [formData, setFormData] = useState({ name: "", email: "", message: "", website: "" });
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setStatus("sending");
     try {
-      const res = await fetch(`https://formspree.io/f/${FORMSPREE_ID}`, {
+      const res = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          name: formData.name,
-          _replyto: formData.email,
-          email: formData.email,
-          message: formData.message,
-        }),
+        body: JSON.stringify(formData),
       });
       if (res.ok) {
         setStatus("sent");
-        setFormData({ name: "", email: "", message: "" });
+        setFormData({ name: "", email: "", message: "", website: "" });
       } else setStatus("error");
     } catch {
       setStatus("error");
     }
   };
 
+  const fieldClass =
+    "w-full border-b border-white/15 bg-transparent px-0 py-3 text-foreground placeholder-foreground/30 focus:border-foreground/40 focus:outline-none";
+
   return (
-    <motion.form
-      initial={{ opacity: 0, y: 10 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      onSubmit={handleSubmit}
-      className="max-w-lg mx-auto mb-10 p-6 border border-white/10 bg-black/40 rounded-lg font-mono space-y-4"
-    >
-      <h3 className="text-accent text-sm font-semibold pb-2 border-b border-white/10">
-        &gt; SEND_MESSAGE
-      </h3>
+    <form onSubmit={handleSubmit} className="max-w-lg space-y-8">
+      <p className="hidden" aria-hidden>
+        <label htmlFor="contact-website">Website</label>
+        <input
+          id="contact-website"
+          type="text"
+          name="website"
+          tabIndex={-1}
+          autoComplete="off"
+          value={formData.website}
+          onChange={(e) => setFormData((p) => ({ ...p, website: e.target.value }))}
+        />
+      </p>
       <div>
-        <label htmlFor="contact-name" className="text-foreground/70 text-sm block mb-1">
-          Nom
+        <label htmlFor="contact-name" className="text-sm text-muted">
+          {t("form_name")}
         </label>
         <input
           id="contact-name"
           type="text"
           name="name"
           required
+          maxLength={120}
           value={formData.name}
           onChange={(e) => setFormData((p) => ({ ...p, name: e.target.value }))}
-          className="w-full px-3 py-2 rounded border border-white/20 bg-white/5 text-foreground placeholder-foreground/40 focus:outline-none focus:ring-2 focus:ring-accent/50"
-          placeholder="Ton nom ou société"
+          className={fieldClass}
           disabled={status === "sending"}
         />
       </div>
       <div>
-        <label htmlFor="contact-email" className="text-foreground/70 text-sm block mb-1">
-          Email
+        <label htmlFor="contact-email" className="text-sm text-muted">
+          {t("form_email")}
         </label>
         <input
           id="contact-email"
@@ -72,45 +70,40 @@ export function ContactForm() {
           required
           value={formData.email}
           onChange={(e) => setFormData((p) => ({ ...p, email: e.target.value }))}
-          className="w-full px-3 py-2 rounded border border-white/20 bg-white/5 text-foreground placeholder-foreground/40 focus:outline-none focus:ring-2 focus:ring-accent/50"
-          placeholder="email@exemple.com"
+          className={fieldClass}
           disabled={status === "sending"}
         />
       </div>
       <div>
-        <label htmlFor="contact-message" className="text-foreground/70 text-sm block mb-1">
-          Message
+        <label htmlFor="contact-message" className="text-sm text-muted">
+          {t("form_message")}
         </label>
         <textarea
           id="contact-message"
           name="message"
           required
-          rows={4}
+          rows={5}
+          maxLength={5000}
           value={formData.message}
           onChange={(e) => setFormData((p) => ({ ...p, message: e.target.value }))}
-          className="w-full px-3 py-2 rounded border border-white/20 bg-white/5 text-foreground placeholder-foreground/40 focus:outline-none focus:ring-2 focus:ring-accent/50 resize-y min-h-[100px]"
-          placeholder="Proposition de stage, question..."
+          className={`${fieldClass} min-h-[140px] resize-y`}
           disabled={status === "sending"}
         />
       </div>
-      <div className="flex items-center gap-3 pt-2">
+      <div className="flex flex-wrap items-center gap-4">
         <button
           type="submit"
-          disabled={status === "sending"}
-          className="px-4 py-2 rounded border border-accent text-accent hover:bg-accent/10 transition-colors disabled:opacity-50 disabled:cursor-not-allowed focus:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+          disabled={status === "sending" || status === "sent"}
+          className="px-2 py-1 text-sm text-foreground disabled:opacity-50"
         >
-          {status === "idle" && "Envoyer"}
-          {status === "sending" && "Envoi…"}
-          {status === "sent" && "Envoyé ✓"}
-          {status === "error" && "Erreur — réessayer"}
+          {status === "idle" && t("form_send")}
+          {status === "sending" && t("form_sending")}
+          {status === "sent" && t("form_sent")}
+          {status === "error" && t("form_error")}
         </button>
-        {status === "sent" && (
-          <span className="text-accent-secondary text-sm">Message bien reçu.</span>
-        )}
-        {status === "error" && (
-          <span className="text-red-400 text-sm">Échec d’envoi. Utilise le lien Email ci‑dessous.</span>
-        )}
+        {status === "sent" && <span className="text-sm text-muted">{t("form_ok")}</span>}
+        {status === "error" && <span className="text-sm text-muted">{t("form_fail")}</span>}
       </div>
-    </motion.form>
+    </form>
   );
 }

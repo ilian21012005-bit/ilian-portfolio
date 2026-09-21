@@ -1,19 +1,13 @@
-export type Theme = "blue" | "red";
+/** Palette unique v2 — Obsidian / Midnight Slate, sans thèmes Red/Blue Team. */
+export const ACCENT_RGB = "237 237 237";
+export const MUTED_RGB = "163 163 163";
 
-export const THEMES = {
-  blue: {
-    label: "Blue Team",
-    accentRgb: "59 130 246",
-    accentSecondaryRgb: "16 185 129",
-    accentTertiaryRgb: "139 92 246",
-  },
-  red: {
-    label: "Red Team",
-    accentRgb: "220 20 60",
-    accentSecondaryRgb: "139 0 0",
-    accentTertiaryRgb: "255 0 0",
-  },
+export const colors = {
+  obsidian: "#151517",
+  midnight: "#242731",
+  slate: "#536E7B",
+  steel: "#282D38",
+  stormy: "#414553",
+  mist: "#60687B",
+  foreground: "#ededed",
 } as const;
-
-export const THEME_STORAGE_KEY = "portfolio-theme";
-export const DEFAULT_THEME: Theme = "red";

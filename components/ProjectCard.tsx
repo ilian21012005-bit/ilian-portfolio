@@ -1,12 +1,11 @@
-"use client";
-
-import { motion } from "framer-motion";
-import { Badge } from "./Badge";
+import { Link } from "@/lib/navigation";
 
 interface ProjectCardProps {
   title: string;
   description: string;
   techStack: string[];
+  href: string;
+  statusLabel?: string;
   index?: number;
 }
 
@@ -14,27 +13,21 @@ export function ProjectCard({
   title,
   description,
   techStack,
-  index = 0,
+  href,
+  statusLabel,
+  index,
 }: ProjectCardProps) {
+  const number = index !== undefined ? String(index + 1).padStart(2, "0") : null;
+
   return (
-    <motion.article
-      initial={{ opacity: 0, x: -20 }}
-      whileInView={{ opacity: 1, x: 0 }}
-      viewport={{ once: true, margin: "-50px" }}
-      transition={{ duration: 0.5, delay: index * 0.1, ease: "easeOut" }}
-      className="glass glass-hover rounded-2xl p-6 h-full flex flex-col"
-    >
-      <h3 className="text-xl font-semibold text-foreground mb-3">{title}</h3>
-      <p className="text-foreground/80 text-sm leading-relaxed mb-4">
-        {description}
-      </p>
-      <div className="flex flex-wrap gap-2 mt-auto pt-4">
-        {techStack.map((tech) => (
-          <Badge key={tech} variant="tech">
-            {tech}
-          </Badge>
-        ))}
+    <Link href={href} className="group -mx-4 block border-t border-white/[0.12] px-4 py-8 last:border-b">
+      <div className="flex flex-wrap items-baseline gap-x-4 gap-y-1">
+        {number && <span className="text-sm tabular-nums text-muted">{number}</span>}
+        <h3 className="font-serif text-[1.45rem] font-normal leading-snug text-foreground">{title}</h3>
+        {statusLabel && <span className="text-sm text-muted">{statusLabel}</span>}
       </div>
-    </motion.article>
+      <p className="mt-3 max-w-2xl text-base leading-7 text-muted">{description}</p>
+      <p className="mt-2 text-sm text-foreground/45">{techStack.slice(0, 3).join(" · ")}</p>
+    </Link>
   );
 }

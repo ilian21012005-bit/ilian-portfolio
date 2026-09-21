@@ -1,69 +1,18 @@
 "use client";
 
-import { motion } from "framer-motion";
 import { Link } from "@/lib/navigation";
-import { ChevronLeft } from "lucide-react";
 import { useTranslations } from "next-intl";
 
-interface PageHeaderProps {
-  title: string;
-  subtitle?: string;
-}
-
-export function PageHeader({ title, subtitle }: PageHeaderProps) {
+export function PageHeader({ title, subtitle }: { title: string; subtitle?: string }) {
   const t = useTranslations("Navigation");
+
   return (
-    <header className="relative overflow-hidden border-b border-white/10">
-      {/* Fond subtil : dégradé + lueur */}
-      <div
-        className="absolute inset-0 pointer-events-none"
-        style={{
-          background: "linear-gradient(180deg, rgb(var(--accent-rgb) / 0.03) 0%, transparent 50%)",
-        }}
-      />
-      <div className="absolute top-0 right-0 w-[40%] h-full max-h-64 bg-gradient-to-bl from-accent/5 to-transparent pointer-events-none" />
-      <div className="absolute bottom-0 left-0 w-32 h-px bg-gradient-to-r from-accent/40 to-transparent" />
-
-      <div className="relative max-w-4xl mx-auto px-6 py-14 md:py-20">
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-          className="flex flex-col gap-4"
-        >
-          <motion.div
-            initial={{ opacity: 0, x: -8 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.4, delay: 0.1 }}
-          >
-            <Link
-              href="/"
-              className="inline-flex items-center gap-1.5 text-sm text-foreground/50 hover:text-accent-tertiary transition-colors w-fit rounded-full px-4 py-2 -ml-2 hover:bg-white/[0.04] border border-transparent hover:border-white/10"
-            >
-              <ChevronLeft className="w-4 h-4" />
-              {t("back_home")}
-            </Link>
-          </motion.div>
-
-          <div className="flex items-baseline gap-3 flex-wrap">
-            <span className="w-1.5 h-8 md:h-10 rounded-full bg-accent shadow-[0_0_12px_rgb(var(--accent-rgb)/0.5)] shrink-0" />
-            <h1 className="font-display text-3xl md:text-5xl font-bold text-foreground tracking-tight">
-              {title}
-            </h1>
-          </div>
-
-          {subtitle && (
-            <motion.p
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.2, duration: 0.4 }}
-              className="text-foreground/75 text-lg md:text-xl max-w-2xl pl-5 md:pl-6 border-l-2 border-white/10 ml-0.5"
-            >
-              {subtitle}
-            </motion.p>
-          )}
-        </motion.div>
-      </div>
+    <header className="mx-auto max-w-5xl px-6 pb-8">
+      <Link href="/" className="px-1.5 py-1 text-sm text-muted">
+        ← {t("back_home")}
+      </Link>
+      <h1 className="mt-6 font-serif text-4xl font-normal tracking-tight text-foreground md:text-5xl">{title}</h1>
+      {subtitle && <p className="mt-4 max-w-2xl text-lg leading-7 text-muted">{subtitle}</p>}
     </header>
   );
 }
