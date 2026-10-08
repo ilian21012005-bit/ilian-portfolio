@@ -2,24 +2,28 @@ import { loc, type Localized } from "@/lib/projects";
 
 export const SKILLS: Localized[] = [
   {
-    fr: "Réseaux : VLAN, VPN IPsec / IKEv2, Zero Trust, Wireshark, GNS3, MikroTik",
-    en: "Networking: VLAN, IPsec / IKEv2 VPN, Zero Trust, Wireshark, GNS3, MikroTik",
+    fr: "Réseaux : VLAN, VPN IPsec / IKEv2, Zero Trust, Wireshark, GNS3, MikroTik, notions WLAN",
+    en: "Networking: VLAN, IPsec / IKEv2 VPN, Zero Trust, Wireshark, GNS3, MikroTik, WLAN basics",
   },
   {
-    fr: "Systèmes : Linux, Windows, Docker, WSL, GLPI, Git",
-    en: "Systems: Linux, Windows, Docker, WSL, GLPI, Git",
+    fr: "Systèmes : Linux, Windows Server, Docker, Kubernetes (Minikube), GLPI, Git",
+    en: "Systems: Linux, Windows Server, Docker, Kubernetes (Minikube), GLPI, Git",
   },
   {
-    fr: "Windows Server / Active Directory / GPO",
-    en: "Windows Server / Active Directory / GPO",
+    fr: "Identités : Active Directory / LDAP, GPO, DNS de domaine",
+    en: "Identity: Active Directory / LDAP, GPOs, domain DNS",
   },
   {
-    fr: "CTI, MITRE ATT&CK, lecture de trafic",
-    en: "CTI, MITRE ATT&CK, traffic reading",
+    fr: "Analyse cyber : CTI, MITRE ATT&CK, Suricata, lecture de trafic (pcap)",
+    en: "Cyber analysis: CTI, MITRE ATT&CK, Suricata, traffic reading (pcap)",
   },
   {
-    fr: "C, Bash, SQL, Python (notions)",
-    en: "C, Bash, SQL, Python (basics)",
+    fr: "Supervision : Prometheus, Grafana, Nagios, node_exporter, PromQL",
+    en: "Monitoring: Prometheus, Grafana, Nagios, node_exporter, PromQL",
+  },
+  {
+    fr: "C, Bash, SQL, Python (notions), Unity / C# (SAE)",
+    en: "C, Bash, SQL, Python (basics), Unity / C# (SAE)",
   },
 ];
 
@@ -42,24 +46,24 @@ export const EXPERIENCES: {
     },
   },
   {
-    title: { fr: "Employé polyvalent", en: "Store associate" },
-    org: "Boulanger — Villebon-sur-Yvette",
-    period: { fr: "Juillet – août 2025", en: "July – August 2025" },
-    detail: {
-      fr: "Caisse, mise en rayon, inventaires, SAV.",
-      en: "Checkout, restocking, inventory, after-sales.",
-    },
-  },
-  {
     title: {
       fr: "Relation clientèle & acceptation",
       en: "Customer relations & credit acceptance",
     },
     org: "Toyota France Financement — Vaucresson",
-    period: { fr: "Étés 2022 et 2023", en: "Summers 2022 and 2023" },
+    period: { fr: "Juillet – août 2025", en: "July – August 2025" },
     detail: {
       fr: "Contrôle de dossiers, anomalies, signalements TRACFIN.",
       en: "File review, anomaly detection, TRACFIN reporting.",
+    },
+  },
+  {
+    title: { fr: "Employé polyvalent", en: "Store associate" },
+    org: "Boulanger — Villebon-sur-Yvette",
+    period: { fr: "Étés 2022 et 2023", en: "Summers 2022 and 2023" },
+    detail: {
+      fr: "Caisse, mise en rayon, inventaires, SAV.",
+      en: "Checkout, restocking, inventory, after-sales.",
     },
   },
 ];

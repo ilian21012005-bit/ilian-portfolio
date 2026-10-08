@@ -27,7 +27,7 @@ export function ProjectCard({
         {statusLabel && <span className="text-sm text-muted">{statusLabel}</span>}
       </div>
       <p className="mt-3 max-w-2xl text-base leading-7 text-muted">{description}</p>
-      <p className="mt-2 text-sm text-foreground/45">{techStack.slice(0, 3).join(" · ")}</p>
+      <p className="mt-2 text-sm text-accent">{techStack.slice(0, 3).join(" · ")}</p>
     </Link>
   );
 }

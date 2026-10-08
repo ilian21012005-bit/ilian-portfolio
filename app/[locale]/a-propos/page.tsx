@@ -15,7 +15,7 @@ export default function AProposPage() {
     <PageLayout>
       <PageHeader title={t("title")} subtitle={t("subtitle")} />
       <section className="mx-auto max-w-5xl px-6 pb-24">
-        <div className="max-w-2xl space-y-6 text-lg leading-8 text-foreground/80">
+        <div className="max-w-2xl space-y-6 text-lg leading-8 text-muted">
           <p>
             {t.rich("p1", {
               strong: (c) => <strong className="font-medium text-foreground">{c}</strong>,
@@ -35,21 +35,21 @@ export default function AProposPage() {
           <Badge>{t("badge_location")}</Badge>
         </p>
 
-        <h2 className="mt-16 text-sm text-muted">{t("skills")}</h2>
-        <ul className="mt-5 max-w-xl space-y-2 text-foreground/80">
+        <h2 className="mt-16 text-sm font-medium text-accent">{t("skills")}</h2>
+        <ul className="mt-5 max-w-xl space-y-2 text-foreground">
           {SKILLS.map((skill) => (
             <li key={skill.fr}>{loc(skill, locale)}</li>
           ))}
         </ul>
 
-        <h2 className="mt-16 text-sm text-muted">{t("experience")}</h2>
+        <h2 className="mt-16 text-sm font-medium text-accent">{t("experience")}</h2>
         <ul className="mt-5 max-w-2xl">
           {EXPERIENCES.map((exp) => (
-            <li key={exp.org} className="border-t border-white/[0.1] py-6">
+            <li key={exp.org} className="border-t border-white/[0.12] py-6">
               <p className="text-sm text-muted">{loc(exp.period, locale)}</p>
               <p className="mt-1 text-foreground">{loc(exp.title, locale)}</p>
               <p className="text-muted">{exp.org}</p>
-              <p className="mt-2 text-sm text-foreground/50">{loc(exp.detail, locale)}</p>
+              <p className="mt-2 text-sm text-muted">{loc(exp.detail, locale)}</p>
             </li>
           ))}
         </ul>

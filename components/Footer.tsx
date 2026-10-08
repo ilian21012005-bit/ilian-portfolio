@@ -13,7 +13,7 @@ export function Footer() {
   return (
     <footer className="border-t border-white/[0.1] px-6 py-10">
       <div className="mx-auto flex max-w-5xl flex-col gap-6 text-sm text-muted sm:flex-row sm:items-center sm:justify-between">
-        <p>© 2026 Ilian El Bouazzaoui Prieur</p>
+        <p>© 2026 {t("brand")}</p>
         <div className="flex flex-wrap items-center gap-3">
           {CONTACT.githubUrl && (
             <a href={CONTACT.githubUrl} target="_blank" rel="noopener noreferrer" className="px-2 py-1">

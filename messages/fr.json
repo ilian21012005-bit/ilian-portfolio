@@ -1,5 +1,6 @@
 {
   "Navigation": {
+    "brand": "Portfolio Ilian",
     "home": "Accueil",
     "about": "À propos",
     "projects": "Projets",
@@ -9,10 +10,10 @@
     "previous_version": "Version précédente"
   },
   "Home": {
-    "name": "Ilian El Bouazzaoui Prieur",
+    "name": "Portfolio Ilian",
     "line1": "Systèmes, réseau, identités.",
     "lineFacts": "Étudiant BUT Informatique 3 — parcours B, IUT Orsay / Paris-Saclay.",
-    "line2": "Admin systèmes & réseaux. Labs Windows / AD. Cybersécurité côté analyse (CTI, MITRE, détection).",
+    "line2": "Admin systèmes & réseaux. Labs Windows / AD. Analyse cyber (MITRE, Wireshark, Suricata) et supervision (Prometheus / Grafana).",
     "availability": "Stage du 18 janvier au 14 mai 2027 — analyse SOC, cybersécurité, sécurité réseau. Île-de-France.",
     "projects": "Projets",
     "contact": "Contact",
@@ -27,7 +28,7 @@
     "title": "À propos",
     "subtitle": "Systèmes, réseau, identités — et une porte vers l’analyse.",
     "p1": "Étudiant en <strong>BUT 3 Informatique</strong> à l’IUT d’Orsay (Paris-Saclay), parcours B — déploiement d’applications communicantes et sécurisées. Semestre 5 : continuité de service, services complexes, cybersécurité.",
-    "p2": "Je construis des labs concrets (Active Directory, Windows, réseau) et j’oriente vers <strong>l’analyse SOC</strong> : CTI, MITRE ATT&CK, détection d’intrusion, lecture de trafic — sans prétendre le titre aujourd’hui.",
+    "p2": "Je construis des labs concrets (Active Directory, Kubernetes, supervision Prometheus/Grafana) et j’oriente vers <strong>l’analyse SOC</strong> : CTI, MITRE ATT&CK, Suricata, lecture de trafic — sans prétendre le titre aujourd’hui.",
     "p3": "Je recherche un stage en analyse SOC, cybersécurité ou sécurité réseau, du 18 janvier au 14 mai 2027, en Île-de-France.",
     "skills": "Compétences",
     "experience": "Expérience",

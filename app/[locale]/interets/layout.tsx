@@ -6,7 +6,7 @@ export const metadata: Metadata = {
     "Centres d'intérêt et passions au quotidien (sport, cinéma, musique, jeux, manga).",
   alternates: { canonical: "/interets" },
   openGraph: {
-    title: "Centres d'intérêt — Ilian EBP",
+    title: "Centres d'intérêt — Portfolio Ilian",
     description:
       "Sport, cinéma, musique, jeux et manga : ce qui me passionne au quotidien.",
     url: "/interets",

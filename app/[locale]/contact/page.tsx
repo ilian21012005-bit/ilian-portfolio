@@ -30,12 +30,12 @@ export default function ContactPage() {
       </section>
       <section className="mx-auto grid max-w-5xl gap-12 px-6 pb-24 md:grid-cols-[minmax(0,28rem)_1fr] md:gap-16">
         <div>
-          <h2 className="text-sm text-muted">{t("form_heading")}</h2>
+          <h2 className="text-sm font-medium text-accent">{t("form_heading")}</h2>
           <div className="mt-6">
             <ContactForm />
           </div>
         </div>
-        <div className="max-w-sm space-y-3 text-foreground/80 md:pt-8">
+        <div className="max-w-sm space-y-3 text-muted md:pt-8">
           {CONTACT.email && (
             <p>
               <span className="text-muted">{t("email")} · </span>

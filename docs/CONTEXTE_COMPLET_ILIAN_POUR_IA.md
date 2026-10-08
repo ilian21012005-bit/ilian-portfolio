@@ -2,7 +2,7 @@
 
 > **Usage** : colle ce document (ou des extraits) dans Gemini / ChatGPT / autre modèle pour qu’il comprenne ton profil, ta formation, tes projets et **comment** tu veux être aidé (pédagogie, sécurité, format des réponses).
 >
-> **Mise à jour** : la section « Formation — arborescence Moodle » reflète une **copie locale** du parcours (`Moodle_IUT_Orsay/Parcours`), synchronisée via `organise_parcours.ps1`. Après un nouveau téléchargement Moodle, vérifie les noms de dossiers.
+> **Mise à jour** : copie locale Drive `Documents/Drive/01-Etudes/IUT` (S1–S5) + Moodle `cours.iut-orsay.fr`. Après sync, vérifier les dossiers S5.
 
 ---
 
@@ -16,8 +16,8 @@
    - **[Audit sécurité]** — risques (injections SQL, XSS, secrets, TLS, firewall, CGU tiers), vérifications à faire.
 4. **Conception logicielle** : pour PHP/Java, respecter le **pattern MVC** et la **conception UML** quand on parle d’architecture ; code propre, modulaire ; commentaires en français si du code est produit.
 5. **Cybersécurité et réseaux** : priorité à la sécurité **by design** ; pour le réseau, relier aux couches **OSI / TCP/IP**, protocoles, routage, quand c’est utile pédagogiquement.
-6. **Stack outil de l’étudiant** : C, C++, Java, PHP (MVC), SQL, Linux, Wireshark, Marionnet ; en plus : JavaScript/TypeScript, Node.js, Next.js, PostgreSQL, Docker (selon projets).
-7. **Objectif personnel de l’étudiant** : réussir les **TPs**, concevoir des projets **sécurisés** (API, jeux, architectures distribuées), se préparer aux **entretiens de stage** (systèmes, réseaux, dev).
+6. **Stack outil de l’étudiant** : Linux, Windows Server / AD, Wireshark, Suricata, Prometheus/Grafana, Docker, Kubernetes (Minikube), GNS3 ; aussi C, Bash, SQL, Unity/C#, JavaScript/TypeScript, Next.js.
+7. **Objectif personnel de l’étudiant** : réussir les **TPs** S5, préparer un **stage SOC / cybersécurité / sécurité réseau** (janv.–mai 2027), labs concrets et entretiens.
 
 ---
 
@@ -26,8 +26,8 @@
 | Champ | Valeur |
 |--------|--------|
 | **Nom** | Ilian El Bouazzaoui Prieur |
-| **Statut** | Étudiant **BUT 2 Informatique** (en cours) |
-| **Établissement** | IUT Paris-Saclay — site **Gif-sur-Yvette** |
+| **Statut** | Étudiant **BUT 3 Informatique** (S5 en cours) |
+| **Établissement** | IUT Paris-Saclay — site **Gif-sur-Yvette / Orsay** |
 | **Parcours** | **B** — *Déploiement d’applications communicantes et sécurisées* |
 | **Localisation** | 91140 Villebon-sur-Yvette, France |
 | **Email** | ilian.elbp@gmail.com |
@@ -38,8 +38,8 @@
 
 ### Objectif professionnel immédiat
 
-- Recherche d’un **stage d’avril à juillet 2026** (mentionné sur le portfolio et le CV).
-- Positionnement : **systèmes & réseaux** + **développement** (fullstack et bas niveau selon contexte), intérêt pour la **cybersécurité**.
+- Recherche d’un **stage du 18 janvier au 14 mai 2027** (Île-de-France).
+- Positionnement : **systèmes & réseaux**, **Active Directory**, **analyse cyber** (CTI, MITRE, Suricata, Wireshark), **supervision** — porte vers l’analyse SOC sans revendiquer le titre.
 
 ### Langues
 
@@ -54,14 +54,26 @@
 
 ## 3. Formation — synthèse
 
-- **2025 — présent** : BUT 2 Informatique, parcours B, Paris-Saclay (Gif-sur-Yvette).
+- **2026 — présent** : BUT 3 Informatique, parcours B, Paris-Saclay (Orsay) — semestre 5.
+- **2024 — 2026** : BUT 1–2 Informatique, même parcours.
 - **2020 — 2023** : Baccalauréat général, Lycée Condorcet, Limay.
+
+### BUT 3 — Semestre 5 (Moodle + Drive `01-Etudes/IUT/S5`)
+
+- `R5B09` — Cybersécurité (CTI, IDS, MITRE, Wireshark, Suricata) — TP1–TP3 remis
+- `R5B08` — Continuité de service (risques, Prometheus / Grafana / Nagios)
+- `R5B06` — Services complexes (Active Directory, WLAN, VPN)
+- `R5A09` — Virtualisation avancée (Docker, Kubernetes / Minikube)
+- `R5A07` — Automating software and data delivery (Bash, Git, CI notions)
+- `S501` — Projet SAE (option Unity : *De l’Enfer au Paradis*)
+- `R520` — Compléments algèbre linéaire
+- `R503` — TE · `R514` — Anglais · STAGE BUT 3 (janv.–mai 2027)
 
 ---
 
-## 4. Formation — arborescence Moodle (copie locale `Parcours`)
+## 4. Formation — arborescence Moodle (années antérieures)
 
-Les noms ci-dessous sont ceux des **dossiers** dans `Moodle_IUT_Orsay/Parcours` (organisés par année et semestre). Ce ne sont pas les intitulés officiels complets des ressources pédagogiques, mais une **carte des matières** accessibles localement.
+Les noms ci-dessous sont ceux des **dossiers** locaux historiques. Ce ne sont pas les intitulés officiels complets des ressources pédagogiques, mais une **carte des matières** accessibles localement.
 
 ### BUT 1 — Semestre 1 (`Parcours/BUT_1/S1`)
 
@@ -120,32 +132,43 @@ Les noms ci-dessous sont ceux des **dossiers** dans `Moodle_IUT_Orsay/Parcours` 
 
 ## 5. Expériences professionnelles
 
+### Data-Tricks — La Défense
+
+**Période** : mai – juillet 2026 — stagiaire infrastructure & sécurité (fintech).
+
+- Lab GNS3 multi-sites (France, Tunisie, Cloud), VLAN, Zero Trust, VPN IPsec IKEv2 MikroTik, GLPI Docker.
+
 ### Toyota France Financement — Vaucresson, France
 
-**Période** : juillet – août 2025 (stage / mission selon ton CV).
+**Période** : juillet – août 2025.
 
-**Intitulé synthétique** : Chargé Relation Clientèle / Chargé d’acceptation (rôle combiné sur le CV).
+**Intitulé synthétique** : Chargé Relation Clientèle / Chargé d’acceptation.
 
-**Activités (à détailler en entretien)** :
-
-- Contrôle des pièces pour financement automobile : complétude des dossiers (CNI, bulletins de salaire, avis d’imposition, IBAN, justificatif de domicile, etc.).
-- **Déclaration des fraudes** à l’organisme **TRACFIN** lorsque nécessaire.
-- Qualification des demandes clients, encaissements (virement, chèque), gestion SAV (dates de prélèvement, documents clients, affranchissement, etc.).
+- Contrôle des pièces pour financement automobile, anomalies, signalements **TRACFIN**.
 
 ### Boulanger — Villebon-sur-Yvette, France
 
 **Période** : étés 2022 et 2023.
 
-- Mise en rayon, réassort, organisation des linéaires, inventaires, invendus, SAV.
-- Accueil, conseil client, encaissements, tenue de caisse.
+- Mise en rayon, inventaires, SAV, caisse.
 
 ### Stage de troisième — Corporate Project Planning
 
-- Participation aux réunions d’équipe, rapports d’anomalies, démarches d’innovation (détail sur demande).
+- Participation aux réunions d’équipe, rapports d’anomalies (détail sur demande).
 
 ---
 
 ## 6. Projets techniques (détail pour l’IA)
+
+### 6.0 Projets S5 / portfolio v2 (prioritaires stage SOC)
+
+- **Analyse d’attaques — MITRE / Wireshark / Suricata** (R5B09) : TP1–TP3 remis ; ne pas republier pcaps ni sujets Moodle.
+- **Lab Active Directory** (R5B06) : Windows Server 2022 + Win11, AD DS / GPO — en cours (TP2 avancé).
+- **Continuité & supervision** (R5B08) : risques RTO/RPO + Prometheus / Grafana / Nagios.
+- **Lab Kubernetes Minikube** (R5A09) : Deployment nginx, NodePort, scale.
+- **SAE S5 Unity** *De l’Enfer au Paradis* : coop Relay, GitLab `ametin/projet-unity-s5`.
+- **Lab GNS3 Data-Tricks** : déjà sur le portfolio (stage 2026).
+- **Clip Buffer** (`clip-buffer`) : replay buffer Windows NVENC, public GitHub.
 
 ### 6.1 Guess The Like (dépôt local `Who-liked`, GitHub `guess-the-like`)
 

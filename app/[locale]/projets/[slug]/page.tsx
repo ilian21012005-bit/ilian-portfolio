@@ -44,8 +44,8 @@ export default async function ProjetDetailPage({
     if (!items?.length) return null;
     return (
       <div className="mb-16">
-        <h2 className="text-sm text-muted">{title}</h2>
-        <ul className="mt-5 max-w-2xl space-y-3 text-base leading-7 text-foreground/80">
+        <h2 className="text-sm font-medium text-accent">{title}</h2>
+        <ul className="mt-5 max-w-2xl space-y-3 text-base leading-7 text-muted">
           {items.map((line) => (
             <li key={line}>{line}</li>
           ))}

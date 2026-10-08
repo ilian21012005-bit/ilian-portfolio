@@ -1,6 +1,6 @@
-# Portfolio — Ilian El Bouazzaoui Prieur
+# Portfolio Ilian
 
-Portfolio v2 : admin systèmes & réseaux, labs Windows / AD, cybersécurité côté analyse. Design black, spacieux.
+Portfolio v2 : admin systèmes & réseaux, labs Windows / AD, analyse cyber (MITRE, Suricata) et supervision. Dark contraste fort, IBM Plex Sans + Newsreader.
 
 La v1 (HUD / Dark Engineering) est gelée sur la branche `v1` et le tag `v1.0`.
 

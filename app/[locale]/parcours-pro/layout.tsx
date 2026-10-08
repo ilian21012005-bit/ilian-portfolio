@@ -6,7 +6,7 @@ export const metadata: Metadata = {
     "Expériences professionnelles : missions, responsabilités et apprentissages.",
   alternates: { canonical: "/parcours-pro" },
   openGraph: {
-    title: "Parcours professionnel — Ilian EBP",
+    title: "Parcours professionnel — Portfolio Ilian",
     description:
       "Expériences : missions, responsabilités et apprentissages.",
     url: "/parcours-pro",

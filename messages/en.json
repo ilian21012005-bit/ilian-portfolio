@@ -1,5 +1,6 @@
 {
   "Navigation": {
+    "brand": "Portfolio Ilian",
     "home": "Home",
     "about": "About",
     "projects": "Work",
@@ -9,10 +10,10 @@
     "previous_version": "Previous version"
   },
   "Home": {
-    "name": "Ilian El Bouazzaoui Prieur",
+    "name": "Portfolio Ilian",
     "line1": "Systems, networks, identity.",
     "lineFacts": "BUT Computer Science, year 3 — track B, IUT Orsay / Paris-Saclay.",
-    "line2": "Systems & network admin. Windows / AD labs. Security on the analysis side (CTI, MITRE, detection).",
+    "line2": "Systems & network admin. Windows / AD labs. Cyber analysis (MITRE, Wireshark, Suricata) and monitoring (Prometheus / Grafana).",
     "availability": "Internship 18 January – 14 May 2027 — SOC analysis, cybersecurity, network security. Île-de-France.",
     "projects": "Work",
     "contact": "Contact",
@@ -27,7 +28,7 @@
     "title": "About",
     "subtitle": "Systems, networks, identity — and a path toward analysis.",
     "p1": "<strong>BUT 3 Computer Science</strong> student at IUT Orsay (Paris-Saclay), track B — communicating and secure applications. Semester 5: service continuity, complex services, cybersecurity.",
-    "p2": "I build concrete labs (Active Directory, Windows, networking) and I’m moving toward <strong>SOC analysis</strong>: CTI, MITRE ATT&CK, intrusion detection, traffic reading — without claiming the job title yet.",
+    "p2": "I build concrete labs (Active Directory, Kubernetes, Prometheus/Grafana monitoring) and I’m moving toward <strong>SOC analysis</strong>: CTI, MITRE ATT&CK, Suricata, traffic reading — without claiming the job title yet.",
     "p3": "Looking for an internship in SOC analysis, cybersecurity or network security, from 18 January to 14 May 2027, in Île-de-France.",
     "skills": "Skills",
     "experience": "Experience",

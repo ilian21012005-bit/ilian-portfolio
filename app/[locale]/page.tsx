@@ -17,13 +17,13 @@ export default function Home() {
           <p className="text-sm text-muted">{t("name")}</p>
           <h1 className="mt-5 max-w-3xl font-serif text-hero font-normal text-foreground">{t("line1")}</h1>
           <p className="mt-8 max-w-xl text-base leading-7 text-muted">{t("lineFacts")}</p>
-          <p className="mt-3 max-w-xl text-lg leading-7 text-foreground/80">{t("line2")}</p>
+          <p className="mt-3 max-w-xl text-lg leading-7 text-foreground">{t("line2")}</p>
           <p className="mt-3 max-w-xl text-base leading-7 text-muted">{t("availability")}</p>
           <div className="mt-10 flex gap-8 text-sm">
             <Link href="/projets" className="px-2 py-1 text-foreground">
               {t("projects")}
             </Link>
-            <Link href="/contact" className="px-2 py-1 text-muted">
+            <Link href="/contact" className="px-2 py-1 text-muted hover:text-foreground">
               {t("contact")}
             </Link>
           </div>
@@ -32,7 +32,7 @@ export default function Home() {
 
       <section id="selection" className="px-6 pb-24">
         <div className="mx-auto max-w-5xl">
-          <h2 className="text-sm text-muted">{t("featured")}</h2>
+          <h2 className="text-sm font-medium text-accent">{t("featured")}</h2>
           <div className="mt-2">
             {FEATURED_PROJECTS.map((p, i) => {
               const copy = resolveProject(p, locale);

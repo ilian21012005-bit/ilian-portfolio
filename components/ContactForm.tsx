@@ -27,7 +27,7 @@ export function ContactForm() {
   };
 
   const fieldClass =
-    "w-full border-b border-white/15 bg-transparent px-0 py-3 text-foreground placeholder-foreground/30 focus:border-foreground/40 focus:outline-none";
+    "w-full border-b border-white/25 bg-transparent px-0 py-3 text-foreground placeholder-muted focus:border-accent focus:outline-none";
 
   return (
     <form onSubmit={handleSubmit} className="max-w-lg space-y-8">

@@ -1,13 +1,14 @@
 import type { Metadata } from "next";
-import { Inter, Newsreader } from "next/font/google";
+import { IBM_Plex_Sans, Newsreader } from "next/font/google";
 import "../globals.css";
 import { Navbar } from "@/components/Navbar";
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages } from "next-intl/server";
 
-const inter = Inter({
+const plexSans = IBM_Plex_Sans({
   subsets: ["latin"],
-  variable: "--font-inter",
+  weight: ["400", "500", "600"],
+  variable: "--font-sans",
   display: "swap",
 });
 
@@ -26,10 +27,10 @@ const SITE_DESCRIPTION =
 
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000"),
-  applicationName: "Ilian — Portfolio",
+  applicationName: "Portfolio Ilian",
   title: {
-    default: "Ilian El Bouazzaoui Prieur | Portfolio",
-    template: "%s | Ilian EBP",
+    default: "Portfolio Ilian",
+    template: "%s | Portfolio Ilian",
   },
   description: SITE_DESCRIPTION,
   keywords: [
@@ -51,13 +52,13 @@ export const metadata: Metadata = {
     type: "website",
     locale: "fr_FR",
     url: "/",
-    siteName: "Ilian — Portfolio",
-    title: "Ilian El Bouazzaoui Prieur | Portfolio",
+    siteName: "Portfolio Ilian",
+    title: "Portfolio Ilian",
     description: SITE_DESCRIPTION,
   },
   twitter: {
     card: "summary_large_image",
-    title: "Ilian El Bouazzaoui Prieur | Portfolio",
+    title: "Portfolio Ilian",
     description: SITE_DESCRIPTION,
   },
   robots: {
@@ -85,7 +86,7 @@ export default async function RootLayout({
 
   return (
     <html lang={locale} className="dark">
-      <body className={`${inter.variable} ${newsreader.variable} ${inter.className} relative antialiased font-sans bg-background text-foreground`}>
+      <body className={`${plexSans.variable} ${newsreader.variable} ${plexSans.className} relative antialiased font-sans bg-background text-foreground`}>
         <NextIntlClientProvider messages={messages}>
           <a href="#main-content" className="skip-link">
             Aller au contenu principal

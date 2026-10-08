@@ -15,7 +15,7 @@ export default function ProjetsPage() {
     <PageLayout>
       <PageHeader title={t("title")} subtitle={t("subtitle")} />
       <section className="mx-auto max-w-5xl px-6 pb-24">
-        <h2 className="text-sm text-muted">{t("section_featured")}</h2>
+        <h2 className="text-sm font-medium text-accent">{t("section_featured")}</h2>
         <div className="mt-2">
           {FEATURED_PROJECTS.map((p, i) => {
             const copy = resolveProject(p, locale);
@@ -33,7 +33,7 @@ export default function ProjetsPage() {
           })}
         </div>
 
-        <h2 className="mt-14 text-sm text-muted">{t("section_other")}</h2>
+        <h2 className="mt-14 text-sm font-medium text-accent">{t("section_other")}</h2>
         <div className="mt-2">
           {SECONDARY_PROJECTS.map((p) => {
             const copy = resolveProject(p, locale);

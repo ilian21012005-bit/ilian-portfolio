@@ -3,11 +3,13 @@
 @tailwind utilities;
 
 :root {
-  --background: #141414;
-  --foreground: #f3f1ec;
-  --muted: #b8b6b0;
-  --accent-rgb: 243 241 236;
-  --line: rgba(243, 241, 236, 0.14);
+  --background: #121212;
+  --background-elevated: #1a1c1f;
+  --foreground: #f5f5f5;
+  --muted: #c8ccd4;
+  --accent-rgb: 148 163 184;
+  --line: rgba(245, 245, 245, 0.16);
+  --grain: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
 }
 
 * {
@@ -36,9 +38,16 @@ html {
 }
 
 body {
-  background: var(--background);
+  background-color: var(--background);
+  background-image:
+    radial-gradient(ellipse 80% 50% at 50% -20%, rgba(83, 110, 123, 0.18), transparent 55%),
+    radial-gradient(ellipse 60% 40% at 100% 100%, rgba(40, 45, 56, 0.45), transparent 50%),
+    var(--grain);
+  background-attachment: fixed;
   color: var(--foreground);
-  font-family: var(--font-inter), system-ui, -apple-system, sans-serif;
+  font-family: var(--font-sans), system-ui, -apple-system, sans-serif;
+  font-size: 1.0625rem;
+  line-height: 1.65;
   min-height: 100vh;
   overflow-x: hidden;
 }
@@ -49,7 +58,7 @@ body {
   top: 16px;
   z-index: 10000;
   padding: 10px 14px;
-  background: #141414;
+  background: #121212;
   border: 1px solid var(--line);
   color: var(--foreground);
   transform: translateY(-150%);
@@ -58,12 +67,12 @@ body {
 
 .skip-link:focus {
   transform: translateY(0);
-  outline: 2px solid rgba(237, 237, 237, 0.5);
+  outline: 2px solid rgba(148, 163, 184, 0.7);
   outline-offset: 2px;
 }
 
 ::selection {
-  background: rgba(237, 237, 237, 0.18);
+  background: rgba(148, 163, 184, 0.35);
   color: #fff;
 }
 
@@ -76,20 +85,20 @@ body {
 
   a:not(.skip-link):hover,
   button:not(:disabled):hover {
-    background-color: rgba(243, 241, 236, 0.08);
+    background-color: rgba(148, 163, 184, 0.12);
     color: var(--foreground);
   }
 
   a:not(.skip-link):focus-visible,
   button:not(:disabled):focus-visible {
-    background-color: rgba(243, 241, 236, 0.08);
-    outline: 1px solid rgba(243, 241, 236, 0.4);
+    background-color: rgba(148, 163, 184, 0.12);
+    outline: 1px solid rgba(148, 163, 184, 0.55);
     outline-offset: 2px;
   }
 }
 
 @layer utilities {
   .text-body {
-    @apply text-foreground/70;
+    @apply text-muted;
   }
 }
