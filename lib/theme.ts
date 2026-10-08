@@ -3,7 +3,7 @@ export const ACCENT_RGB = "148 163 184";
 export const MUTED_RGB = "200 204 212";
 
 export const colors = {
-  background: "#121212",
+  background: "#0e0e0f",
   elevated: "#1a1c1f",
   midnight: "#242731",
   slate: "#536E7B",
