@@ -1,18 +1,22 @@
-"use client";
-
 import { Link } from "@/lib/navigation";
-import { useTranslations } from "next-intl";
-
-export function PageHeader({ title, subtitle }: { title: string; subtitle?: string }) {
-  const t = useTranslations("Navigation");
-
+import { ArrowLeft } from "lucide-react";
+export function PageHeader({
+  title,
+  subtitle,
+  locale = "fr",
+}: {
+  title: string;
+  subtitle?: string;
+  locale?: string;
+}) {
   return (
-    <header className="mx-auto max-w-5xl px-6 pb-8">
-      <Link href="/" className="px-1.5 py-1 text-sm text-muted">
-        ← {t("back_home")}
+    <header className="page-heading page-width">
+      <Link href="/" className="back-link">
+        <ArrowLeft size={13} />
+        {locale === "en" ? "Home" : "Accueil"}
       </Link>
-      <h1 className="mt-6 font-serif text-4xl font-normal tracking-tight text-foreground md:text-5xl">{title}</h1>
-      {subtitle && <p className="mt-4 max-w-2xl text-lg leading-7 text-muted">{subtitle}</p>}
+      <h1>{title}</h1>
+      {subtitle && <p>{subtitle}</p>}
     </header>
   );
 }

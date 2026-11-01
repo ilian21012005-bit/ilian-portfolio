@@ -10,7 +10,11 @@ export function NotFoundScreen({
   back: string;
 }) {
   return (
-    <main className="relative z-10 flex min-h-[100svh] flex-col items-center justify-center px-6 text-center">
+    <main
+      id="main-content"
+      tabIndex={-1}
+      className="relative z-10 flex min-h-[100svh] flex-col items-center justify-center px-6 text-center"
+    >
       <p className="text-sm text-muted">{label}</p>
       <h1 className="mt-6 font-serif text-[clamp(6rem,22vw,14rem)] font-normal leading-none tracking-tight text-foreground">
         {code}

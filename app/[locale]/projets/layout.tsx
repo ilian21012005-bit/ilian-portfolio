@@ -1,11 +1,18 @@
 import type { Metadata } from "next";
-
-export const metadata: Metadata = {
-  title: "Projets",
-  description: "Labs Active Directory, TaskbarClear, ZeroStrike, Guess The Like — et quelques SAE.",
-  alternates: { canonical: "/projets" },
-};
-
+import { pageMetadata } from "@/lib/site";
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  const title = locale === "en" ? "Projects" : "Projets";
+  const description =
+    locale === "en"
+      ? "Networking labs, cybersecurity, Windows apps, bots and multiplayer games by Ilian."
+      : "Labs réseau, cybersécurité, applications Windows, bots et jeux multijoueurs réalisés par Ilian.";
+  return pageMetadata(locale, "/projets", title, description);
+}
 export default function Layout({ children }: { children: React.ReactNode }) {
   return children;
 }
