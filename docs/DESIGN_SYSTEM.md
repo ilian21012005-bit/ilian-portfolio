@@ -1,7 +1,7 @@
-# Direction visuelle
+# Design du portfolio
 
-Deux pistes ont été étudiées : (1) un carnet technique, ardoise, cyan doux et typographie sans serif ; (2) un dossier clair, typographie neutre et blocs illustrés. La première est retenue pour préserver le thème sombre demandé et faire ressortir la capture réelle de réseau sans reprendre le noir/doré éditorial précédent.
+La direction choisie est Graphite Monochrome : fond `#111315`, surface `#1d2023`, survol `#262a2e`, bordure `#33383d`, texte `#f4f4f1`, texte secondaire `#a6adb2` et accent `#e6e8e7`. Les tokens sont définis dans `app/globals.css` et les styles propres à À propos dans `app/[locale]/a-propos/about.module.css`.
 
-Palette : fond #191e24, surface #232b34, texte #f0f3f5, texte secondaire #bbc5ce, accent #8ab9cf. IBM Plex Sans sert aux titres et au texte ; la taille de base est 16 px. Les espaces dépendent du contenu ; la capture GNS3 est le point focal de l’accueil. Les interactions restent simples et les préférences de mouvement réduit sont respectées.
+IBM Plex Sans est utilisé pour les titres et le texte. Les sections gardent des espacements adaptés à leur contenu. Les captures montrent les projets réels, sans filtre ; les liens et les boutons possèdent des états de survol et de focus visibles. Les animations respectent `prefers-reduced-motion`.
 
-Références étudiées pour la lisibilité et la densité, sans reprendre leur composition : https://linear.app/ et https://vercel.com/. La conception suit également les principes du skill frontend-design et les recommandations React de Vercel.
+La capture GNS3 conserve son cadrage complet et renvoie à l’étude de cas. Vérifier sa lisibilité sur mobile, le contraste réel des contrôles et les pages FR/EN lors de chaque changement visuel. Exécuter `node scripts/check-palettes.mjs` pour les contrastes des principales combinaisons graphite ; cela ne remplace pas un audit visuel ni un audit WCAG complet.
