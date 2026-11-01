@@ -51,7 +51,7 @@ export const EXPERIENCES: {
       en: "Customer relations & credit acceptance",
     },
     org: "Toyota France Financement — Vaucresson",
-    period: { fr: "Juillet – août 2025", en: "July – August 2025" },
+    period: { fr: "Étés 2022 et 2023", en: "Summers 2022 and 2023" },
     detail: {
       fr: "Contrôle de dossiers, anomalies, signalements TRACFIN.",
       en: "File review, anomaly detection, TRACFIN reporting.",
@@ -60,7 +60,7 @@ export const EXPERIENCES: {
   {
     title: { fr: "Employé polyvalent", en: "Store associate" },
     org: "Boulanger — Villebon-sur-Yvette",
-    period: { fr: "Étés 2022 et 2023", en: "Summers 2022 and 2023" },
+    period: { fr: "Juillet – août 2025", en: "July – August 2025" },
     detail: {
       fr: "Caisse, mise en rayon, inventaires, SAV.",
       en: "Checkout, restocking, inventory, after-sales.",

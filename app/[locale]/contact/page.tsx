@@ -21,7 +21,7 @@ export default async function Contact({
     <PageLayout>
       <PageHeader
         locale={locale}
-        title={en ? "Let’s talk." : "Discutons-en."}
+        title={en ? "Contact" : "Contact"}
         subtitle={
           en
             ? "An internship opportunity, a technical question or a project to discuss? You can reach me directly by email."

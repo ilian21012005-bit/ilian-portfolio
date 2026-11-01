@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { CaseStudy } from "@/components/CaseStudy";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { getTranslations, setRequestLocale } from "next-intl/server";
@@ -148,14 +149,14 @@ export default async function ProjectDetail({
       {slug === "lab-gns3-data-tricks" && <figure className="mt-9"><Image src="/project-images/lab-gns3.png" alt={en ? "GNS3 screenshot showing the simulated France, Tunisia and cloud network topology." : "Capture GNS3 de la topologie réseau simulée reliant la France, la Tunisie et le cloud."} width={1920} height={1080} sizes="(max-width: 1200px) 100vw, 1200px" className="h-auto w-full"/><figcaption className="mt-3 text-xs text-muted">{en ? "GNS3 lab screenshot · June 2026" : "Capture du lab GNS3 · Juin 2026"}</figcaption></figure>}
       <div className="detail-grid">
           <div>
+            {["lab-gns3-data-tricks", "analyse-attaques-mitre", "karu"].includes(slug) ? <CaseStudy project={p} locale={locale} /> : <>
             <p className="detail-lead">{p.description}</p>
             <Section title={t("section_highlights")} items={p.highlights} />
             <Section title={t("section_role")} items={p.roleBullets} />
-            <Section
-              title={t("section_architecture")}
-              items={p.architectureBullets}
-            />
+            <Section title={t("section_architecture")} items={p.architectureBullets} />
             <Section title={t("section_learned")} items={p.learnedBullets} />
+            </>}
+
           </div>
           <aside className="detail-sidebar">
             <h2>{en ? "TECHNOLOGIES" : "TECHNOLOGIES"}</h2>
@@ -164,10 +165,7 @@ export default async function ProjectDetail({
                 <li key={tech}>{tech}</li>
               ))}
             </ul>
-            <h2 className="!mt-10">
-              {en ? "AT A GLANCE" : "EN QUELQUES MOTS"}
-            </h2>
-            <p>{loc(info.outcome, locale)}</p>
+
             {!p.links?.repo && (
               <p className="mt-6">
                 {en
