@@ -1,156 +1,28 @@
+import Image from "next/image";
 import { setRequestLocale } from "next-intl/server";
 import { ArrowUpRight } from "lucide-react";
 import { Link } from "@/lib/navigation";
-import { PageHeader } from "@/components/PageHeader";
 import { PageLayout } from "@/components/PageLayout";
-import { EXPERIENCES, loc } from "@/lib/skills";
 import { CONTACT } from "@/lib/contact";
-export default async function About({
-  params,
-}: {
-  params: Promise<{ locale: string }>;
-}) {
+import { EXPERIENCES, loc } from "@/lib/skills";
+import styles from "./about.module.css";
+
+export default async function About({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
   setRequestLocale(locale);
   const en = locale === "en";
-  return (
-    <PageLayout>
-      <PageHeader
-        locale={locale}
-        title={
-          en
-            ? "About me."
-            : "À propos."
-        }
-        subtitle={
-          en
-            ? "Ilian El Bouazzaoui Prieur · Systems, networks & development"
-            : "Ilian El Bouazzaoui Prieur · Systèmes, réseaux & développement"
-        }
-      />
-      <section className="about-grid page-width">
-        <div className="about-copy">
-          <p>
-            {en ? (
-              <>
-                I am a third-year{" "}
-                <strong>Computer Science student at Paris-Saclay</strong>,
-                specializing in deploying communicating and secure applications.
-              </>
-            ) : (
-              <>
-                Je suis étudiant en{" "}
-                <strong>BUT 3 Informatique à Paris-Saclay</strong>, parcours
-                déploiement d’applications communicantes et sécurisées.
-              </>
-            )}
-          </p>
-          <p>
-            {en
-              ? "I like moving between layers: understanding a network, building a Windows tool, automating a repetitive task or synchronizing a multiplayer game."
-              : "J’aime passer d’une couche à l’autre : comprendre un réseau, construire un outil Windows, automatiser une tâche répétitive ou synchroniser un jeu multijoueur."}
-          </p>
-          <p className="!font-sans !text-sm text-muted">
-            {en
-              ? "My internship at Data-Tricks gave me hands-on experience in network infrastructure and security. Today I continue with labs in Active Directory, traffic analysis and monitoring, while developing my own applications."
-              : "Mon stage chez Data-Tricks m’a permis de travailler sur l’infrastructure et la sécurité réseau. Je poursuis aujourd’hui avec des labs Active Directory, d’analyse de trafic et de supervision, tout en développant mes propres applications."}
-          </p>
-        </div>
-        <aside className="about-facts">
-          <span className="eyebrow">
-            {en ? "A FEW DETAILS" : "QUELQUES REPÈRES"}
-          </span>
-          <dl>
-            <div>
-              <dt>{en ? "Based in" : "Localisation"}</dt>
-              <dd>
-                Villebon-sur-Yvette
-                <br />
-                Île-de-France
-              </dd>
-            </div>
-            <div>
-              <dt>{en ? "Languages" : "Langues"}</dt>
-              <dd>
-                {en ? "French · Native" : "Français · Langue maternelle"}
-                <br />
-                {en ? "English · B2" : "Anglais · B2"}
-              </dd>
-            </div>
-            <div>
-              <dt>{en ? "Outside the screen" : "Hors écran"}</dt>
-              <dd>
-                {en ? "Sport, cinema and music." : "Sport, cinéma et musique."}
-              </dd>
-            </div>
-          </dl>
-          <a
-            href={en ? CONTACT.cvUrlEn : CONTACT.cvUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-link"
-          >
-            {en ? "Read my résumé" : "Consulter mon CV"}
-            <ArrowUpRight size={14} />
-            <span className="sr-only"> (PDF)</span>
-          </a>
-        </aside>
-      </section>
-      <section className="about-section page-width">
-        <div>
-          <span className="eyebrow">{en ? "PRACTICE" : "PRATIQUE"}</span>
-          <h2>{en ? "Technical skills" : "Compétences"}</h2>
-        </div>
-        <div>
-          <div className="about-proof"><h3>{en ? "Build a network" : "Construire un réseau"}</h3><p>{en ? "At Data-Tricks I modeled three sites, segmented VLANs and tested IPsec tunnels." : "Chez Data-Tricks, j’ai modélisé trois sites, segmenté des VLAN et testé des tunnels IPsec."}</p><Link href="/projets/lab-gns3-data-tricks">{en ? "Explore the network lab" : "Voir le lab réseau"}</Link></div>
-          <div className="about-proof"><h3>{en ? "Investigate and monitor" : "Observer et analyser"}</h3><p>{en ? "In coursework, I examined packet captures with Wireshark, mapped techniques to ATT&CK and worked on Suricata detection rules." : "En travaux pratiques, j’ai analysé des captures avec Wireshark, relié des techniques à ATT&CK et travaillé sur des règles Suricata."}</p><Link href="/projets/analyse-attaques-mitre">{en ? "Explore the investigation" : "Voir l’analyse d’attaques"}</Link></div>
-          <div className="about-proof"><h3>{en ? "Develop practical tools" : "Développer des outils"}</h3><p>{en ? "Karu captures gameplay on Windows; my Python tools organize job offers and track application states." : "Karu enregistre des séquences de jeu sur Windows ; mes outils Python organisent les offres et suivent l’état des candidatures."}</p><Link href="/projets/karu">{en ? "Explore Karu" : "Découvrir Karu"}</Link></div>
-          <Link href="/projets" className="text-link mt-5">
-            {en ? "See them in practice" : "Les voir en pratique"}
-            <ArrowUpRight size={14} />
-          </Link>
-        </div>
-      </section>
-      <section className="about-section page-width">
-        <div>
-          <span className="eyebrow">
-            {en ? "EXPERIENCE" : "EXPÉRIENCE"}
-          </span>
-          <h2>{en ? "Professional experience" : "Expériences professionnelles"}</h2>
-        </div>
-        <div>
-          {[EXPERIENCES[0], EXPERIENCES[2], EXPERIENCES[1]].map((exp) => (
-            <article className="experience-row" key={exp.org}>
-              <span>{loc(exp.period, locale)}</span>
-              <h3>{loc(exp.title, locale)}</h3>
-              <p className="!text-foreground">{exp.org}</p>
-              <p>{loc(exp.detail, locale)}</p>
-            </article>
-          ))}
-        </div>
-      </section>
-      <section className="about-section page-width">
-        <div>
-          <span className="eyebrow">{en ? "EDUCATION" : "FORMATION"}</span>
-          <h2>Paris-Saclay</h2>
-        </div>
-        <div>
-          <article className="experience-row">
-            <span>2023 — 2027</span>
-            <h3>BUT Informatique · {en ? "Year 3" : "3e année"}</h3>
-            <p>IUT d’Orsay · Université Paris-Saclay</p>
-            <p>
-              {en
-                ? "Track B: deployment of communicating and secure applications. Networks, systems, cybersecurity, service continuity and software development."
-                : "Parcours B : déploiement d’applications communicantes et sécurisées. Réseaux, systèmes, cybersécurité, continuité de service et développement."}
-            </p>
-          </article>
-          <Link href="/contact" className="text-link mt-5">
-            {en ? "Get in touch" : "Prenons contact"}
-            <ArrowUpRight size={14} />
-          </Link>
-        </div>
-      </section>
-    </PageLayout>
-  );
+  const domains = [
+    { title: en ? "Networks & infrastructure" : "Réseaux & infrastructure", text: en ? "At Data-Tricks, I built a three-site lab and tested the VPN links between them." : "Chez Data-Tricks, j’ai construit un lab à trois sites et testé les liaisons VPN entre eux.", project: en ? "Multi-site GNS3 lab" : "Lab GNS3 multi-sites", href: "/projets/lab-gns3-data-tricks", detail: "GNS3 · VLAN · IPsec" },
+    { title: en ? "Security analysis" : "Analyse de sécurité", text: en ? "I investigate network captures and turn observations into detection and hardening proposals." : "J’examine des captures réseau et je transforme mes observations en pistes de détection et de durcissement.", project: en ? "Attack analysis" : "Analyse d’attaques", href: "/projets/analyse-attaques-mitre", detail: "Wireshark · ATT&CK · Suricata" },
+    { title: en ? "Software & automation" : "Développement & automatisation", text: en ? "I build Windows applications and Python tools to solve problems I encounter." : "Je développe des applications Windows et des outils Python pour répondre à des besoins que je rencontre.", project: "Karu", href: "/projets/karu", detail: "C# · .NET · Python" },
+  ];
+  return <PageLayout><div className={`${styles.page} page-width`}>
+    <header className={styles.hero}><div className={styles.heroText}><p className={styles.kicker}>{en ? "About Ilian" : "À propos d’Ilian"}</p><h1>{en ? "Curiosity, built into practice." : "Comprendre en faisant."}</h1><p className={styles.lead}>{en ? "I’m Ilian, a third-year computer science student at Paris-Saclay. I like understanding how systems connect, where they can fail, and how to make them more reliable." : "Je suis Ilian, étudiant en BUT 3 informatique à Paris-Saclay. J’aime comprendre comment les systèmes communiquent, où ils peuvent faillir et comment les rendre plus fiables."}</p><p className={styles.introDetail}>{en ? "My internship at Data-Tricks led me to infrastructure and network security. I continue learning through labs, traffic analysis and personal software projects." : "Mon stage chez Data-Tricks m’a amené vers l’infrastructure et la sécurité réseau. Je poursuis cet apprentissage à travers des labs, l’analyse de trafic et mes projets logiciels."}</p><div className={styles.heroLinks}><a href={en ? CONTACT.cvUrlEn : CONTACT.cvUrl} target="_blank" rel="noopener noreferrer" className={styles.primary}>{en ? "View résumé (PDF)" : "Consulter mon CV (PDF)"}<ArrowUpRight size={16} aria-hidden="true"/></a><Link href="/contact" className={styles.textLink}>{en ? "Contact me" : "Me contacter"}</Link></div></div>
+      <figure className={styles.visual}><div className={styles.imageWrap}><Image src="/project-images/lab-gns3.png" alt={en ? "GNS3 view of the simulated network linking the French, Tunisian and cloud sites." : "Vue GNS3 du réseau simulé reliant les sites France, Tunisie et Cloud."} width={1920} height={1080} sizes="(max-width: 800px) 100vw, 42vw" priority /></div><figcaption><span>{en ? "A project from my internship" : "Un projet réalisé en stage"}</span><Link href="/projets/lab-gns3-data-tricks">{en ? "Explore the lab" : "Voir le lab"} <ArrowUpRight size={14} aria-hidden="true"/></Link></figcaption></figure>
+    </header>
+    <div className={styles.details}><span>{en ? "Based in Villebon-sur-Yvette" : "Villebon-sur-Yvette, Île-de-France"}</span><span>{en ? "French · English B2" : "Français · Anglais B2"}</span><span>{en ? "Sport, film & music" : "Sport, cinéma et musique"}</span></div>
+    <section className={styles.domains}><div className={styles.sectionHead}><h2>{en ? "What I work on" : "Ce sur quoi je travaille"}</h2><p>{en ? "Three areas, grounded in projects." : "Trois domaines, ancrés dans des projets."}</p></div><div className={styles.domainList}>{domains.map(domain => <article key={domain.href} className={styles.domain}><div><h3>{domain.title}</h3><p>{domain.text}</p></div><Link href={domain.href} className={styles.domainLink}><span>{domain.project}</span><span className={styles.domainDetail}>{domain.detail}</span><ArrowUpRight size={17} aria-hidden="true"/></Link></article>)}</div></section>
+    <section className={styles.journey}><div className={styles.journeyHeading}><h2>{en ? "My journey" : "Mon parcours"}</h2><p>{en ? "Experiences that shaped how I work." : "Les expériences qui ont construit ma façon de travailler."}</p></div><div className={styles.timeline}>{[EXPERIENCES[0], EXPERIENCES[2], EXPERIENCES[1]].map(exp => <article key={exp.org} className={styles.timelineItem}><p className={styles.period}>{loc(exp.period,locale)}</p><div><h3>{loc(exp.title,locale)}</h3><p className={styles.org}>{exp.org}</p><p>{loc(exp.detail,locale)}</p></div></article>)}<article className={`${styles.timelineItem} ${styles.education}`}><p className={styles.period}>2023 — 2027</p><div><h3>BUT Informatique · {en ? "Year 3" : "3e année"}</h3><p className={styles.org}>IUT d’Orsay · Université Paris-Saclay</p><p>{en ? "Deployment of communicating and secure applications." : "Parcours déploiement d’applications communicantes et sécurisées."}</p></div></article></div></section>
+    <section className={styles.closing}><div><h2>{en ? "Looking for an internship" : "À la recherche d’un stage"}</h2><p>{en ? "SOC analysis, systems or network security · 18 January to 14 May 2027." : "Analyse SOC, systèmes ou sécurité réseau · du 18 janvier au 14 mai 2027."}</p></div><Link href="/contact" className={styles.primary}>{en ? "Get in touch" : "Me contacter"}<ArrowUpRight size={16} aria-hidden="true"/></Link></section>
+  </div></PageLayout>;
 }
