@@ -23,20 +23,6 @@
   --brand-surface: #f4f4f1;
   --brand-ink: #111315;
 }
-/* Only the comparison page sets these attributes; the default remains graphite. */
-:root:has([data-palette="sage"]) {
-  --background:#141716; --background-elevated:#202522; --surface-hover:#2a302c;
-  --foreground:#f1f3ef; --muted:#b1b9b3; --muted-strong:#c1c9c3; --muted-subtle:#abb5ad;
-  --line:#3a433d; --control-border:#929d94; --accent-rgb:190 207 193; --accent-soft:#becfc1;
-  --button-bg:#d5e1d7; --button-fg:#141716; --button-hover:#f2f6f2; --image-frame:#141716;
-}
-:root:has([data-palette="stone"]) {
-  --background:#171615; --background-elevated:#252321; --surface-hover:#302d2a;
-  --foreground:#f4f2ef; --muted:#bcb6af; --muted-strong:#cbc5bf; --muted-subtle:#b8b1aa;
-  --line:#45413d; --control-border:#9d9690; --accent-rgb:220 211 200; --accent-soft:#dcd3c8;
-  --button-bg:#e6ded4; --button-fg:#171615; --button-hover:#ffffff; --image-frame:#171615;
-}
-
 * {
   box-sizing: border-box;
 }
