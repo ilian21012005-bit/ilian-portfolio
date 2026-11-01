@@ -4,7 +4,7 @@ Next.js 16 App Router, TypeScript, next-intl (fr/en), Tailwind et CSS global. `n
 
 Les projets sont dans `lib/projects.ts` et `lib/additional-projects.ts` ; leurs catégories dans `lib/project-presentation.ts`. Préserver les URLs et les variantes FR/EN. Utiliser les composants serveur par défaut et limiter les dépendances et scripts client.
 
-Design : fond ardoise, accent bleu discret, IBM Plex Sans, tailles lisibles, structure simple et responsive. Ne pas multiplier les effets décoratifs ni les logos d’outils. Utiliser les vraies captures ou un schéma explicitement identifié.
+Design : graphite monochrome, accent gris clair, IBM Plex Sans, tailles lisibles, structure simple et responsive. Ne pas multiplier les effets décoratifs ni les logos d’outils. Utiliser les vraies captures ou un schéma explicitement identifié.
 
 Ne pas inventer d’expérience, de certification, de résultat, d’image de produit ou de disponibilité. Distinguer prototype et réalisation ; ne pas publier de données confidentielles. Respecter la réduction des animations, les labels, le clavier et le contraste.
 
