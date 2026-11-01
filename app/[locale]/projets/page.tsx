@@ -11,6 +11,8 @@ export default async function ProjetsPage({
   const { locale } = await params;
   setRequestLocale(locale);
   const en = locale === "en";
+  const priority = ["lab-gns3-data-tricks", "analyse-attaques-mitre", "continuite-supervision", "lab-active-directory"];
+  const ordered = [...PROJECTS].sort((a, b) => { const rank = (slug: string) => { const i = priority.indexOf(slug); return i < 0 ? priority.length : i; }; return rank(a.slug) - rank(b.slug); });
   return (
     <PageLayout>
       <PageHeader
@@ -24,7 +26,7 @@ export default async function ProjetsPage({
       />
       <ProjectArchive
         locale={locale}
-        projects={PROJECTS.map((p) => {
+        projects={ordered.map((p) => {
           const { slug, title, description, techStack, status } =
             resolveProject(p, locale);
           return { slug, title, description, techStack, status };
