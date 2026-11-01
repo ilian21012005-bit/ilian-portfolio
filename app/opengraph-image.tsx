@@ -15,8 +15,8 @@ export default function OpenGraphImage() {
           flexDirection: "column",
           justifyContent: "space-between",
           padding: "65px 80px",
-          background: "#191e24",
-          color: "#f0f3f5",
+          background: "#111315",
+          color: "#f4f4f1",
         }}
       >
         <div
@@ -24,14 +24,14 @@ export default function OpenGraphImage() {
             display: "flex",
             justifyContent: "space-between",
             fontSize: 18,
-            color: "#bbc5ce",
+            color: "#a6adb2",
           }}
         >
           <span>ILIAN / PORTFOLIO</span>
           <span>PARIS-SACLAY · BUT INFORMATIQUE</span>
         </div>
         <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
-          <span style={{ fontSize: 25, color: "#bbc5ce" }}>
+          <span style={{ fontSize: 25, color: "#a6adb2" }}>
             Ilian El Bouazzaoui Prieur
           </span>
           <span style={{ fontSize: 83, lineHeight: 1.1, letterSpacing: -3 }}>
@@ -42,7 +42,7 @@ export default function OpenGraphImage() {
               fontSize: 83,
               lineHeight: 1.1,
               letterSpacing: -3,
-              color: "#8ab9cf",
+              color: "#e6e8e7",
             }}
           >
             Logiciels.
@@ -51,10 +51,10 @@ export default function OpenGraphImage() {
         <div
           style={{
             display: "flex",
-            borderTop: "1px solid #3c4854",
+            borderTop: "1px solid #33383d",
             paddingTop: 20,
             fontSize: 20,
-            color: "#bbc5ce",
+            color: "#a6adb2",
           }}
         >
           Infrastructure · Cybersécurité · Développement · Automatisation

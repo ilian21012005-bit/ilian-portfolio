@@ -10,7 +10,7 @@
 .primary:hover { background:var(--button-hover); color:var(--button-fg); }
 .textLink { display:inline-flex; align-items:center; min-height:44px; text-decoration:underline; text-underline-offset:4px; font-size:14px; }
 .visual { min-width:0; background:var(--background-elevated); border:1px solid var(--line); border-radius:6px; overflow:hidden; }
-.imageWrap { background:#1d1f20; overflow:hidden; aspect-ratio:16/10; }
+.imageWrap { background:var(--image-frame); overflow:hidden; aspect-ratio:16/10; }
 .imageWrap img { width:100%; height:100%; object-fit:cover; object-position:center; }
 .visual figcaption { display:flex; flex-wrap:wrap; justify-content:space-between; align-items:center; gap:8px; padding:14px 16px; color:var(--muted); font-size:13px; }
 .visual figcaption a { display:inline-flex; align-items:center; gap:5px; min-height:32px; color:var(--foreground); }
@@ -36,3 +36,7 @@
 .closing { display:flex; align-items:center; justify-content:space-between; gap:25px; margin-top:var(--about-gap); padding:30px; background:var(--background-elevated); border-radius:6px; }
 @media(max-width:800px) { .hero { grid-template-columns:1fr; gap:30px; } .visual { max-width:650px; } .journey { grid-template-columns:1fr; gap:20px; } .journeyHeading { max-width:none; } }
 @media(max-width:560px) { .page { padding-top:40px; padding-bottom:45px; } .hero h1 { font-size:38px; } .domain { grid-template-columns:1fr; gap:15px; } .domainLink { width:100%; } .timelineItem { grid-template-columns:1fr; gap:6px; } .closing { flex-direction:column; align-items:flex-start; padding:23px; } .details { margin-top:28px; } }
+.palettePreview { display:flex; flex-wrap:wrap; align-items:center; gap:8px; margin-bottom:28px; color:var(--muted); font-size:13px; }
+.palettePreview span { margin-right:8px; }
+.palettePreview a { padding:8px 12px; min-height:40px; display:inline-flex; align-items:center; border:1px solid var(--control-border); border-radius:4px; }
+.palettePreview a[aria-current="page"] { background:var(--button-bg); color:var(--button-fg); border-color:var(--button-bg); }
