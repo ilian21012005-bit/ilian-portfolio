@@ -1,108 +1,142 @@
 "use client";
-
 import { useState } from "react";
-import { useTranslations } from "next-intl";
-
+import { useLocale, useTranslations } from "next-intl";
+import { ArrowUpRight } from "lucide-react";
+import { CONTACT } from "@/lib/contact";
 export function ContactForm() {
   const t = useTranslations("Contact");
-  const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
-  const [formData, setFormData] = useState({ name: "", email: "", message: "", website: "" });
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
+  const en = useLocale() === "en";
+  const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">(
+    "idle",
+  );
+  const [data, setData] = useState({
+    name: "",
+    email: "",
+    message: "",
+    website: "",
+  });
+  const submit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    if (status === "sending") return;
     setStatus("sending");
     try {
       const res = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
+        body: JSON.stringify(data),
+        signal: AbortSignal.timeout(15000),
       });
-      if (res.ok) {
-        setStatus("sent");
-        setFormData({ name: "", email: "", message: "", website: "" });
-      } else setStatus("error");
+      if (!res.ok) throw new Error("send");
+      setStatus("sent");
+      setData({ name: "", email: "", message: "", website: "" });
     } catch {
       setStatus("error");
     }
   };
-
-  const fieldClass =
-    "w-full border-b border-white/25 bg-transparent px-0 py-3 text-foreground placeholder-muted focus:border-accent focus:outline-none";
-
+  if (status === "sent")
+    return (
+      <div role="status" className="space-y-5">
+        <p>
+          {en
+            ? "Your message has been submitted."
+            : "Ton message a bien été transmis."}
+        </p>
+        <button
+          className="text-link"
+          type="button"
+          onClick={() => setStatus("idle")}
+        >
+          {en ? "Write another message" : "Écrire un autre message"}
+          <ArrowUpRight size={14} />
+        </button>
+      </div>
+    );
   return (
-    <form onSubmit={handleSubmit} className="max-w-lg space-y-8">
-      <p className="hidden" aria-hidden>
+    <form
+      onSubmit={submit}
+      className="space-y-5"
+      aria-busy={status === "sending"}
+    >
+      <div hidden aria-hidden="true">
         <label htmlFor="contact-website">Website</label>
         <input
           id="contact-website"
-          type="text"
           name="website"
           tabIndex={-1}
           autoComplete="off"
-          value={formData.website}
-          onChange={(e) => setFormData((p) => ({ ...p, website: e.target.value }))}
+          value={data.website}
+          onChange={(e) => setData({ ...data, website: e.target.value })}
         />
-      </p>
+      </div>
       <div>
-        <label htmlFor="contact-name" className="text-sm text-muted">
+        <label className="form-label" htmlFor="contact-name">
           {t("form_name")}
         </label>
         <input
+          className="form-input"
           id="contact-name"
-          type="text"
           name="name"
+          autoComplete="name"
           required
           maxLength={120}
-          value={formData.name}
-          onChange={(e) => setFormData((p) => ({ ...p, name: e.target.value }))}
-          className={fieldClass}
+          value={data.name}
+          onChange={(e) => setData({ ...data, name: e.target.value })}
           disabled={status === "sending"}
         />
       </div>
       <div>
-        <label htmlFor="contact-email" className="text-sm text-muted">
+        <label className="form-label" htmlFor="contact-email">
           {t("form_email")}
         </label>
         <input
+          className="form-input"
           id="contact-email"
           type="email"
           name="email"
+          autoComplete="email"
           required
-          value={formData.email}
-          onChange={(e) => setFormData((p) => ({ ...p, email: e.target.value }))}
-          className={fieldClass}
+          maxLength={254}
+          value={data.email}
+          onChange={(e) => setData({ ...data, email: e.target.value })}
           disabled={status === "sending"}
         />
       </div>
       <div>
-        <label htmlFor="contact-message" className="text-sm text-muted">
+        <label className="form-label" htmlFor="contact-message">
           {t("form_message")}
         </label>
         <textarea
+          className="form-input min-h-[150px] resize-y"
           id="contact-message"
           name="message"
-          required
           rows={5}
+          required
           maxLength={5000}
-          value={formData.message}
-          onChange={(e) => setFormData((p) => ({ ...p, message: e.target.value }))}
-          className={`${fieldClass} min-h-[140px] resize-y`}
+          value={data.message}
+          onChange={(e) => setData({ ...data, message: e.target.value })}
           disabled={status === "sending"}
         />
       </div>
-      <div className="flex flex-wrap items-center gap-4">
-        <button
-          type="submit"
-          disabled={status === "sending" || status === "sent"}
-          className="px-2 py-1 text-sm text-foreground disabled:opacity-50"
-        >
-          {status === "idle" && t("form_send")}
-          {status === "sending" && t("form_sending")}
-          {status === "sent" && t("form_sent")}
-          {status === "error" && t("form_error")}
-        </button>
-        {status === "sent" && <span className="text-sm text-muted">{t("form_ok")}</span>}
-        {status === "error" && <span className="text-sm text-muted">{t("form_fail")}</span>}
+      <button
+        type="submit"
+        disabled={status === "sending"}
+        className="button-primary disabled:opacity-50"
+      >
+        {status === "sending" ? t("form_sending") : t("form_send")}
+        <ArrowUpRight size={15} />
+      </button>
+      <div role="status" aria-live="polite" className="form-status">
+        {status === "error" && (
+          <p>
+            {en
+              ? "Sending failed. Your message is still here. Try again or "
+              : "L’envoi a échoué. Ton message est conservé. Réessaie ou "}
+            <a className="underline" href={`mailto:${CONTACT.email}`}>
+              {en ? "email me directly" : "écris-moi par email"}
+            </a>
+            .
+          </p>
+        )}
       </div>
     </form>
   );

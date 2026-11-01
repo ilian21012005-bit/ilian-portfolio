@@ -1,3 +1,5 @@
+import { ADDITIONAL_PROJECTS } from "./additional-projects";
+
 type ProjectLinks = {
   repo?: string;
   demo?: string;
@@ -56,6 +58,7 @@ export function resolveProject(project: Project, locale: string): ResolvedProjec
 }
 
 export const PROJECTS: Project[] = [
+  ...ADDITIONAL_PROJECTS,
   {
     slug: "lab-gns3-data-tricks",
     title: {
@@ -125,8 +128,8 @@ export const PROJECTS: Project[] = [
     },
     featured: true,
     description: {
-      fr: "UE R5B09 (BUT 3) : cartographie ATT&CK, analyse de captures réseau (scans, force brute, C2, exfiltration) et écriture de règles Suricata. Méthode d’analyste, pas un titre SOC.",
-      en: "R5B09 course (BUT 3): ATT&CK mapping, network capture analysis (scans, brute force, C2, exfiltration) and Suricata rules. Analyst method — not a SOC job title.",
+      fr: "UE R5B09 (BUT 3) : cartographie ATT&CK, analyse de captures réseau (scans, force brute, C2, exfiltration) et écriture de règles Suricata. Observation du trafic, formulation d’hypothèses et recommandations de durcissement.",
+      en: "R5B09 course (BUT 3): ATT&CK mapping, network capture analysis (scans, brute force, C2, exfiltration) and Suricata rules. Traffic observation, hypothesis testing and hardening recommendations.",
     },
     techStack: ["Wireshark", "MITRE ATT&CK", "Suricata", "CTI", "pcap"],
     highlights: {
@@ -393,46 +396,6 @@ export const PROJECTS: Project[] = [
     roleBullets: {
       fr: ["Déploiement et tests en lab simulé."],
       en: ["Deployment and tests in the simulated lab."],
-    },
-  },
-  {
-    slug: "clip-buffer",
-    title: { fr: "Clip Buffer", en: "Clip Buffer" },
-    description: {
-      fr: "Replay buffer léger pour Windows (style Medal / ShadowPlay) : capture écran Desktop Duplication, encode NVIDIA NVENC, raccourci pour sauver les N dernières minutes. Sans overlay, sans cloud.",
-      en: "Lightweight Windows replay buffer (Medal / ShadowPlay style): Desktop Duplication capture, NVIDIA NVENC encode, hotkey to save the last N minutes. No overlay, no cloud.",
-    },
-    techStack: ["C#", ".NET", "NVENC", "FFmpeg", "Windows"],
-    links: {
-      repo: "https://github.com/ilian21012005-bit/clip-buffer",
-    },
-    highlights: {
-      fr: [
-        "Buffer circulaire des N dernières minutes (défaut 5 min), sauvé au raccourci (F9).",
-        "Encodeur NVENC dédié : impact FPS faible (cible ShadowPlay), pas d’injection dans le jeu.",
-        "Capture écran Desktop Duplication — compatible anti-cheat type Vanguard.",
-        "Tray Windows, config persistante, clips dans Vidéos\\ClipBuffer.",
-      ],
-      en: [
-        "Circular buffer of the last N minutes (default 5), saved on hotkey (F9).",
-        "Dedicated NVENC encode: low FPS impact (ShadowPlay-like), no game injection.",
-        "Desktop Duplication screen capture — Vanguard-friendly approach.",
-        "System tray, persistent config, clips under Videos\\ClipBuffer.",
-      ],
-    },
-    architectureBullets: {
-      fr: [
-        "App .NET + FFmpeg bundlé ; buffer temporaire sous LocalAppData.",
-        "Scope volontairement étroit : replay local, zéro télémetrie / cloud.",
-      ],
-      en: [
-        ".NET app + bundled FFmpeg; temp buffer under LocalAppData.",
-        "Narrow scope on purpose: local replay, zero telemetry / cloud.",
-      ],
-    },
-    roleBullets: {
-      fr: ["Conception, implémentation native Windows et repo public."],
-      en: ["Design, native Windows implementation and public repo."],
     },
   },
   {

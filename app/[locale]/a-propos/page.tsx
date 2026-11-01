@@ -1,65 +1,155 @@
-"use client";
-
-import { useLocale, useTranslations } from "next-intl";
+import { setRequestLocale } from "next-intl/server";
+import { ArrowUpRight } from "lucide-react";
 import { Link } from "@/lib/navigation";
 import { PageHeader } from "@/components/PageHeader";
 import { PageLayout } from "@/components/PageLayout";
-import { Badge } from "@/components/Badge";
 import { SKILLS, EXPERIENCES, loc } from "@/lib/skills";
-
-export default function AProposPage() {
-  const t = useTranslations("About");
-  const locale = useLocale();
-
+import { CONTACT } from "@/lib/contact";
+export default async function About({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
+  setRequestLocale(locale);
+  const en = locale === "en";
   return (
     <PageLayout>
-      <PageHeader title={t("title")} subtitle={t("subtitle")} />
-      <section className="mx-auto max-w-5xl px-6 pb-24">
-        <div className="max-w-2xl space-y-6 text-lg leading-8 text-muted">
+      <PageHeader
+        locale={locale}
+        title={
+          en
+            ? "About me."
+            : "À propos."
+        }
+        subtitle={
+          en
+            ? "Ilian El Bouazzaoui Prieur · Systems, networks & development"
+            : "Ilian El Bouazzaoui Prieur · Systèmes, réseaux & développement"
+        }
+      />
+      <section className="about-grid page-width">
+        <div className="about-copy">
           <p>
-            {t.rich("p1", {
-              strong: (c) => <strong className="font-medium text-foreground">{c}</strong>,
-            })}
+            {en ? (
+              <>
+                I am a third-year{" "}
+                <strong>Computer Science student at Paris-Saclay</strong>,
+                specializing in deploying communicating and secure applications.
+              </>
+            ) : (
+              <>
+                Je suis étudiant en{" "}
+                <strong>BUT 3 Informatique à Paris-Saclay</strong>, parcours
+                déploiement d’applications communicantes et sécurisées.
+              </>
+            )}
           </p>
           <p>
-            {t.rich("p2", {
-              strong: (c) => <strong className="font-medium text-foreground">{c}</strong>,
-            })}
+            {en
+              ? "I like moving between layers: understanding a network, building a Windows tool, automating a repetitive task or synchronizing a multiplayer game."
+              : "J’aime passer d’une couche à l’autre : comprendre un réseau, construire un outil Windows, automatiser une tâche répétitive ou synchroniser un jeu multijoueur."}
           </p>
-          <p>{t("p3")}</p>
+          <p className="!font-sans !text-sm text-muted">
+            {en
+              ? "My internship at Data-Tricks gave me hands-on experience in network infrastructure and security. Today I continue with labs in Active Directory, traffic analysis and monitoring, while developing my own applications."
+              : "Mon stage chez Data-Tricks m’a permis de travailler sur l’infrastructure et la sécurité réseau. Je poursuis aujourd’hui avec des labs Active Directory, d’analyse de trafic et de supervision, tout en développant mes propres applications."}
+          </p>
         </div>
-
-        <p className="mt-8 flex flex-wrap gap-x-4 gap-y-1">
-          <Badge>{t("badge_fr")}</Badge>
-          <Badge>{t("badge_en")}</Badge>
-          <Badge>{t("badge_location")}</Badge>
-        </p>
-
-        <h2 className="mt-16 text-sm font-medium text-accent">{t("skills")}</h2>
-        <ul className="mt-5 max-w-xl space-y-2 text-foreground">
+        <aside className="about-facts">
+          <span className="eyebrow">
+            {en ? "A FEW DETAILS" : "QUELQUES REPÈRES"}
+          </span>
+          <dl>
+            <div>
+              <dt>{en ? "Based in" : "Localisation"}</dt>
+              <dd>
+                Villebon-sur-Yvette
+                <br />
+                Île-de-France
+              </dd>
+            </div>
+            <div>
+              <dt>{en ? "Languages" : "Langues"}</dt>
+              <dd>
+                {en ? "French · Native" : "Français · Langue maternelle"}
+                <br />
+                {en ? "English · B2" : "Anglais · B2"}
+              </dd>
+            </div>
+            <div>
+              <dt>{en ? "Outside the screen" : "Hors écran"}</dt>
+              <dd>
+                {en ? "Sport, cinema and music." : "Sport, cinéma et musique."}
+              </dd>
+            </div>
+          </dl>
+          <a
+            href={en ? CONTACT.cvUrlEn : CONTACT.cvUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-link"
+          >
+            {en ? "Read my résumé" : "Consulter mon CV"}
+            <ArrowUpRight size={14} />
+            <span className="sr-only"> (PDF)</span>
+          </a>
+        </aside>
+      </section>
+      <section className="about-section page-width">
+        <div>
+          <span className="eyebrow">{en ? "PRACTICE" : "PRATIQUE"}</span>
+          <h2>{en ? "Technical skills" : "Compétences"}</h2>
+        </div>
+        <div>
           {SKILLS.map((skill) => (
-            <li key={skill.fr}>{loc(skill, locale)}</li>
+            <p key={skill.fr} className="skill-line">
+              {loc(skill, locale)}
+            </p>
           ))}
-        </ul>
-
-        <h2 className="mt-16 text-sm font-medium text-accent">{t("experience")}</h2>
-        <ul className="mt-5 max-w-2xl">
-          {EXPERIENCES.map((exp) => (
-            <li key={exp.org} className="border-t border-white/[0.12] py-6">
-              <p className="text-sm text-muted">{loc(exp.period, locale)}</p>
-              <p className="mt-1 text-foreground">{loc(exp.title, locale)}</p>
-              <p className="text-muted">{exp.org}</p>
-              <p className="mt-2 text-sm text-muted">{loc(exp.detail, locale)}</p>
-            </li>
-          ))}
-        </ul>
-
-        <div className="mt-16 flex gap-4 text-sm">
-          <Link href="/projets" className="px-2 py-1 text-foreground">
-            {t("link_projects")}
+          <Link href="/projets" className="text-link mt-5">
+            {en ? "See them in practice" : "Les voir en pratique"}
+            <ArrowUpRight size={14} />
           </Link>
-          <Link href="/contact" className="px-2 py-1 text-muted">
-            {t("link_contact")}
+        </div>
+      </section>
+      <section className="about-section page-width">
+        <div>
+          <span className="eyebrow">
+            {en ? "EXPERIENCE" : "EXPÉRIENCE"}
+          </span>
+          <h2>{en ? "In the field" : "Sur le terrain"}</h2>
+        </div>
+        <div>
+          {EXPERIENCES.map((exp) => (
+            <article className="experience-row" key={exp.org}>
+              <span>{loc(exp.period, locale)}</span>
+              <h3>{loc(exp.title, locale)}</h3>
+              <p className="!text-foreground">{exp.org}</p>
+              <p>{loc(exp.detail, locale)}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+      <section className="about-section page-width">
+        <div>
+          <span className="eyebrow">{en ? "EDUCATION" : "FORMATION"}</span>
+          <h2>Paris-Saclay</h2>
+        </div>
+        <div>
+          <article className="experience-row">
+            <span>2024 — {en ? "PRESENT" : "AUJOURD’HUI"}</span>
+            <h3>BUT Informatique · {en ? "Year 3" : "3e année"}</h3>
+            <p>IUT d’Orsay · Université Paris-Saclay</p>
+            <p>
+              {en
+                ? "Track B: deployment of communicating and secure applications. Networks, systems, cybersecurity, service continuity and software development."
+                : "Parcours B : déploiement d’applications communicantes et sécurisées. Réseaux, systèmes, cybersécurité, continuité de service et développement."}
+            </p>
+          </article>
+          <Link href="/contact" className="text-link mt-5">
+            {en ? "Get in touch" : "Prenons contact"}
+            <ArrowUpRight size={14} />
           </Link>
         </div>
       </section>

@@ -1,65 +1,72 @@
 import { NextResponse } from "next/server";
 import { CONTACT } from "@/lib/contact";
-
-function isEmail(value: string) {
-  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
-}
-
+const failure = (status: number) =>
+  NextResponse.json({ ok: false }, { status });
 export async function POST(request: Request) {
+  const origin = request.headers.get("origin");
+  if (origin && origin !== new URL(request.url).origin) return failure(403);
+  const size = Number(request.headers.get("content-length") || 0);
+  if (size > 20000) return failure(413);
   let body: Record<string, unknown>;
   try {
-    body = await request.json();
+    const text = await request.text();
+    if (text.length > 20000) return failure(413);
+    const parsed: unknown = JSON.parse(text);
+    if (!parsed || typeof parsed !== "object" || Array.isArray(parsed))
+      return failure(400);
+    body = parsed as Record<string, unknown>;
   } catch {
-    return NextResponse.json({ ok: false }, { status: 400 });
+    return failure(400);
   }
-
-  if (typeof body.website === "string" && body.website.trim()) {
+  if (typeof body.website === "string" && body.website.trim())
     return NextResponse.json({ ok: true });
-  }
-
-  const name = String(body.name ?? "").trim();
-  const email = String(body.email ?? "").trim();
-  const message = String(body.message ?? "").trim();
-
-  if (!name || !email || !message || !isEmail(email) || message.length > 5000 || name.length > 120) {
-    return NextResponse.json({ ok: false }, { status: 400 });
-  }
-
-  const payload = {
-    name,
-    email,
-    message,
-    _replyto: email,
-    _subject: `Portfolio — ${name}`,
-  };
-
-  const formspreeId = process.env.FORMSPREE_ID || process.env.NEXT_PUBLIC_FORMSPREE_ID;
-  if (formspreeId) {
-    const res = await fetch(`https://formspree.io/f/${formspreeId}`, {
+  if (
+    typeof body.name !== "string" ||
+    typeof body.email !== "string" ||
+    typeof body.message !== "string"
+  )
+    return failure(400);
+  const name = body.name.trim(),
+    email = body.email.trim(),
+    message = body.message.trim();
+  if (
+    !name ||
+    name.length > 120 ||
+    !email ||
+    email.length > 254 ||
+    !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) ||
+    /[\r\n]/.test(name) ||
+    !message ||
+    message.length > 5000
+  )
+    return failure(400);
+  const formspree =
+    process.env.FORMSPREE_ID || process.env.NEXT_PUBLIC_FORMSPREE_ID;
+  const endpoint = formspree
+    ? `https://formspree.io/f/${encodeURIComponent(formspree)}`
+    : `https://formsubmit.co/ajax/${encodeURIComponent(CONTACT.email)}`;
+  try {
+    const res = await fetch(endpoint, {
       method: "POST",
-      headers: { Accept: "application/json", "Content-Type": "application/json" },
-      body: JSON.stringify(payload),
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        name,
+        email,
+        message,
+        _replyto: email,
+        _subject: `Portfolio — ${name}`,
+      }),
+      signal: AbortSignal.timeout(10000),
     });
-    if (!res.ok) return NextResponse.json({ ok: false }, { status: 502 });
+    if (!res.ok) return failure(502);
+    const result = await res.json();
+    if (result.success === false || result.success === "false" || result.errors)
+      return failure(502);
     return NextResponse.json({ ok: true });
+  } catch {
+    return failure(502);
   }
-
-  const to = CONTACT.email;
-  if (!to) return NextResponse.json({ ok: false }, { status: 500 });
-
-  const res = await fetch(`https://formsubmit.co/ajax/${encodeURIComponent(to)}`, {
-    method: "POST",
-    headers: { Accept: "application/json", "Content-Type": "application/json" },
-    body: JSON.stringify({
-      name,
-      email,
-      message,
-      _subject: `Portfolio — ${name}`,
-      _template: "box",
-      _captcha: "false",
-    }),
-  });
-
-  if (!res.ok) return NextResponse.json({ ok: false }, { status: 502 });
-  return NextResponse.json({ ok: true });
 }

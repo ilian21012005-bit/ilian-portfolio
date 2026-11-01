@@ -1,14 +1,18 @@
 import type { MetadataRoute } from "next";
-
+import { PROJECTS } from "@/lib/projects";
+import { SITE_URL, localizedAlternates } from "@/lib/site";
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = (process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000").replace(/\/$/, "");
-  const now = new Date();
-  const routes = ["/", "/a-propos", "/projets", "/contact"];
-
-  return routes.map((path) => ({
-    url: `${baseUrl}${path}`,
-    lastModified: now,
-    changeFrequency: "weekly" as const,
-    priority: path === "/" ? 1 : 0.7,
-  }));
+  const paths = [
+    "",
+    "/projets",
+    "/a-propos",
+    "/contact",
+    ...PROJECTS.map((p) => `/projets/${p.slug}`),
+  ];
+  return ["fr", "en"].flatMap((locale) =>
+    paths.map((path) => ({
+      url: `${SITE_URL}/${locale}${path}`,
+      alternates: { languages: localizedAlternates(locale, path).languages },
+    })),
+  );
 }

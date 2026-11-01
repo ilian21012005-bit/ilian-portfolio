@@ -1,60 +1,35 @@
-"use client";
-
-import { useLocale, useTranslations } from "next-intl";
-import { Link } from "@/lib/navigation";
+import { setRequestLocale } from "next-intl/server";
 import { PageHeader } from "@/components/PageHeader";
 import { PageLayout } from "@/components/PageLayout";
-import { ProjectCard } from "@/components/ProjectCard";
-import { FEATURED_PROJECTS, SECONDARY_PROJECTS, resolveProject } from "@/lib/projects";
-
-export default function ProjetsPage() {
-  const t = useTranslations("Projects");
-  const locale = useLocale();
-
+import { ProjectArchive } from "@/components/ProjectArchive";
+import { PROJECTS, resolveProject } from "@/lib/projects";
+export default async function ProjetsPage({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
+  setRequestLocale(locale);
+  const en = locale === "en";
   return (
     <PageLayout>
-      <PageHeader title={t("title")} subtitle={t("subtitle")} />
-      <section className="mx-auto max-w-5xl px-6 pb-24">
-        <h2 className="text-sm font-medium text-accent">{t("section_featured")}</h2>
-        <div className="mt-2">
-          {FEATURED_PROJECTS.map((p, i) => {
-            const copy = resolveProject(p, locale);
-            return (
-              <ProjectCard
-                key={p.slug}
-                href={`/projets/${p.slug}`}
-                title={copy.title}
-                description={copy.description}
-                techStack={copy.techStack}
-                index={i}
-                statusLabel={p.status === "in-progress" ? t("status_wip") : undefined}
-              />
-            );
-          })}
-        </div>
-
-        <h2 className="mt-14 text-sm font-medium text-accent">{t("section_other")}</h2>
-        <div className="mt-2">
-          {SECONDARY_PROJECTS.map((p) => {
-            const copy = resolveProject(p, locale);
-            return (
-              <ProjectCard
-                key={p.slug}
-                href={`/projets/${p.slug}`}
-                title={copy.title}
-                description={copy.description}
-                techStack={copy.techStack}
-              />
-            );
-          })}
-        </div>
-
-        <div className="mt-10">
-          <Link href="/contact" className="px-2 py-1 text-sm text-muted">
-            {t("link_contact")}
-          </Link>
-        </div>
-      </section>
+      <PageHeader
+        locale={locale}
+        title={en ? "Projects" : "Projets"}
+        subtitle={
+          en
+            ? "Professional experience, coursework and personal projects. Each case explains the context, my contribution and the technical decisions."
+            : "Expérience en entreprise, travaux d’études et projets personnels. Pour chaque réalisation : le contexte, ma contribution et les choix techniques."
+        }
+      />
+      <ProjectArchive
+        locale={locale}
+        projects={PROJECTS.map((p) => {
+          const { slug, title, description, techStack, status } =
+            resolveProject(p, locale);
+          return { slug, title, description, techStack, status };
+        })}
+      />
     </PageLayout>
   );
 }
