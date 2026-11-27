@@ -1,7 +1,21 @@
-# Design du portfolio
+# Design du portfolio — Editorial Swiss Tech
 
-La direction choisie est Graphite Monochrome : fond `#111315`, surface `#1d2023`, survol `#262a2e`, bordure `#33383d`, texte `#f4f4f1`, texte secondaire `#a6adb2` et accent `#e6e8e7`. Les tokens sont définis dans `app/globals.css` et les styles propres à À propos dans `app/[locale]/a-propos/about.module.css`.
+La direction artistique retenue est **Editorial Swiss Tech** : une base éditoriale claire et chaleureuse ponctuée de plaques techniques carbone à fort contraste et d’un accent vermillon signal.
 
-IBM Plex Sans est utilisé pour les titres et le texte. Les sections gardent des espacements adaptés à leur contenu. Les captures montrent les projets réels, sans filtre ; les liens et les boutons possèdent des états de survol et de focus visibles. Les animations respectent `prefers-reduced-motion`.
+## Palette et contrastes
 
-La capture GNS3 conserve son cadrage complet et renvoie à l’étude de cas. Vérifier sa lisibilité sur mobile, le contraste réel des contrôles et les pages FR/EN lors de chaque changement visuel. Exécuter `node scripts/check-palettes.mjs` pour les contrastes des principales combinaisons graphite ; cela ne remplace pas un audit visuel ni un audit WCAG complet.
+- **Surfaces papier** : fond `#f3f1ea`, surface élevée `#eae6dc`, survol `#e1ddd1`, carte `#faf8f3`, filet `#d4cfc3`, bordure de contrôle `#7a766c`.
+- **Encres sur clair** : texte principal `#131311`, texte secondaire `#55534d`, secondaire soutenu `#3a3934`, accent vermillon `#b8320f` (survol `#99280b`).
+- **Plaques techniques carbone** : fond `#131416`, surface `#1c1e21`, bordure `#2d3136`, texte `#f3f1ea`, secondaire `#a8a59d`, accent `#ff5a2e`.
+- Tous les tokens sont définis dans `app/globals.css` et les styles propres à À propos dans `app/[locale]/a-propos/about.module.css`.
+
+## Typographie & visuels
+
+- Trio `next/font/google` : **Plus Jakarta Sans** (titres & UI), **Instrument Serif** (italique éditorial ponctuel), **IBM Plex Mono** (repères, métadonnées et indices tabulaires).
+- Les captures réelles (`lab-gns3.png`, `dreamshift-bureau.jpg`) conservent leur cadrage authentique sur plaque carbone.
+- Les projets phares sans capture disposent de schémas vectoriels SVG dans `components/ProjectDiagram.tsx`, explicitement légendés comme schémas d’architecture et fidèles aux faits de `lib/projects.ts`.
+- Les transitions CSS pures respectent strictement `prefers-reduced-motion`.
+
+## Contrôles
+
+Exécuter `npm run check:palettes` et `node scripts/audit-slop.mjs --strict` lors de chaque changement visuel, puis vérifier les pages desktop et mobile en FR/EN.

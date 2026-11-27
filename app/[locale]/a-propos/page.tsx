@@ -1,28 +1,229 @@
+import type { Metadata } from "next";
 import Image from "next/image";
-import { setRequestLocale } from "next-intl/server";
 import { ArrowUpRight } from "lucide-react";
-import { Link } from "@/lib/navigation";
+import { setRequestLocale } from "next-intl/server";
 import { PageLayout } from "@/components/PageLayout";
 import { CONTACT } from "@/lib/contact";
+import { Link } from "@/lib/navigation";
+import { pageMetadata } from "@/lib/site";
 import { EXPERIENCES, loc } from "@/lib/skills";
 import styles from "./about.module.css";
 
-export default async function About({ params }: { params: Promise<{ locale: string }> }) {
-  const { locale } = await params;
-  setRequestLocale(locale);
-  const en = locale === "en";
-  const domains = [
-    { title: en ? "Networks & infrastructure" : "Réseaux & infrastructure", text: en ? "At Data-Tricks, I built a three-site lab and tested the VPN links between them." : "Chez Data-Tricks, j’ai construit un lab à trois sites et testé les liaisons VPN entre eux.", project: en ? "Multi-site GNS3 lab" : "Lab GNS3 multi-sites", href: "/projets/lab-gns3-data-tricks", detail: "GNS3 · VLAN · IPsec" },
-    { title: en ? "Security analysis" : "Analyse de sécurité", text: en ? "I investigate network captures and turn observations into detection and hardening proposals." : "J’examine des captures réseau et je transforme mes observations en pistes de détection et de durcissement.", project: en ? "Attack analysis" : "Analyse d’attaques", href: "/projets/analyse-attaques-mitre", detail: "Wireshark · ATT&CK · Suricata" },
-    { title: en ? "Software & automation" : "Développement & automatisation", text: en ? "I build Windows applications and Python tools to solve problems I encounter." : "Je développe des applications Windows et des outils Python pour répondre à des besoins que je rencontre.", project: "Karu", href: "/projets/karu", detail: "C# · .NET · Python" },
-  ];
-  return <PageLayout><div className={`${styles.page} page-width`}>
-    <header className={styles.hero}><div className={styles.heroText}><p className={styles.kicker}>{en ? "About Ilian" : "À propos d’Ilian"}</p><h1>{en ? "Curiosity, built into practice." : "Comprendre en faisant."}</h1><p className={styles.lead}>{en ? "I’m Ilian, a third-year computer science student at Paris-Saclay. I like understanding how systems connect, where they can fail, and how to make them more reliable." : "Je suis Ilian, étudiant en BUT 3 informatique à Paris-Saclay. J’aime comprendre comment les systèmes communiquent, où ils peuvent faillir et comment les rendre plus fiables."}</p><p className={styles.introDetail}>{en ? "My internship at Data-Tricks led me to infrastructure and network security. I continue learning through labs, traffic analysis and personal software projects." : "Mon stage chez Data-Tricks m’a amené vers l’infrastructure et la sécurité réseau. Je poursuis cet apprentissage à travers des labs, l’analyse de trafic et mes projets logiciels."}</p><div className={styles.heroLinks}><a href={en ? CONTACT.cvUrlEn : CONTACT.cvUrl} target="_blank" rel="noopener noreferrer" className={styles.primary}>{en ? "View résumé (PDF)" : "Consulter mon CV (PDF)"}<ArrowUpRight size={16} aria-hidden="true"/></a><Link href="/contact" className={styles.textLink}>{en ? "Contact me" : "Me contacter"}</Link></div></div>
-      <figure className={styles.visual}><div className={styles.imageWrap}><Image src="/project-images/lab-gns3.png" alt={en ? "GNS3 view of the simulated network linking the French, Tunisian and cloud sites." : "Vue GNS3 du réseau simulé reliant les sites France, Tunisie et Cloud."} width={1920} height={1080} sizes="(max-width: 800px) 100vw, 42vw" priority /></div><figcaption><span>{en ? "A project from my internship" : "Un projet réalisé en stage"}</span><Link href="/projets/lab-gns3-data-tricks">{en ? "Explore the lab" : "Voir le lab"} <ArrowUpRight size={14} aria-hidden="true"/></Link></figcaption></figure>
-    </header>
-    <div className={styles.details}><span>{en ? "Based in Villebon-sur-Yvette" : "Villebon-sur-Yvette, Île-de-France"}</span><span>{en ? "French · English B2" : "Français · Anglais B2"}</span><span>{en ? "Sport, film & music" : "Sport, cinéma et musique"}</span></div>
-    <section className={styles.domains}><div className={styles.sectionHead}><h2>{en ? "What I work on" : "Ce sur quoi je travaille"}</h2><p>{en ? "Three areas, grounded in projects." : "Trois domaines, ancrés dans des projets."}</p></div><div className={styles.domainList}>{domains.map(domain => <article key={domain.href} className={styles.domain}><div><h3>{domain.title}</h3><p>{domain.text}</p></div><Link href={domain.href} className={styles.domainLink}><span>{domain.project}</span><span className={styles.domainDetail}>{domain.detail}</span><ArrowUpRight size={17} aria-hidden="true"/></Link></article>)}</div></section>
-    <section className={styles.journey}><div className={styles.journeyHeading}><h2>{en ? "My journey" : "Mon parcours"}</h2><p>{en ? "Experiences that shaped how I work." : "Les expériences qui ont construit ma façon de travailler."}</p></div><div className={styles.timeline}>{[EXPERIENCES[0], EXPERIENCES[2], EXPERIENCES[1]].map(exp => <article key={exp.org} className={styles.timelineItem}><p className={styles.period}>{loc(exp.period,locale)}</p><div><h3>{loc(exp.title,locale)}</h3><p className={styles.org}>{exp.org}</p><p>{loc(exp.detail,locale)}</p></div></article>)}<article className={`${styles.timelineItem} ${styles.education}`}><p className={styles.period}>2023 — 2027</p><div><h3>BUT Informatique · {en ? "Year 3" : "3e année"}</h3><p className={styles.org}>IUT d’Orsay · Université Paris-Saclay</p><p>{en ? "Deployment of communicating and secure applications." : "Parcours déploiement d’applications communicantes et sécurisées."}</p></div></article></div></section>
-    <section className={styles.closing}><div><h2>{en ? "Looking for an internship" : "À la recherche d’un stage"}</h2><p>{en ? "SOC analysis, systems or network security · 18 January to 14 May 2027." : "Analyse SOC, systèmes ou sécurité réseau · du 18 janvier au 14 mai 2027."}</p></div><Link href="/contact" className={styles.primary}>{en ? "Get in touch" : "Me contacter"}<ArrowUpRight size={16} aria-hidden="true"/></Link></section>
-  </div></PageLayout>;
+export async function generateMetadata({
+	params,
+}: {
+	params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+	const { locale } = await params;
+	const en = locale === "en";
+	return pageMetadata(
+		locale,
+		"/a-propos",
+		en ? "About" : "À propos",
+		en
+			? "Background, Data-Tricks internship, and systems, network and cybersecurity coursework at Paris-Saclay."
+			: "Parcours, stage chez Data-Tricks et formation systèmes, réseaux et cybersécurité à Paris-Saclay.",
+	);
+}
+
+export default async function About({
+	params,
+}: {
+	params: Promise<{ locale: string }>;
+}) {
+	const { locale } = await params;
+	setRequestLocale(locale);
+	const en = locale === "en";
+	const domains = [
+		{
+			title: en ? "Networks & infrastructure" : "Réseaux & infrastructure",
+			text: en
+				? "At Data-Tricks, I built a three-site lab and tested the VPN links between them."
+				: "Chez Data-Tricks, j’ai construit un lab à trois sites et testé les liaisons VPN entre eux.",
+			project: en ? "Multi-site GNS3 lab" : "Lab GNS3 multi-sites",
+			href: "/projets/lab-gns3-data-tricks",
+			detail: "GNS3 · VLAN · IPsec",
+		},
+		{
+			title: en ? "Security analysis" : "Analyse de sécurité",
+			text: en
+				? "I investigate network captures and turn observations into detection and hardening proposals."
+				: "J’examine des captures réseau et je transforme mes observations en pistes de détection et de durcissement.",
+			project: en ? "Attack analysis" : "Analyse d’attaques",
+			href: "/projets/analyse-attaques-mitre",
+			detail: "Wireshark · ATT&CK · Suricata",
+		},
+		{
+			title: en ? "Software & automation" : "Développement & automatisation",
+			text: en
+				? "I build Windows applications and Python tools to solve problems I encounter."
+				: "Je développe des applications Windows et des outils Python pour répondre à des besoins que je rencontre.",
+			project: "Karu",
+			href: "/projets/karu",
+			detail: "C# · .NET · Python",
+		},
+	];
+
+	return (
+		<PageLayout>
+			<div className={`${styles.page} page-width`}>
+				<header className={styles.hero}>
+					<div className={styles.heroText}>
+						<p className={styles.kicker}>
+							{en ? "About Ilian" : "À propos d’Ilian"}
+						</p>
+						<h1>
+							{en ? (
+								<>
+									Curiosity, <em>built into practice.</em>
+								</>
+							) : (
+								<>
+									Comprendre <em>en faisant.</em>
+								</>
+							)}
+						</h1>
+						<p className={styles.lead}>
+							{en
+								? "I’m Ilian, a third-year computer science student at Paris-Saclay. I like understanding how systems connect, where they can fail, and how to make them more reliable."
+								: "Je suis Ilian, étudiant en BUT 3 informatique à Paris-Saclay. J’aime comprendre comment les systèmes communiquent, où ils peuvent faillir et comment les rendre plus fiables."}
+						</p>
+						<p className={styles.introDetail}>
+							{en
+								? "My internship at Data-Tricks led me to infrastructure and network security. I continue learning through labs, traffic analysis and personal software projects."
+								: "Mon stage chez Data-Tricks m’a amené vers l’infrastructure et la sécurité réseau. Je poursuis cet apprentissage à travers des labs, l’analyse de trafic et mes projets logiciels."}
+						</p>
+						<div className={styles.heroLinks}>
+							<a
+								href={en ? CONTACT.cvUrlEn : CONTACT.cvUrl}
+								target="_blank"
+								rel="noopener noreferrer"
+								className={styles.primary}
+							>
+								{en ? "View résumé (PDF)" : "Consulter mon CV (PDF)"}
+								<ArrowUpRight size={16} aria-hidden="true" />
+							</a>
+							<Link href="/contact" className={styles.textLink}>
+								{en ? "Contact me" : "Me contacter"}
+							</Link>
+						</div>
+					</div>
+
+					<figure className={styles.visual}>
+						<div className={styles.imageWrap}>
+							<Image
+								src="/project-images/lab-gns3.png"
+								alt={
+									en
+										? "GNS3 view of the simulated network linking the French, Tunisian and cloud sites."
+										: "Vue GNS3 du réseau simulé reliant les sites France, Tunisie et Cloud."
+								}
+								width={1920}
+								height={1080}
+								sizes="(max-width: 800px) 100vw, 42vw"
+								priority
+							/>
+						</div>
+						<figcaption>
+							<span>
+								{en
+									? "A project from my internship"
+									: "Un projet réalisé en stage"}
+							</span>
+							<Link href="/projets/lab-gns3-data-tricks">
+								{en ? "Explore the lab" : "Voir le lab"}{" "}
+								<ArrowUpRight size={14} aria-hidden="true" />
+							</Link>
+						</figcaption>
+					</figure>
+				</header>
+
+				<div className={styles.details}>
+					<span>Villebon-sur-Yvette, Île-de-France</span>
+					<span>{en ? "French · English B2" : "Français · Anglais B2"}</span>
+					<span>{en ? "Sport, film & music" : "Sport, cinéma et musique"}</span>
+				</div>
+
+				<section className={styles.domains}>
+					<div className={styles.sectionHead}>
+						<h2>{en ? "What I work on" : "Ce sur quoi je travaille"}</h2>
+						<p>
+							{en
+								? "Three areas, grounded in projects."
+								: "Trois domaines, ancrés dans des projets."}
+						</p>
+					</div>
+					<div className={styles.domainList}>
+						{domains.map((domain) => (
+							<article key={domain.href} className={styles.domain}>
+								<div>
+									<h3>{domain.title}</h3>
+									<p>{domain.text}</p>
+								</div>
+								<Link href={domain.href} className={styles.domainLink}>
+									<span>{domain.project}</span>
+									<span className={styles.domainDetail}>{domain.detail}</span>
+									<ArrowUpRight size={17} aria-hidden="true" />
+								</Link>
+							</article>
+						))}
+					</div>
+				</section>
+
+				<section className={styles.journey}>
+					<div className={styles.journeyHeading}>
+						<h2>{en ? "My journey" : "Mon parcours"}</h2>
+						<p>
+							{en
+								? "Experiences that shaped how I work."
+								: "Les expériences qui ont construit ma façon de travailler."}
+						</p>
+					</div>
+					<div className={styles.timeline}>
+						{[EXPERIENCES[0], EXPERIENCES[2], EXPERIENCES[1]].map((exp) => (
+							<article key={exp.org} className={styles.timelineItem}>
+								<p className={styles.period}>{loc(exp.period, locale)}</p>
+								<div>
+									<h3>{loc(exp.title, locale)}</h3>
+									<p className={styles.org}>{exp.org}</p>
+									<p>{loc(exp.detail, locale)}</p>
+								</div>
+							</article>
+						))}
+						<article className={`${styles.timelineItem} ${styles.education}`}>
+							<p className={styles.period}>2023 — 2027</p>
+							<div>
+								<h3>BUT Informatique · {en ? "Year 3" : "3e année"}</h3>
+								<p className={styles.org}>
+									IUT d’Orsay · Université Paris-Saclay
+								</p>
+								<p>
+									{en
+										? "Deployment of communicating and secure applications."
+										: "Parcours déploiement d’applications communicantes et sécurisées."}
+								</p>
+							</div>
+						</article>
+					</div>
+				</section>
+
+				<section className={styles.closing}>
+					<div>
+						<h2>
+							{en ? "Looking for an internship" : "À la recherche d’un stage"}
+						</h2>
+						<p>
+							{en
+								? "SOC analysis, systems or network security · 18 January to 14 May 2027."
+								: "Analyse SOC, systèmes ou sécurité réseau · du 18 janvier au 14 mai 2027."}
+						</p>
+					</div>
+					<Link href="/contact" className={styles.primaryInk}>
+						{en ? "Get in touch" : "Me contacter"}
+						<ArrowUpRight size={16} aria-hidden="true" />
+					</Link>
+				</section>
+			</div>
+		</PageLayout>
+	);
 }

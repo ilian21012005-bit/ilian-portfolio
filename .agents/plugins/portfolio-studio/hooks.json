@@ -1,0 +1,16 @@
+{
+	"portfolio-git-guard": {
+		"PreToolUse": [
+			{
+				"matcher": "run_command",
+				"hooks": [
+					{
+						"type": "command",
+						"command": "node ./hooks/guard-git.mjs",
+						"timeout": 5
+					}
+				]
+			}
+		]
+	}
+}

@@ -1,0 +1,9 @@
+{
+  "id": "portfolio",
+  "path": "C:\\Users\\ilian\\Documents\\ilian-portfolio",
+  "kind": "nextjs",
+  "quality": "powershell -NoProfile -File scripts/ai-quality.ps1",
+  "skills": [
+    "ui-premium"
+  ]
+}

@@ -1,87 +1,33 @@
 {
-  "Navigation": {
-    "brand": "Portfolio Ilian",
-    "home": "Accueil",
-    "about": "À propos",
-    "projects": "Projets",
-    "contact": "Contact",
-    "language_switch": "EN",
-    "back_home": "Accueil",
-    "previous_version": "Version précédente"
-  },
-  "Home": {
-    "name": "Portfolio Ilian",
-    "line1": "Systèmes, réseau, identités.",
-    "lineFacts": "Étudiant BUT Informatique 3 — parcours B, IUT Orsay / Paris-Saclay.",
-    "line2": "Admin systèmes & réseaux. Labs Windows / AD. Analyse cyber (MITRE, Wireshark, Suricata) et supervision (Prometheus / Grafana).",
-    "availability": "Stage du 18 janvier au 14 mai 2027 — analyse SOC, cybersécurité, sécurité réseau. Île-de-France.",
-    "projects": "Projets",
-    "contact": "Contact",
-    "featured": "Sélection",
-    "scroll": "Descendre",
-    "chip_ad": "Admin AD",
-    "chip_net": "Réseau",
-    "chip_analysis": "Analyse",
-    "status_wip": "En cours"
-  },
-  "About": {
-    "title": "À propos",
-    "subtitle": "Systèmes, réseau, identités — et une porte vers l’analyse.",
-    "p1": "Étudiant en <strong>BUT 3 Informatique</strong> à l’IUT d’Orsay (Paris-Saclay), parcours B — déploiement d’applications communicantes et sécurisées. Semestre 5 : continuité de service, services complexes, cybersécurité.",
-    "p2": "Je construis des labs concrets (Active Directory, Kubernetes, supervision Prometheus/Grafana) et j’oriente vers <strong>l’analyse SOC</strong> : CTI, MITRE ATT&CK, Suricata, lecture de trafic — sans prétendre le titre aujourd’hui.",
-    "p3": "Je recherche un stage en analyse SOC, cybersécurité ou sécurité réseau, du 18 janvier au 14 mai 2027, en Île-de-France.",
-    "skills": "Compétences",
-    "experience": "Expérience",
-    "badge_fr": "Français",
-    "badge_en": "Anglais B2",
-    "badge_location": "Villebon-sur-Yvette",
-    "link_projects": "Voir les projets",
-    "link_contact": "Contact"
-  },
-  "Projects": {
-    "title": "Projets",
-    "subtitle": "Les plus concrets d’abord. Les TPs sans livrable public restent de côté.",
-    "section_featured": "Mis en avant",
-    "section_other": "Aussi",
-    "link_contact": "En parler",
-    "detail_subtitle": "Contexte, rôle, stack.",
-    "btn_repo": "Repo",
-    "btn_demo": "Démo",
-    "btn_back": "Tous les projets",
-    "section_techstack": "Stack",
-    "section_highlights": "Points clés",
-    "section_architecture": "Architecture",
-    "section_role": "Rôle",
-    "section_learned": "Ce que j’en retiens",
-    "status_wip": "En cours"
-  },
-  "Contact": {
-    "title": "Contact",
-    "subtitle": "Disponible pour un stage. Île-de-France.",
-    "avail_when": "Période",
-    "avail_when_value": "18 janvier – 14 mai 2027",
-    "avail_what": "Cible",
-    "avail_what_value": "Analyse SOC, cybersécurité, sécurité réseau",
-    "avail_where": "Zone",
-    "avail_where_value": "Île-de-France",
-    "email": "Email",
-    "phone": "Tél",
-    "cv_fr": "CV (FR)",
-    "cv_en": "CV (EN)",
-    "form_heading": "Écris-moi",
-    "form_name": "Nom",
-    "form_email": "Email",
-    "form_message": "Message",
-    "form_send": "Envoyer",
-    "form_sending": "Envoi…",
-    "form_sent": "Envoyé",
-    "form_error": "Erreur — réessayer",
-    "form_ok": "Message bien reçu.",
-    "form_fail": "Échec d’envoi. Utilise l’email ci-dessus."
-  },
-  "NotFound": {
-    "code": "404",
-    "label": "Page introuvable",
-    "back": "Retour à l’accueil"
-  }
+	"Projects": {
+		"btn_back": "Tous les projets",
+		"section_highlights": "Points clés",
+		"section_architecture": "Architecture",
+		"section_role": "Rôle",
+		"section_learned": "Ce que j’en retiens"
+	},
+	"Contact": {
+		"avail_when": "Période",
+		"avail_when_value": "18 janvier – 14 mai 2027",
+		"avail_what": "Cible",
+		"avail_what_value": "Analyse SOC, cybersécurité, sécurité réseau",
+		"avail_where": "Zone",
+		"avail_where_value": "Île-de-France",
+		"phone": "Tél",
+		"form_heading": "Écrivez-moi",
+		"form_name": "Nom",
+		"form_email": "Email",
+		"form_message": "Message",
+		"form_send": "Envoyer",
+		"form_sending": "Envoi…",
+		"form_sent": "Envoyé",
+		"form_error": "Erreur — veuillez réessayer",
+		"form_ok": "Message bien reçu.",
+		"form_fail": "Échec d’envoi. Utilisez l’email ci-dessus."
+	},
+	"NotFound": {
+		"code": "404",
+		"label": "Page introuvable",
+		"back": "Retour à l’accueil"
+	}
 }

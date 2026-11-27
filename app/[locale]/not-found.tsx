@@ -1,10 +1,10 @@
-"use client";
-
-import { useTranslations } from "next-intl";
+import { getTranslations } from "next-intl/server";
 import { NotFoundScreen } from "@/components/NotFoundScreen";
 
-export default function NotFound() {
-  const t = useTranslations("NotFound");
+export default async function NotFound() {
+	const t = await getTranslations("NotFound");
 
-  return <NotFoundScreen code={t("code")} label={t("label")} back={t("back")} />;
+	return (
+		<NotFoundScreen code={t("code")} label={t("label")} back={t("back")} />
+	);
 }

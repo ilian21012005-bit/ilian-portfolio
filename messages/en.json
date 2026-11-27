@@ -1,87 +1,33 @@
 {
-  "Navigation": {
-    "brand": "Portfolio Ilian",
-    "home": "Home",
-    "about": "About",
-    "projects": "Work",
-    "contact": "Contact",
-    "language_switch": "FR",
-    "back_home": "Home",
-    "previous_version": "Previous version"
-  },
-  "Home": {
-    "name": "Portfolio Ilian",
-    "line1": "Systems, networks, identity.",
-    "lineFacts": "BUT Computer Science, year 3 — track B, IUT Orsay / Paris-Saclay.",
-    "line2": "Systems & network admin. Windows / AD labs. Cyber analysis (MITRE, Wireshark, Suricata) and monitoring (Prometheus / Grafana).",
-    "availability": "Internship 18 January – 14 May 2027 — SOC analysis, cybersecurity, network security. Île-de-France.",
-    "projects": "Work",
-    "contact": "Contact",
-    "featured": "Selected",
-    "scroll": "Scroll down",
-    "chip_ad": "AD admin",
-    "chip_net": "Network",
-    "chip_analysis": "Analysis",
-    "status_wip": "In progress"
-  },
-  "About": {
-    "title": "About",
-    "subtitle": "Systems, networks, identity — and a path toward analysis.",
-    "p1": "<strong>BUT 3 Computer Science</strong> student at IUT Orsay (Paris-Saclay), track B — communicating and secure applications. Semester 5: service continuity, complex services, cybersecurity.",
-    "p2": "I build concrete labs (Active Directory, Kubernetes, Prometheus/Grafana monitoring) and I’m moving toward <strong>SOC analysis</strong>: CTI, MITRE ATT&CK, Suricata, traffic reading — without claiming the job title yet.",
-    "p3": "Looking for an internship in SOC analysis, cybersecurity or network security, from 18 January to 14 May 2027, in Île-de-France.",
-    "skills": "Skills",
-    "experience": "Experience",
-    "badge_fr": "French",
-    "badge_en": "English B2",
-    "badge_location": "Villebon-sur-Yvette",
-    "link_projects": "See work",
-    "link_contact": "Contact"
-  },
-  "Projects": {
-    "title": "Work",
-    "subtitle": "The concrete pieces first. School labs without a public repo stay off the homepage.",
-    "section_featured": "Featured",
-    "section_other": "Also",
-    "link_contact": "Get in touch",
-    "detail_subtitle": "Context, role, stack.",
-    "btn_repo": "Repo",
-    "btn_demo": "Demo",
-    "btn_back": "All work",
-    "section_techstack": "Stack",
-    "section_highlights": "Highlights",
-    "section_architecture": "Architecture",
-    "section_role": "Role",
-    "section_learned": "What I learned",
-    "status_wip": "In progress"
-  },
-  "Contact": {
-    "title": "Contact",
-    "subtitle": "Available for an internship. Île-de-France.",
-    "avail_when": "Dates",
-    "avail_when_value": "18 January – 14 May 2027",
-    "avail_what": "Focus",
-    "avail_what_value": "SOC analysis, cybersecurity, network security",
-    "avail_where": "Location",
-    "avail_where_value": "Île-de-France",
-    "email": "Email",
-    "phone": "Phone",
-    "cv_fr": "CV (FR)",
-    "cv_en": "CV (EN)",
-    "form_heading": "Write to me",
-    "form_name": "Name",
-    "form_email": "Email",
-    "form_message": "Message",
-    "form_send": "Send",
-    "form_sending": "Sending…",
-    "form_sent": "Sent",
-    "form_error": "Error — retry",
-    "form_ok": "Message received.",
-    "form_fail": "Send failed. Use the email above."
-  },
-  "NotFound": {
-    "code": "404",
-    "label": "Page not found",
-    "back": "Back home"
-  }
+	"Projects": {
+		"btn_back": "All projects",
+		"section_highlights": "Highlights",
+		"section_architecture": "Architecture",
+		"section_role": "Role",
+		"section_learned": "What I learned"
+	},
+	"Contact": {
+		"avail_when": "Dates",
+		"avail_when_value": "18 January – 14 May 2027",
+		"avail_what": "Focus",
+		"avail_what_value": "SOC analysis, cybersecurity, network security",
+		"avail_where": "Location",
+		"avail_where_value": "Île-de-France",
+		"phone": "Phone",
+		"form_heading": "Write to me",
+		"form_name": "Name",
+		"form_email": "Email",
+		"form_message": "Message",
+		"form_send": "Send",
+		"form_sending": "Sending…",
+		"form_sent": "Sent",
+		"form_error": "Error — retry",
+		"form_ok": "Message received.",
+		"form_fail": "Send failed. Use the email above."
+	},
+	"NotFound": {
+		"code": "404",
+		"label": "Page not found",
+		"back": "Back home"
+	}
 }
